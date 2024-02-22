@@ -18,23 +18,18 @@ See [examples](https://github.com/herudi/vjs/tree/master/examples)
 
 ## Code
 ```v
-import vjs
+rt := vjs.new_runtime()
+defer { rt.free() }
 
-fn main() {
-	rt := vjs.new_runtime()
-	defer { rt.free() }
+ctx := rt.new_context()
+defer { ctx.free() }
 
-	ctx := rt.new_context()
-	defer { ctx.free() }
+code := '2 + 1'
 
-	code := '2 + 1'
+value := ctx.eval(code) or { panic(err) }
 
-	value := ctx.eval(code) or { panic(err) }
-	defer { value.free() }
-
-	println(value)
-  // 3
-}
+println(value)
+// 3
 ```
 
 ### It's Fun Project. PRs Wellcome :)
