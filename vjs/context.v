@@ -67,7 +67,7 @@ pub fn (ctx &Context) js_undefined() Value {
 		tag: vjs.js_tag_undefined
 		u: &C.JSValueUnion{}
 	}
-	return Value{cval, ctx}
+	return Value{ref, ctx}
 }
 
 @[manualfree]
