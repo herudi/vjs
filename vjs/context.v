@@ -12,13 +12,13 @@ type EvalArgs = int | string
 
 pub const js_tag_null = 2
 pub const js_tag_undefined = 3
+pub const js_tag_uninitialized = 3
 pub const type_global = C.JS_EVAL_TYPE_GLOBAL
 pub const type_module = C.JS_EVAL_TYPE_MODULE
 pub const type_compile_only = C.JS_EVAL_FLAG_COMPILE_ONLY
 
 fn C.JS_NewContext(&C.JSRuntime) &C.JSContext
 fn C.JS_FreeContext(&C.JSContext)
-fn C.JS_GetException(&C.JSContext) C.JSValue
 fn C.JS_Eval(&C.JSContext, &char, usize, &i8, int) C.JSValue
 fn C.JS_AddIntrinsicBigFloat(&C.JSContext)
 fn C.JS_AddIntrinsicBigDecimal(&C.JSContext)
@@ -47,27 +47,6 @@ pub fn (ctx &Context) eval(args ...EvalArgs) !Value {
 		free(c_input)
 	}
 	return if val.is_exception() { ctx.js_exception() } else { val }
-}
-
-pub fn (ctx &Context) js_exception() &JSError {
-	mut val := Value{C.JS_GetException(ctx.ref), ctx}
-	return val.to_error()
-}
-
-pub fn (ctx &Context) js_null() Value {
-	ref := C.JSValue{
-		tag: vjs.js_tag_null
-		u: &C.JSValueUnion{}
-	}
-	return Value{ref, ctx}
-}
-
-pub fn (ctx &Context) js_undefined() Value {
-	ref := C.JSValue{
-		tag: vjs.js_tag_undefined
-		u: &C.JSValueUnion{}
-	}
-	return Value{ref, ctx}
 }
 
 @[manualfree]

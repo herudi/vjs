@@ -15,11 +15,13 @@ pub struct Runtime {
 @[params]
 pub struct JSError {
 	Error
+	is_err  bool = true
+	stack   string
 	message string
 }
 
 fn (err JSError) msg() string {
-	return err.message
+	return '${err.message}\n${err.stack}'
 }
 
 fn C.JS_NewRuntime() &C.JSRuntime
