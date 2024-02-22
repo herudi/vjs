@@ -1,6 +1,7 @@
 # Binaries for programs and plugins
 main
 /test.v
+/test
 *.exe
 *.exe~
 *.so

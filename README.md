@@ -24,9 +24,14 @@ defer { rt.free() }
 ctx := rt.new_context()
 defer { ctx.free() }
 
-code := '2 + 1'
+code := '1 + 2'
 
 value := ctx.eval(code) or { panic(err) }
+defer { value.free() }
+
+assert value.is_number() == true
+assert value.is_string() == false
+assert value.int() == 3
 
 println(value)
 // 3
