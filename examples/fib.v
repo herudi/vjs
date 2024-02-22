@@ -21,6 +21,9 @@ fn main() {
 	})()'
 
 	value := ctx.eval(code) or { panic(err) }
+	defer {
+		value.free()
+	}
 
-	println(value)
+	println('Fib => ${value}')
 }
