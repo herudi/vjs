@@ -15,55 +15,55 @@ fn C.JS_IsError(&C.JSContext, JSValueConst) int
 fn C.JS_IsFunction(&C.JSContext, JSValueConst) int
 
 // fn Type Is
-pub fn (v &Value) is_exception() bool {
+pub fn (v Value) is_exception() bool {
 	return C.JS_IsException(v.ref) == 1
 }
 
-pub fn (v &Value) is_number() bool {
+pub fn (v Value) is_number() bool {
 	return C.JS_IsNumber(v.ref) == 1
 }
 
-pub fn (v &Value) is_bool() bool {
+pub fn (v Value) is_bool() bool {
 	return C.JS_IsBool(v.ref) == 1
 }
 
-pub fn (v &Value) is_null() bool {
+pub fn (v Value) is_null() bool {
 	return C.JS_IsNull(v.ref) == 1
 }
 
-pub fn (v &Value) is_undefined() bool {
+pub fn (v Value) is_undefined() bool {
 	return C.JS_IsUndefined(v.ref) == 1
 }
 
-pub fn (v &Value) is_uninitialized() bool {
+pub fn (v Value) is_uninitialized() bool {
 	return C.JS_IsUninitialized(v.ref) == 1
 }
 
-pub fn (v &Value) is_string() bool {
+pub fn (v Value) is_string() bool {
 	return C.JS_IsString(v.ref) == 1
 }
 
-pub fn (v &Value) is_symbol() bool {
+pub fn (v Value) is_symbol() bool {
 	return C.JS_IsSymbol(v.ref) == 1
 }
 
-pub fn (v &Value) is_object() bool {
+pub fn (v Value) is_object() bool {
 	return C.JS_IsObject(v.ref) == 1
 }
 
-pub fn (v &Value) is_array() bool {
+pub fn (v Value) is_array() bool {
 	return C.JS_IsArray(v.ctx.ref, v.ref) == 1
 }
 
-pub fn (v &Value) is_error() bool {
+pub fn (v Value) is_error() bool {
 	return C.JS_IsError(v.ctx.ref, v.ref) == 1
 }
 
-pub fn (v &Value) is_function() bool {
+pub fn (v Value) is_function() bool {
 	return C.JS_IsFunction(v.ctx.ref, v.ref) == 1
 }
 
-pub fn (v &Value) typeof_name() string {
+pub fn (v Value) typeof_name() string {
 	if v.is_string() {
 		return 'string'
 	}

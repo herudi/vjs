@@ -22,12 +22,6 @@ fn (ctx &Context) c_val(ref C.JSValue) Value {
 	return Value{ref, ctx}
 }
 
-fn (ctx &Context) c_val_free(ref C.JSValue) Value {
-	val := ctx.c_val(ref)
-	val.free()
-	return val
-}
-
 fn (ctx &Context) c_tag(tag int) Value {
 	return ctx.c_val(C.JSValue{
 		tag: tag
@@ -125,6 +119,6 @@ fn (ctx &Context) any_to_val(val AnyValue) Value {
 	return ctx.js_u32(val as u32)
 }
 
-// pub fn (ctx &Context) js_array() &Array {
-// 	return &Array{ctx:ctx,value:ctx.c_val(C.JS_NewArray(ctx.ref))}
-// }
+pub fn (ctx &Context) js_array() Value {
+	return ctx.c_val(C.JS_NewArray(ctx.ref))
+}

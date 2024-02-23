@@ -25,13 +25,13 @@ fn C.JS_AddIntrinsicBigDecimal(&C.JSContext)
 fn C.JS_AddIntrinsicOperators(&C.JSContext)
 fn C.JS_EnableBignumExt(&C.JSContext, int)
 
-pub fn (rt &Runtime) new_context() Context {
+pub fn (rt Runtime) new_context() &Context {
 	ref := C.JS_NewContext(rt.ref)
 	C.JS_AddIntrinsicBigFloat(ref)
 	C.JS_AddIntrinsicBigDecimal(ref)
 	C.JS_AddIntrinsicOperators(ref)
 	C.JS_EnableBignumExt(ref, 1)
-	return Context{ref, rt}
+	return &Context{ref, rt}
 }
 
 pub fn (ctx &Context) eval(args ...EvalArgs) !Value {
