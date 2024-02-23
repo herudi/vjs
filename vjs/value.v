@@ -59,11 +59,11 @@ pub fn (v Value) error() &JSError {
 			is_err: false
 		}
 	}
-	message := v.str()
+	message := v.string()
 	stack := v.get('stack')
 	return &JSError{
 		message: message
-		stack: if stack.is_undefined() { '' } else { stack.str() }
+		stack: if stack.is_undefined() { '' } else { stack.string() }
 	}
 }
 

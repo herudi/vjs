@@ -36,22 +36,22 @@ pub fn (ctx &Context) js_exception() &JSError {
 
 // create js null
 pub fn (ctx &Context) js_null() Value {
-	return ctx.c_tag(js_tag_null)
+	return ctx.c_tag(2)
 }
 
 // create js undefined
 pub fn (ctx &Context) js_undefined() Value {
-	return ctx.c_tag(js_tag_undefined)
+	return ctx.c_tag(3)
+}
+
+pub fn (ctx &Context) js_uninitialized() Value {
+	return ctx.c_tag(4)
 }
 
 pub fn (ctx &Context) js_error(err JSError) Value {
 	mut val := ctx.c_val(C.JS_NewError(ctx.ref))
 	val.set('message', ctx.js_string(err.message))
 	return val
-}
-
-pub fn (ctx &Context) js_uninitialized() Value {
-	return ctx.c_tag(js_tag_uninitialized)
 }
 
 pub fn (ctx &Context) js_string(data string) Value {

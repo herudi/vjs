@@ -10,9 +10,6 @@ pub struct Context {
 
 type EvalArgs = int | string
 
-pub const js_tag_null = 2
-pub const js_tag_undefined = 3
-pub const js_tag_uninitialized = 3
 pub const type_global = C.JS_EVAL_TYPE_GLOBAL
 pub const type_module = C.JS_EVAL_TYPE_MODULE
 pub const type_compile_only = C.JS_EVAL_FLAG_COMPILE_ONLY
