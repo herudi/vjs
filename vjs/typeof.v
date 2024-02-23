@@ -62,3 +62,25 @@ pub fn (v &Value) is_error() bool {
 pub fn (v &Value) is_function() bool {
 	return C.JS_IsFunction(v.ctx.ref, v.ref) == 1
 }
+
+pub fn (v &Value) typeof_name() string {
+	if v.is_string() {
+		return 'string'
+	}
+	if v.is_bool() {
+		return 'boolean'
+	}
+	if v.is_number() {
+		return 'number'
+	}
+	if v.is_function() {
+		return 'function'
+	}
+	if v.is_symbol() {
+		return 'symbol'
+	}
+	if v.is_undefined() || v.is_uninitialized() {
+		return 'undefined'
+	}
+	return 'object'
+}
