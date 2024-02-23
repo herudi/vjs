@@ -1,6 +1,6 @@
 import vjs { Context }
 
-fn type_number(ctx Context) Context {
+fn type_number(ctx Context) {
 	code := '(() => {
 		return 1 + 2
 	})()'
@@ -12,10 +12,9 @@ fn type_number(ctx Context) Context {
 	println('Number => ${val}')
 	val.free()
 	ctx.free()
-	return ctx
 }
 
-fn type_bool(ctx Context) Context {
+fn type_bool(ctx Context) {
 	code := '(() => {
 		return true
 	})()'
@@ -25,10 +24,9 @@ fn type_bool(ctx Context) Context {
 	println('Bool => ${val}')
 	val.free()
 	ctx.free()
-	return ctx
 }
 
-fn type_object(ctx Context) Context {
+fn type_object(ctx Context) {
 	code := '(() => {
 		return { name: "john" }
 	})()'
@@ -38,10 +36,9 @@ fn type_object(ctx Context) Context {
 	println('Object => ${val.json_stringify()}')
 	val.free()
 	ctx.free()
-	return ctx
 }
 
-fn type_array(ctx Context) Context {
+fn type_array(ctx Context) {
 	code := '(() => {
 		return [1, 2]
 	})()'
@@ -51,7 +48,6 @@ fn type_array(ctx Context) Context {
 	println('Array => ${val.json_stringify()}')
 	val.free()
 	ctx.free()
-	return ctx
 }
 
 fn main() {

@@ -17,7 +17,6 @@ fn C.JS_GetGlobalObject(&C.JSContext) C.JSValue
 fn C.JS_NewObject(&C.JSContext) C.JSValue
 fn C.JS_NewError(&C.JSContext) C.JSValue
 fn C.JS_GetException(&C.JSContext) C.JSValue
-fn C.JS_NewCFunction(&C.JSContext, &JSCFunction, &i8, int) C.JSValue
 
 fn (ctx &Context) c_val(ref C.JSValue) Value {
 	return Value{ref, ctx}

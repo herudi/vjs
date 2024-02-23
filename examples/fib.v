@@ -2,14 +2,7 @@ import vjs
 
 fn main() {
 	rt := vjs.new_runtime()
-	defer {
-		rt.free()
-	}
-
 	ctx := rt.new_context()
-	defer {
-		ctx.free()
-	}
 
 	code := '(() => {
 		const fib = (n) => {
@@ -19,11 +12,11 @@ fn main() {
 		}
 		return 2 * 1 + fib(10)
 	})()'
-
 	value := ctx.eval(code) or { panic(err) }
-	defer {
-		value.free()
-	}
-
 	println('Fib => ${value}')
+
+	// free
+	value.free()
+	ctx.free()
+	rt.free()
 }
