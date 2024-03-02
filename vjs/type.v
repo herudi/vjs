@@ -17,6 +17,7 @@ fn C.JS_GetGlobalObject(&C.JSContext) C.JSValue
 fn C.JS_NewObject(&C.JSContext) C.JSValue
 fn C.JS_NewError(&C.JSContext) C.JSValue
 fn C.JS_GetException(&C.JSContext) C.JSValue
+fn C.JS_Throw(&C.JSContext, C.JSValue) C.JSValue
 
 fn (ctx &Context) c_val(ref C.JSValue) Value {
 	return Value{ref, ctx}
@@ -31,7 +32,10 @@ fn (ctx &Context) c_tag(tag int) Value {
 
 // create js exception
 pub fn (ctx &Context) js_exception() &JSError {
-	return ctx.c_val(C.JS_GetException(ctx.ref)).error()
+	val := ctx.c_val(C.JS_GetException(ctx.ref))
+	err := val.to_error()
+	val.free()
+	return err
 }
 
 // create js null
@@ -48,9 +52,30 @@ pub fn (ctx &Context) js_uninitialized() Value {
 	return ctx.c_tag(4)
 }
 
+pub fn (ctx &Context) js_throw(any AnyValue) Value {
+	val := ctx.any_to_val(any)
+	return ctx.c_val(C.JS_Throw(ctx.ref, val.ref))
+}
+
 pub fn (ctx &Context) js_error(err JSError) Value {
-	mut val := ctx.c_val(C.JS_NewError(ctx.ref))
+	val := ctx.c_val(C.JS_NewError(ctx.ref))
+	val.set('name', ctx.js_string(err.name))
 	val.set('message', ctx.js_string(err.message))
+	if err.stack != '' {
+		val.set('stack', ctx.js_string(err.stack))
+	}
+	return val
+}
+
+pub fn (ctx &Context) js_type_error(err JSError) Value {
+	mut terr := err
+	terr.name = 'TypeError'
+	return ctx.js_error(terr)
+}
+
+pub fn (ctx &Context) js_dump(err IError) Value {
+	val := ctx.c_val(C.JS_NewError(ctx.ref))
+	val.set('message', ctx.js_string(err.msg()))
 	return val
 }
 
@@ -94,7 +119,7 @@ pub fn (ctx &Context) js_global() Value {
 	return ctx.c_val(C.JS_GetGlobalObject(ctx.ref))
 }
 
-fn (ctx &Context) any_to_val(val AnyValue) Value {
+pub fn (ctx &Context) any_to_val(val AnyValue) Value {
 	if val is Value {
 		return val
 	}

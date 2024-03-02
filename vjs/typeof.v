@@ -63,6 +63,10 @@ pub fn (v Value) is_function() bool {
 	return C.JS_IsFunction(v.ctx.ref, v.ref) == 1
 }
 
+pub fn (v Value) is_promise() bool {
+	return v.to_string() == '[object Promise]'
+}
+
 pub fn (v Value) typeof_name() string {
 	if v.is_string() {
 		return 'string'

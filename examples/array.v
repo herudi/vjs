@@ -18,7 +18,7 @@ fn main() {
 
 	value := ctx.eval('my_arr') or { panic(err) }
 
-	assert value.json_stringify() == '[1,"foo","bar",2]'
+	assert value.to_json_stringify() == '[1,"foo","bar",2]'
 	println('result => ${value}')
 
 	// free

@@ -7,8 +7,8 @@ fn type_number(ctx Context) {
 	val := ctx.eval(code) or { panic(err) }
 	assert val.is_number() == true
 	assert val.is_string() == false
-	assert val.int() == 3
-	assert val.str() == '3'
+	assert val.to_int() == 3
+	assert val.to_string() == '3'
 	assert val.typeof_name() == 'number'
 	println('Number => ${val}')
 	val.free()
@@ -21,7 +21,7 @@ fn type_bool(ctx Context) {
 	})()'
 	val := ctx.eval(code) or { panic(err) }
 	assert val.is_bool() == true
-	assert val.bool() == true
+	assert val.to_bool() == true
 	assert val.typeof_name() == 'boolean'
 	println('Bool => ${val}')
 	val.free()
@@ -34,9 +34,9 @@ fn type_object(ctx Context) {
 	})()'
 	val := ctx.eval(code) or { panic(err) }
 	assert val.is_object() == true
-	assert val.json_stringify() == '{"name":"john"}'
+	assert val.to_json_stringify() == '{"name":"john"}'
 	assert val.typeof_name() == 'object'
-	println('Object => ${val.json_stringify()}')
+	println('Object => ${val.to_json_stringify()}')
 	val.free()
 	ctx.free()
 }
@@ -47,9 +47,9 @@ fn type_array(ctx Context) {
 	})()'
 	val := ctx.eval(code) or { panic(err) }
 	assert val.is_array() == true
-	assert val.json_stringify() == '[1,2]'
+	assert val.to_json_stringify() == '[1,2]'
 	assert val.typeof_name() == 'object'
-	println('Array => ${val.json_stringify()}')
+	println('Array => ${val.to_json_stringify()}')
 	val.free()
 	ctx.free()
 }
