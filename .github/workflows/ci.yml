@@ -3,37 +3,27 @@ name: ci
 on:
   push:
     branches: [master]
-  pull_request:
-    branches: [master]
-
-env:
-  MOD_PATH: $HOME/.vmodules/vjs
 
 jobs:
   test:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [macOS-latest, ubuntu-latest]
+        os: [ubuntu-latest]
       fail-fast: true
     steps:
       - name: Setup V
-        uses: vlang/setup-v@v1.3
+        uses: vlang/setup-v@v1.4
         with:
           check-latest: true
-      - uses: actions/checkout@v4
-        with:
-          path: vjs
-      - name: Setup vjs mod
-        run: mv vjs ${{ env.MOD_PATH }}
-      - name: Cache
-        uses: actions/cache/save@v3
-        with:
-          path: |
-            vlang
-            ~/.vmodules
-          key: ${{ runner.os }}-${{ github.sha }}
-      - name: Verify Formatting
-        run: v fmt -verify ${{ env.MOD_PATH }}/vjs/*
-      - name: Run Test
-        run: v test ${{ env.MOD_PATH }}/tests/*
+
+      - name: Checkout ${{ github.event.repository.name }}
+        uses: actions/checkout@v4
+
+      - name: Verify fmt
+        run: |
+          v fmt -diff .
+          v fmt -verify .
+
+      - name: Run Tests
+        run: v test .
