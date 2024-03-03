@@ -6,13 +6,12 @@ Experimental [V](https://vlang.io/) bindings to [QuickJS](https://bellard.org/qu
 
 ## Features
 
-- Evaluate js.
-- Evaluate file js.
-- Set-Module support.
-- Set-Globals support.
+- Evaluate js (code, file, module, etc).
+- Multi evaluate support.
 - Callback function support.
-- JS Atom support.
-- Top level-await support using `vjs.type_module`.
+- Set-Globals support.
+- Set-Module support.
+- Top level-await support. using `vjs.type_module`.
 
 ## Usage
 
@@ -34,8 +33,8 @@ Explore [examples](https://github.com/herudi/vjs/tree/master/examples)
 rt := vjs.new_runtime()
 ctx := rt.new_context()
 
-code := '1 + 2'
-value := ctx.eval(code) or { panic(err) }
+value := ctx.eval('1 + 2') or { panic(err) }
+ctx.end()
 
 assert value.is_number() == true
 assert value.is_string() == false
@@ -49,65 +48,56 @@ value.free()
 ctx.free()
 rt.free()
 ```
+## Multi Evaluate
+
+```v
+ctx.eval('const sum = (a, b) => a + b') or { panic(err) }
+ctx.eval('const mul = (a, b) => a * b') or { panic(err) }
+
+sum := ctx.eval('sum(${1}, ${2})') or { panic(err) }
+mul := ctx.eval('mul(${1}, ${2})') or { panic(err) }
+
+ctx.end()
+
+println(sum)
+// 3
+
+println(mul)
+// 2
+```
 
 ## Add Global
 
 ```v
-rt := vjs.new_runtime()
-ctx := rt.new_context()
-
 glob := ctx.js_global()
 glob.set('foo', 'bar')
 
 value := ctx.eval('foo') or { panic(err) }
+ctx.end()
 
 println(value)
 // bar
 ```
 
-## Function
+## Add Module
 
 ```v
-rt := vjs.new_runtime()
-ctx := rt.new_context()
+mut mod := ctx.js_module('my-module')
+mod.export('foo', 'foo')
+mod.export('bar', 'bar')
+mod.export_default(mod.to_object())
+mod.create()
 
-glob := ctx.js_global()
-glob.set('sum', ctx.js_function(fn [ctx] (args []vjs.Value) vjs.Value {
-  if args.len < 2 {
-    return ctx.js_undefined()
-  }
-  return ctx.js_int(args[0].to_int() + args[1].to_int())
-}))
+code := '
+  import mod, { foo, bar } from "my-module";
 
-value := ctx.eval('sum(1, 2)') or { panic(err) }
+  console.log(foo, bar);
 
-println(value)
-// 3
-```
+  console.log(mod);
+'
 
-## Callback Function
-
-```v
-rt := vjs.new_runtime()
-ctx := rt.new_context()
-
-glob := ctx.js_global()
-glob.set('callback', ctx.js_function(fn [ctx] (args []vjs.Value) vjs.Value {
-  if args.len == 0 {
-    unsafe { goto undefined }
-  }
-  func := args[0]
-  if !func.is_function() {
-    unsafe { goto undefined }
-  }
-  foo := func.callback('foo') or { panic(err) }
-  println(foo)
-  return foo
-  undefined: 
-    return ctx.js_undefined()
-}))
-
-value := ctx.eval('callback((foo) => foo)') or { panic(err) }
+ctx.eval(code, vjs.type_module) or { panic(err) }
+ctx.end()
 ```
 
 ## Web Platform APIs

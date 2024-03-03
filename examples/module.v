@@ -32,6 +32,7 @@ fn main() {
 	fs.create()
 
 	value := ctx.eval_file('./js/main.js', vjs.type_module) or { panic(err) }
+	ctx.end()
 
 	// free
 	value.free()

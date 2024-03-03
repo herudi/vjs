@@ -18,6 +18,7 @@ fn C.JS_NewObject(&C.JSContext) C.JSValue
 fn C.JS_NewError(&C.JSContext) C.JSValue
 fn C.JS_GetException(&C.JSContext) C.JSValue
 fn C.JS_Throw(&C.JSContext, C.JSValue) C.JSValue
+fn C.JS_ParseJSON(&C.JSContext, &char, usize, &char) C.JSValue
 
 fn (ctx &Context) c_val(ref C.JSValue) Value {
 	return Value{ref, ctx}
@@ -50,6 +51,31 @@ pub fn (ctx &Context) js_undefined() Value {
 
 pub fn (ctx &Context) js_uninitialized() Value {
 	return ctx.c_tag(4)
+}
+
+pub fn (ctx &Context) json_stringify_op(val Value, rep Value, ind AnyValue) string {
+	indent := ctx.any_to_val(ind)
+	ref := C.JS_JSONStringify(ctx.ref, val.ref, rep.ref, indent.ref)
+	ptr := C.JS_ToCString(ctx.ref, ref)
+	C.JS_FreeCString(ctx.ref, ptr)
+	u_free(ptr)
+	return v_str(ptr)
+}
+
+pub fn (ctx &Context) json_stringify(val Value) string {
+	null := ctx.js_null()
+	return ctx.json_stringify_op(val, null, null)
+}
+
+pub fn (ctx &Context) json_parse(str string) Value {
+	len := str.len
+	c_str := str.str
+	c_fname := ''.str
+	unsafe {
+		free(c_fname)
+		free(c_str)
+	}
+	return ctx.c_val(C.JS_ParseJSON(ctx.ref, c_str, usize(len), c_fname))
 }
 
 pub fn (ctx &Context) js_throw(any AnyValue) Value {

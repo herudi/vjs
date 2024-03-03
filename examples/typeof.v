@@ -5,6 +5,7 @@ fn type_number(ctx Context) {
 		return 1 + 2
 	})()'
 	val := ctx.eval(code) or { panic(err) }
+	ctx.end()
 	assert val.is_number() == true
 	assert val.is_string() == false
 	assert val.to_int() == 3
@@ -20,6 +21,7 @@ fn type_bool(ctx Context) {
 		return true
 	})()'
 	val := ctx.eval(code) or { panic(err) }
+	ctx.end()
 	assert val.is_bool() == true
 	assert val.to_bool() == true
 	assert val.typeof_name() == 'boolean'
@@ -33,6 +35,7 @@ fn type_object(ctx Context) {
 		return { name: "john" }
 	})()'
 	val := ctx.eval(code) or { panic(err) }
+	ctx.end()
 	assert val.is_object() == true
 	assert val.to_json_stringify() == '{"name":"john"}'
 	assert val.typeof_name() == 'object'
@@ -46,6 +49,7 @@ fn type_array(ctx Context) {
 		return [1, 2]
 	})()'
 	val := ctx.eval(code) or { panic(err) }
+	ctx.end()
 	assert val.is_array() == true
 	assert val.to_json_stringify() == '[1,2]'
 	assert val.typeof_name() == 'object'

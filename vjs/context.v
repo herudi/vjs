@@ -96,7 +96,7 @@ pub fn (rt Runtime) new_context(config ContextConfig) &Context {
 	return ctx
 }
 
-pub fn (ctx &Context) js_eval(input &char, len usize, fname &char, flag int, from_file bool) !Value {
+pub fn (ctx &Context) js_eval_core(input &char, len usize, fname &char, flag int, from_file bool) !Value {
 	mut ref := C.JSValue{
 		u: &C.JSValueUnion{}
 	}
@@ -123,13 +123,18 @@ pub fn (ctx &Context) js_eval(input &char, len usize, fname &char, flag int, fro
 	return val
 }
 
+pub fn (ctx &Context) js_eval(input string, fname string, flag int) !Value {
+	return ctx.js_eval_core(input.str, usize(input.len), fname.str, flag, false)!
+}
+
 pub fn (ctx &Context) eval(args ...EvalArgs) !Value {
 	input := args[0] as string
-	c_input := input.str
 	flag := if args.len == 2 { args[1] as int } else { vjs.type_global }
-	val := ctx.js_eval(c_input, usize(input.len), c'<input>', flag, false)!
-	ctx.loop()
-	return val
+	return ctx.js_eval(input, '<input>', flag)
+}
+
+pub fn (ctx &Context) eval_module(input string, fname string) !Value {
+	return ctx.js_eval(input, fname, vjs.type_module)
 }
 
 pub fn (ctx &Context) eval_file(args ...EvalArgs) !Value {
@@ -141,8 +146,7 @@ pub fn (ctx &Context) eval_file(args ...EvalArgs) !Value {
 	if buf == unsafe { nil } {
 		return error('${fname} file not found')
 	}
-	val := ctx.js_eval(buf, buf_len, c_fname, flag, true)!
-	ctx.loop()
+	val := ctx.js_eval_core(buf, buf_len, c_fname, flag, true)!
 	C.js_free(ctx.ref, buf)
 	return val
 }
@@ -181,6 +185,10 @@ pub fn (ctx &Context) dump_error() Value {
 
 pub fn (ctx &Context) loop() {
 	C.js_std_loop(ctx.ref)
+}
+
+pub fn (ctx &Context) end() {
+	ctx.loop()
 }
 
 pub fn (ctx &Context) runtime() Runtime {

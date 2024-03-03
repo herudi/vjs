@@ -52,13 +52,8 @@ pub fn (v Value) str() string {
 	return v.to_string()
 }
 
-pub fn (v Value) to_json_stringify() string {
-	null := v.ctx.js_null().ref
-	json := C.JS_JSONStringify(v.ctx.ref, v.ref, null, null)
-	ptr := C.JS_ToCString(v.ctx.ref, json)
-	C.JS_FreeCString(v.ctx.ref, ptr)
-	u_free(ptr)
-	return v_str(ptr)
+pub fn (v Value) json_stringify() string {
+	return v.ctx.json_stringify(v)
 }
 
 pub fn (v Value) to_error() &JSError {

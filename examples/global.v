@@ -23,6 +23,8 @@ fn main() {
 		value.free()
 	}
 
+	ctx.end()
+
 	println('result => ${value}')
 	// result => bar
 }

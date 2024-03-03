@@ -36,6 +36,7 @@ fn main() {
 		})
 	'
 	value := ctx.eval(code, vjs.type_module) or { panic(err) }
+	ctx.end()
 
 	// free
 	global.free()

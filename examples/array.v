@@ -17,6 +17,7 @@ fn main() {
 	global.set('my_arr', array)
 
 	value := ctx.eval('my_arr') or { panic(err) }
+	ctx.end()
 
 	assert value.to_json_stringify() == '[1,"foo","bar",2]'
 	println('result => ${value}')

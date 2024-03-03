@@ -25,6 +25,8 @@ fn main() {
 	'
 
 	value := ctx.eval(code) or { panic(err) }
+	ctx.end()
+
 	println('result => ${value}')
 
 	// free

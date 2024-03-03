@@ -13,6 +13,8 @@ fn main() {
 		return 2 * 1 + fib(10)
 	})()'
 	value := ctx.eval(code) or { panic(err) }
+	ctx.end()
+
 	println('Fib => ${value}')
 
 	// free
