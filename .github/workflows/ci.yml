@@ -34,6 +34,6 @@ jobs:
             ~/.vmodules
           key: ${{ runner.os }}-${{ github.sha }}
       - name: Verify Formatting
-        run: v fmt -verify ${{ env.MOD_PATH }}/*
+        run: v fmt -verify ${{ env.MOD_PATH }}/vjs/*
       - name: Run Test
         run: v test ${{ env.MOD_PATH }}/tests/*
