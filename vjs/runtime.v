@@ -1,17 +1,5 @@
 module vjs
 
-#flag -lm
-#flag -I @VMODROOT/lib
-#flag @VMODROOT/lib/libquickjs.a
-$if tinyc {
-	#flag @VMODROOT/lib/misc/tcc_builtin.c
-	#flag @VMODROOT/lib/misc/divti3.c
-	#flag @VMODROOT/lib/misc/udivti3.c
-	#flag @VMODROOT/lib/misc/udivmodti4.c
-}
-#include "quickjs-libc.h"
-#include "quickjs.h"
-
 @[typedef]
 struct C.JSRuntime {}
 
