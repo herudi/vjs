@@ -1,12 +1,7 @@
 module vjs
 
 #flag -I @VMODROOT/lib
-
-$if linux || macos {
-	#flag -lm
-} $else $if windows {
-	#flag -lmsvcrt
-}
+#flag -lm
 $if tinyc {
 	#flag @VMODROOT/lib/tcc/builtin.c
 	#flag @VMODROOT/lib/tcc/umodti3.c

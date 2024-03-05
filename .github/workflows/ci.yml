@@ -19,11 +19,6 @@ jobs:
 
       - name: Checkout ${{ github.event.repository.name }}
         uses: actions/checkout@v4
-
-      - name: Prepare Windows
-        if: matrix.platform == 'windows-latest'
-        shell: cmd
-        run: setx PATH "%PATH%;C:\msys64\mingw64\bin"
         
       - name: Verify fmt
         run: |
@@ -31,4 +26,4 @@ jobs:
           v fmt -verify .
 
       - name: Run Tests
-        run: v -cc clang test .
+        run: v test .
