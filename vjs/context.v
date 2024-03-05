@@ -97,9 +97,7 @@ pub fn (rt Runtime) new_context(config ContextConfig) &Context {
 }
 
 pub fn (ctx &Context) js_eval_core(input &char, len usize, fname &char, flag int, from_file bool) !Value {
-	mut ref := C.JSValue{
-		u: &C.JSValueUnion{}
-	}
+	mut ref := ctx.js_undefined().ref
 	if (flag & vjs.type_mask) == vjs.type_module {
 		ref = C.JS_Eval(ctx.ref, input, len, fname, flag | vjs.type_compile_only)
 		if C.JS_IsException(ref) == 0 {
