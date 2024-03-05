@@ -19,7 +19,7 @@ $if linux {
 		#flag @VMODROOT/lib/qjs_macos_amd64.a
 	}
 } $else $if windows {
-  #flag @VMODROOT/lib/qjs_win_amd64.a
+	#flag @VMODROOT/lib/qjs_win_amd64.a
 }
 
 #include "quickjs-libc.h"
