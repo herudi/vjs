@@ -25,7 +25,7 @@ v run examples/fib.v
 
 Explore [examples](https://github.com/herudi/vjs/tree/master/examples)
 
-> Tested in linux_x86_64.
+> Tested in linux/macos (x64). for windows, fail in the CI.
 
 ## Simple Code
 
