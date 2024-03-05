@@ -21,11 +21,14 @@ git clone https://github.com/herudi/vjs
 cd vjs
 
 v run examples/fib.v
+
+// or
+v -cc gcc run examples/fib.v
 ```
 
 Explore [examples](https://github.com/herudi/vjs/tree/master/examples)
 
-> Tested in linux/macos (x64). for windows, fail in the CI.
+> Tested in linux/mac/win (x64).
 
 ## Simple Code
 
