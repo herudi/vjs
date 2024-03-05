@@ -31,4 +31,4 @@ jobs:
           v fmt -verify .
 
       - name: Run Tests
-        run: v -cg -cc clang test .
+        run: v -cc clang test .

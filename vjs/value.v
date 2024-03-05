@@ -9,7 +9,7 @@ union C.JSValueUnion {
 
 @[typedef]
 struct C.JSValue {
-	u   &C.JSValueUnion
+	u   C.JSValueUnion
 	tag i64
 }
 
