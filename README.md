@@ -1,8 +1,10 @@
 # VJS
 
-Experimental [V](https://vlang.io/) bindings to [QuickJS](https://bellard.org/quickjs/) javascript engine.
+[V](https://vlang.io/) bindings to [QuickJS](https://bellard.org/quickjs/) javascript engine. Run JS in V
 
-> Current Status: [WIP]
+> Current status: [WIP]
+
+> Not complete tests.
 
 ## Features
 
@@ -13,44 +15,48 @@ Experimental [V](https://vlang.io/) bindings to [QuickJS](https://bellard.org/qu
 - Set-Module support.
 - Top level-await support. using `vjs.type_module`.
 
-## Usage
+## Install
 
 ```bash
-git clone https://github.com/herudi/vjs
+v install herudi.vjs
+```
 
-cd vjs
+## Basic Usage
+Create file `main.v` and copy-paste this code.
+```v
+import herudi.vjs
 
-v run examples/fib.v
+fn main() {
+  rt := vjs.new_runtime()
+  ctx := rt.new_context()
 
-// or windows
-v -cc gcc run examples/fib.v
+  value := ctx.eval('1 + 2') or { panic(err) }
+  ctx.end()
+
+  assert value.is_number() == true
+  assert value.is_string() == false
+  assert value.to_int() == 3
+
+  println(value)
+  // 3
+
+  // free
+  value.free()
+  ctx.free()
+  rt.free()
+}
+```
+## Run
+```bash
+v run main.v
 ```
 
 Explore [examples](https://github.com/herudi/vjs/tree/master/examples)
 
-> Tested in linux/mac/win (x64).
+> Currently support linux/mac/win (x64).
 
-## Simple Code
+> in windows, requires `-cc gcc`.
 
-```v
-rt := vjs.new_runtime()
-ctx := rt.new_context()
-
-value := ctx.eval('1 + 2') or { panic(err) }
-ctx.end()
-
-assert value.is_number() == true
-assert value.is_string() == false
-assert value.to_int() == 3
-
-println(value)
-// 3
-
-// free
-value.free()
-ctx.free()
-rt.free()
-```
 ## Multi Evaluate
 
 ```v
