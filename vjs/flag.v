@@ -11,12 +11,16 @@ $if tinyc {
 }
 $if linux {
 	$if amd64 {
-		#flag @VMODROOT/lib/qjs_linux.a
+		#flag @VMODROOT/lib/qjs_linux_amd64.a
 	}
 	// else for arm
 } $else $if macos {
 	$if amd64 {
-		#flag @VMODROOT/lib/qjs_macos.a
+		#flag @VMODROOT/lib/qjs_macos_amd64.a
+	}
+} $else $if windows {
+	$if amd64 {
+		#flag @VMODROOT/lib/qjs_win_amd64.a
 	}
 }
 
