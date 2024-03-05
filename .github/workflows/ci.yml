@@ -19,7 +19,7 @@ jobs:
 
       - name: Checkout ${{ github.event.repository.name }}
         uses: actions/checkout@v4
-        
+
       - name: Verify fmt
         run: |
           v fmt -diff .
