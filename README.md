@@ -22,7 +22,7 @@ cd vjs
 
 v run examples/fib.v
 
-// or
+// or windows
 v -cc gcc run examples/fib.v
 ```
 

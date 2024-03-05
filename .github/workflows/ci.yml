@@ -25,5 +25,10 @@ jobs:
           v fmt -diff .
           v fmt -verify .
 
-      - name: Run Tests
+      - name: Run Tests Linux and Mac
+        if: matrix.os == 'ubuntu-latest' || matrix.os == 'macos-latest'
         run: v test .
+
+      - name: Run Tests Windows
+        if: matrix.os == 'windows-latest'
+        run: v -cc gcc test .
