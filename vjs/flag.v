@@ -10,16 +10,11 @@ $if tinyc {
 	#flag @VMODROOT/lib/tcc/udivmodti4.c
 }
 $if linux {
-	$if amd64 {
-		#flag @VMODROOT/lib/qjs_linux_amd64.a
-	}
-	// else for arm
+	#flag @VMODROOT/lib/qjs_linux_x64.a
 } $else $if macos {
-	$if amd64 {
-		#flag @VMODROOT/lib/qjs_macos_amd64.a
-	}
+	#flag @VMODROOT/lib/qjs_macos_x64.a
 } $else $if windows {
-	#flag @VMODROOT/lib/qjs_win_amd64.a
+	#flag @VMODROOT/lib/qjs_win_x64.a
 }
 
 #include "quickjs-libc.h"
