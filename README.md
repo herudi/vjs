@@ -1,6 +1,6 @@
 # VJS
 
-[V](https://vlang.io/) bindings to [QuickJS](https://bellard.org/quickjs/) javascript engine. Run JS in V
+[V](https://vlang.io/) bindings to [QuickJS](https://bellard.org/quickjs/) javascript engine. Run JS in V.
 
 > Current status: [WIP]
 
