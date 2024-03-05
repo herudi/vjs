@@ -224,9 +224,9 @@ typedef union {
 #endif
 
 #if __STDC_VERSION__ >= 199901L
-typedef float _Complex Fcomplex;
-typedef double _Complex Dcomplex;
-typedef long double _Complex Lcomplex;
+// typedef float _Complex Fcomplex;
+// typedef double _Complex Dcomplex;
+// typedef long double _Complex Lcomplex;
 #if defined(CRT_LDBL_128BIT)
 typedef Lcomplex Qcomplex;
 #define CRT_HAS_NATIVE_COMPLEX_F128
