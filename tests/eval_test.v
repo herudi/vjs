@@ -38,3 +38,19 @@ fn test_multi_eval() {
 	ctx.free()
 	rt.free()
 }
+
+fn test_eval_file() {
+	rt := vjs.new_runtime()
+	ctx := rt.new_context()
+
+	value := ctx.eval_file('./tests/test.js') or { panic(err) }
+	ctx.end()
+
+	assert value.is_string() == true
+	assert value.to_string() == 'test foo'
+
+	// free
+	value.free()
+	ctx.free()
+	rt.free()
+}
