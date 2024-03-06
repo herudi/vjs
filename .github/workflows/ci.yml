@@ -1,9 +1,8 @@
 name: CI
 
 on:
-  workflow_dispatch:
-  # push:
-  #   branches: [master]
+  push:
+    branches: [master]
 
 jobs:
   test:
@@ -32,4 +31,4 @@ jobs:
 
       - name: Run Tests Windows
         if: matrix.os == 'windows-latest'
-        run: v -cc gcc test .
+        run: v test .
