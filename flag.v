@@ -3,7 +3,7 @@ module vjs
 #flag -I @VMODROOT/libs
 #flag -lm
 
-$if tinyc {
+$if !windows && tinyc {
 	#flag @VMODROOT/libs/tcc/builtin.c
 	#flag @VMODROOT/libs/tcc/divti3.c
 	#flag @VMODROOT/libs/tcc/udivti3.c
