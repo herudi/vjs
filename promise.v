@@ -15,7 +15,7 @@ fn resolve_or_reject(ctx &Context, code int, any AnyValue) Value {
 	mut result_funcs := [2]C.JSValue{}
 	result_funcs[code] = ctx.any_to_val(any).ref
 	promise := ctx.c_val(C.JS_NewPromiseCapability(ctx.ref, &resolving_funcs[0]))
-	ctx.c_val(C.JS_Call(ctx.ref, resolving_funcs[code], promise.ref, 1, &result_funcs[code]))
+	C.JS_Call(ctx.ref, resolving_funcs[code], promise.ref, 1, &result_funcs[code])
 	C.JS_FreeValue(ctx.ref, resolving_funcs[0])
 	C.JS_FreeValue(ctx.ref, resolving_funcs[1])
 	C.JS_FreeValue(ctx.ref, result_funcs[code])

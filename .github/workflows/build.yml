@@ -68,6 +68,7 @@ jobs:
         cmake -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release -S ./ -B ./build
         cmake --build ./build --config Release
         cp build/libqjs.a libs/qjs_win_x64.a
+        rm -rf ./build
     - name: Save As Windows x64
       if: matrix.platform == 'windows-latest'
       id: qjs_win_x64
@@ -75,6 +76,24 @@ jobs:
       with:
         enableCrossOsArchive: true
         path: libs/qjs_win_x64.a
+        key: 'lib-${{ github.run_id }}'
+
+    - name: Copy Headers C
+      if: matrix.platform == 'ubuntu-latest'
+      run: |
+        sudo rm -rf libs/quickjs.h
+        sudo rm -rf libs/quickjs-libc.h
+        sudo cp quickjs/quickjs.h libs/quickjs.h
+        sudo cp quickjs/quickjs-libc.h libs/quickjs-libc.h
+    - name: Save As Headers C
+      if: matrix.platform == 'ubuntu-latest'
+      id: headers_c
+      uses: actions/cache@v3
+      with:
+        enableCrossOsArchive: true
+        path: |
+          libs/quickjs.h
+          libs/quickjs-libc.h
         key: 'lib-${{ github.run_id }}'
 
   finish:
@@ -108,6 +127,15 @@ jobs:
         with:
           enableCrossOsArchive: true
           path: libs/qjs_win_x64.a
+          key: 'lib-${{ github.run_id }}'
+      - name: Load Headers C
+        id: headers_c
+        uses: actions/cache@v3
+        with:
+          enableCrossOsArchive: true
+          path: |
+            libs/quickjs.h
+            libs/quickjs-libc.h
           key: 'lib-${{ github.run_id }}'
       - name: Push changes
         uses: actions-js/push@v1
