@@ -35,7 +35,7 @@ jobs:
       with:
         enableCrossOsArchive: true
         path: libs/qjs_linux_x64.a
-        key: 'lib-${{ github.run_id }}'
+        key: 'lib-${{ runner.os }}'
 
     - name: Build Macos x64
       if: matrix.platform == 'macos-latest'
@@ -53,7 +53,7 @@ jobs:
       with:
         enableCrossOsArchive: true
         path: libs/qjs_macos_x64.a
-        key: 'lib-${{ github.run_id }}'
+        key: 'lib-${{ runner.os }}'
     
     - name: Prepare Windows x64
       if: matrix.platform == 'windows-latest'
@@ -76,7 +76,7 @@ jobs:
       with:
         enableCrossOsArchive: true
         path: libs/qjs_win_x64.a
-        key: 'lib-${{ github.run_id }}'
+        key: 'lib-${{ runner.os }}'
 
     - name: Copy Headers C
       if: matrix.platform == 'ubuntu-latest'
@@ -85,16 +85,22 @@ jobs:
         sudo rm -rf libs/quickjs-libc.h
         sudo cp quickjs/quickjs.h libs/quickjs.h
         sudo cp quickjs/quickjs-libc.h libs/quickjs-libc.h
-    - name: Save As Headers C
+    - name: Save As quickjs.h
       if: matrix.platform == 'ubuntu-latest'
-      id: headers_c
+      id: quickjs_h
       uses: actions/cache@v3
       with:
         enableCrossOsArchive: true
-        path: |
-          libs/quickjs.h
-          libs/quickjs-libc.h
-        key: copy-${{ hashFiles('libs/**') }}
+        path: libs/quickjs.h
+        key: quickjs_h-${{ runner.os }}
+    - name: Save As quickjs-libc.h
+      if: matrix.platform == 'ubuntu-latest'
+      id: quickjs_libc_h
+      uses: actions/cache@v3
+      with:
+        enableCrossOsArchive: true
+        path: libs/quickjs-libc.h
+        key: quickjs_libc_h-${{ runner.os }}
 
   finish:
     name: Finish
@@ -113,30 +119,35 @@ jobs:
         with:
           enableCrossOsArchive: true
           path: libs/qjs_linux_x64.a
-          key: 'lib-${{ github.run_id }}'
+          key: 'lib-${{ runner.os }}'
       - name: Load Lib Macos x64
         id: qjs_macos_x64
         uses: actions/cache@v3
         with:
           enableCrossOsArchive: true
           path: libs/qjs_macos_x64.a
-          key: 'lib-${{ github.run_id }}'
+          key: 'lib-${{ runner.os }}'
       - name: Load Lib Windows x64
         id: qjs_win_x64
         uses: actions/cache@v3
         with:
           enableCrossOsArchive: true
           path: libs/qjs_win_x64.a
-          key: 'lib-${{ github.run_id }}'
-      - name: Load Headers C
-        id: headers_c
+          key: 'lib-${{ runner.os }}'
+      - name: Load quickjs.h
+        id: quickjs_h
         uses: actions/cache@v3
         with:
           enableCrossOsArchive: true
-          path: |
-            libs/quickjs.h
-            libs/quickjs-libc.h
-          key: copy-${{ hashFiles('libs/**') }}
+          path: libs/quickjs.h
+          key: quickjs_h-${{ runner.os }}
+      - name: Load quickjs-libc.h
+        id: quickjs_libc_h
+        uses: actions/cache@v3
+        with:
+          enableCrossOsArchive: true
+          path: libs/quickjs-libc.h
+          key: quickjs_libc_h-${{ runner.os }}
       - name: Push changes
         uses: actions-js/push@v1
         with:
