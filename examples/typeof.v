@@ -1,4 +1,4 @@
-import vjs { Context }
+import herudi.vjs { Context }
 
 fn type_number(ctx Context) {
 	code := '(() => {
@@ -36,10 +36,11 @@ fn type_object(ctx Context) {
 	})()'
 	val := ctx.eval(code) or { panic(err) }
 	ctx.end()
+	json := ctx.json_stringify(val)
 	assert val.is_object() == true
-	assert val.to_json_stringify() == '{"name":"john"}'
+	assert json == '{"name":"john"}'
 	assert val.typeof_name() == 'object'
-	println('Object => ${val.to_json_stringify()}')
+	println('Object => ${json}')
 	val.free()
 	ctx.free()
 }
@@ -50,10 +51,11 @@ fn type_array(ctx Context) {
 	})()'
 	val := ctx.eval(code) or { panic(err) }
 	ctx.end()
+	json := ctx.json_stringify(val)
 	assert val.is_array() == true
-	assert val.to_json_stringify() == '[1,2]'
+	assert json == '[1,2]'
 	assert val.typeof_name() == 'object'
-	println('Array => ${val.to_json_stringify()}')
+	println('Array => ${json}')
 	val.free()
 	ctx.free()
 }

@@ -1,4 +1,4 @@
-import vjs { Value }
+import herudi.vjs { Value }
 import os
 
 fn main() {

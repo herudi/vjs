@@ -1,4 +1,4 @@
-import vjs { Value }
+import herudi.vjs { Value }
 
 fn main() {
 	rt := vjs.new_runtime()

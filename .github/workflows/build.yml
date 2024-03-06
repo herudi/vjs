@@ -1,0 +1,117 @@
+name: Build
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Building QuickJS
+    runs-on: ${{ matrix.platform }}
+    strategy:
+      matrix:
+        platform: [ubuntu-latest, macos-latest, windows-latest]
+      fail-fast: false
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        submodules: true
+        persist-credentials: false
+        fetch-depth: 0
+
+    - name: Build Linux x64
+      if: matrix.platform == 'ubuntu-latest'
+      run: |
+        sudo rm -rf libs/qjs_linux_x64.a
+        sudo mkdir ./build
+        sudo cmake -DCMAKE_BUILD_TYPE=Release -G "Unix Makefiles" -S ./ -B ./build
+        sudo cmake --build ./build --config Release
+        sudo cp build/libqjs.a libs/qjs_linux_x64.a
+        sudo rm -rf build
+    - name: Save As Linux x64
+      if: matrix.platform == 'ubuntu-latest'
+      id: qjs_linux_x64
+      uses: actions/cache@v3
+      with:
+        enableCrossOsArchive: true
+        path: libs/qjs_linux_x64.a
+        key: 'lib-${{ github.run_id }}'
+
+    - name: Build Macos x64
+      if: matrix.platform == 'macos-latest'
+      run: |
+        sudo rm -rf libs/qjs_macos_x64.a
+        sudo mkdir ./build
+        sudo cmake -DCMAKE_BUILD_TYPE=Release -G "Unix Makefiles" -S ./ -B ./build
+        sudo cmake --build ./build --config Release
+        sudo cp build/libqjs.a libs/qjs_macos_x64.a
+        sudo rm -rf build
+    - name: Save As Macos x64
+      if: matrix.platform == 'macos-latest'
+      id: qjs_macos_x64
+      uses: actions/cache@v3
+      with:
+        enableCrossOsArchive: true
+        path: libs/qjs_macos_x64.a
+        key: 'lib-${{ github.run_id }}'
+    
+    - name: Prepare Windows x64
+      if: matrix.platform == 'windows-latest'
+      shell: cmd
+      run: setx PATH "%PATH%;C:\msys64\mingw64\bin"
+    - name: Build Windows x64
+      if: matrix.platform == 'windows-latest'
+      shell: bash
+      run: |
+        rm -rf ./libs/qjs_macos_x64.a
+        mkdir ./build
+        cmake -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release -S ./ -B ./build
+        cmake --build ./build --config Release
+        cp build/libqjs.a libs/qjs_win_x64.a
+    - name: Save As Windows x64
+      if: matrix.platform == 'windows-latest'
+      id: qjs_win_x64
+      uses: actions/cache@v3
+      with:
+        enableCrossOsArchive: true
+        path: libs/qjs_win_x64.a
+        key: 'lib-${{ github.run_id }}'
+
+  finish:
+    name: Finish
+    runs-on: ubuntu-latest
+    needs:
+      - build
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - name: Load Lib Linux x64
+        id: qjs_linux_x64
+        uses: actions/cache@v3
+        with:
+          enableCrossOsArchive: true
+          path: libs/qjs_linux_x64.a
+          key: 'lib-${{ github.run_id }}'
+      - name: Load Lib Macos x64
+        id: qjs_macos_x64
+        uses: actions/cache@v3
+        with:
+          enableCrossOsArchive: true
+          path: libs/qjs_macos_x64.a
+          key: 'lib-${{ github.run_id }}'
+      - name: Load Lib Windows x64
+        id: qjs_win_x64
+        uses: actions/cache@v3
+        with:
+          enableCrossOsArchive: true
+          path: libs/qjs_win_x64.a
+          key: 'lib-${{ github.run_id }}'
+      - name: Push changes
+        uses: actions-js/push@v1
+        with:
+          github_token: '${{ secrets.GITHUB_TOKEN }}'
+          branch: master
+    

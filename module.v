@@ -49,18 +49,15 @@ pub fn (mut m Module) get(name string) Value {
 
 pub fn (mut m Module) to_object() Value {
 	obj := m.ctx.js_object()
-	len := m.exports.len
+	len := m.exports_str.len
 	for i in 0 .. len {
-		obj.set(v_str(m.exports[i]), m.values[i])
+		obj.set(m.exports_str[i], m.values[i])
 	}
 	return obj
 }
 
 pub fn (mut m Module) export_default(any AnyValue) {
-	ptr := 'default'.str
-	m.exports << ptr
-	m.values << m.ctx.any_to_val(any)
-	u_free(ptr)
+	m.export('default', any)
 }
 
 pub fn (mut m Module) create() &C.JSModuleDef {

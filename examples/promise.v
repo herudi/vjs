@@ -1,4 +1,4 @@
-import vjs { Value }
+import herudi.vjs { Value }
 import os
 
 fn main() {
@@ -29,7 +29,7 @@ fn main() {
 	}))
 
 	code := '		
-		readFile("fib.v").then((text) => {
+		readFile("./js/text.txt").then((text) => {
 			console.log(text);
 		}).catch((err) => {
 			console.log(err);

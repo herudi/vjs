@@ -1,4 +1,4 @@
-import vjs
+import herudi.vjs
 
 fn main() {
 	rt := vjs.new_runtime()
@@ -19,7 +19,7 @@ fn main() {
 	value := ctx.eval('my_arr') or { panic(err) }
 	ctx.end()
 
-	assert value.to_json_stringify() == '[1,"foo","bar",2]'
+	assert ctx.json_stringify(value) == '[1,"foo","bar",2]'
 	println('result => ${value}')
 
 	// free
