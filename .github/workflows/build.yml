@@ -94,7 +94,7 @@ jobs:
         path: |
           libs/quickjs.h
           libs/quickjs-libc.h
-        key: 'lib-${{ github.run_id }}'
+        key: copy-${{ hashFiles('libs/**') }}
 
   finish:
     name: Finish
@@ -136,7 +136,7 @@ jobs:
           path: |
             libs/quickjs.h
             libs/quickjs-libc.h
-          key: 'lib-${{ github.run_id }}'
+          key: copy-${{ hashFiles('libs/**') }}
       - name: Push changes
         uses: actions-js/push@v1
         with:
