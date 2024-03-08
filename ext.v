@@ -22,6 +22,13 @@ pub fn (ctx &Context) init_ext() {
 		println(args.map(it.str()).join(' '))
 		return ctx.js_undefined()
 	}))
+	vjs_core.set('str_to_ab', ctx.js_function(fn [ctx] (args []Value) Value {
+		return ctx.js_array_buffer(args[0].str().bytes())
+	}))
+	vjs_core.set('ab_to_str', ctx.js_function(fn [ctx] (args []Value) Value {
+		bytes := args[0].to_bytes()
+		return ctx.js_string(bytes.bytestr())
+	}))
 	glob := ctx.js_global()
 	glob.set('__vjs_global__', true)
 	glob.set('__bootstrap', vjs_core)
