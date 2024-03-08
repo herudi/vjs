@@ -26,6 +26,8 @@ type JSModuleNormalizeFunc = fn (&C.JSContext, &char, &char, voidptr) &char
 
 type JSModuleLoaderFunc = fn (&C.JSContext, &char, voidptr) &C.JSModuleDef
 
+type CallbackPromise = fn (Promise) Value
+
 pub const type_global = C.JS_EVAL_TYPE_GLOBAL
 pub const type_module = C.JS_EVAL_TYPE_MODULE
 pub const type_direct = C.JS_EVAL_TYPE_DIRECT
@@ -187,6 +189,10 @@ pub fn (ctx &Context) loop() {
 
 pub fn (ctx &Context) end() {
 	ctx.loop()
+}
+
+pub fn (ctx &Context) new_promise(cb CallbackPromise) Value {
+	return cb(Promise{ctx})
 }
 
 pub fn (ctx &Context) runtime() Runtime {
