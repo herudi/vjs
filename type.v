@@ -19,6 +19,7 @@ fn C.JS_NewError(&C.JSContext) C.JSValue
 fn C.JS_GetException(&C.JSContext) C.JSValue
 fn C.JS_Throw(&C.JSContext, C.JSValue) C.JSValue
 fn C.JS_ParseJSON(&C.JSContext, &char, usize, &char) C.JSValue
+fn C.JS_NewArrayBufferCopy(&C.JSContext, &u8, usize) C.JSValue
 
 fn (ctx &Context) c_val(ref C.JSValue) Value {
 	return Value{ref, ctx}
@@ -123,6 +124,10 @@ pub fn (ctx &Context) js_u32(data u32) Value {
 
 pub fn (ctx &Context) js_big_int(data i64) Value {
 	return ctx.c_val(C.JS_NewBigInt64(ctx.ref, data))
+}
+
+pub fn (ctx &Context) js_array_buffer(data []u8) Value {
+	return ctx.c_val(C.JS_NewArrayBufferCopy(ctx.ref, &data[0], usize(data.len)))
 }
 
 pub fn (ctx &Context) js_big_uint(data u64) Value {
