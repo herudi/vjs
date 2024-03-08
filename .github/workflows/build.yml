@@ -22,25 +22,19 @@ jobs:
       if: matrix.platform == 'ubuntu-latest'
       run: |
         sudo rm -rf libs/qjs_linux_x64.a
-        sudo mkdir build
+        sudo mkdir ./build
         sudo cmake -DCMAKE_BUILD_TYPE=Release -G "Unix Makefiles" -S ./ -B ./build
         sudo cmake --build ./build --config Release
         sudo cp build/libqjs.a libs/qjs_linux_x64.a
         sudo rm -rf build
-        sudo rm -rf libs/include
-        sudo mkdir libs/include
-        sudo cp quickjs/quickjs.h libs/include/quickjs.h
-        sudo cp quickjs/quickjs-libc.h libs/include/quickjs-libc.h
-        ls libs/include
-        sudo chmod -R 777 libs/*
     - name: Create PR For Linux x64 
       if: matrix.platform == 'ubuntu-latest'
       uses: peter-evans/create-pull-request@v6
       with:
-        commit-message: Update Linux x64 & C Headers
+        commit-message: Update Linux x64
         branch-suffix: random
         delete-branch: true
-        title: Update Linux x64 & C Headers
+        title: Update Linux x64
 
     - name: Build Macos x64
       if: matrix.platform == 'macos-latest'
