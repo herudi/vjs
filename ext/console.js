@@ -53,6 +53,14 @@ const formatter = (val) => {
     }
     const c_name = val.constructor?.name;
     if (c_name !== void 0) {
+      if (val instanceof Uint8Array) {
+        return `${c_name}(${val.byteLength}) [${
+          val.toString().replace(/,/g, ", ")
+        }]`;
+      }
+      if (val?.toJSON) {
+        return `${c_name} ${objToString(val.toJSON())}`;
+      }
       return `${c_name} ${objToString(val)}`;
     }
   }
