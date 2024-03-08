@@ -36,6 +36,7 @@ fn C.JS_GetPropertyStr(&C.JSContext, JSValueConst, &char) C.JSValue
 fn C.JS_GetProperty(&C.JSContext, JSValueConst, C.JSAtom) C.JSValue
 fn C.JS_Call(&C.JSContext, JSValueConst, JSValueConst, int, &JSValueConst) C.JSValue
 fn C.JS_DupValue(&C.JSContext, JSValueConst) C.JSValue
+fn C.JS_GetArrayBuffer(&C.JSContext, &usize, JSValueConst) byteptr
 
 pub fn (v Value) dup_value() Value {
 	return v.ctx.c_val(C.JS_DupValue(v.ctx.ref, v.ref))
@@ -46,6 +47,17 @@ pub fn (v Value) to_string() string {
 	C.JS_FreeCString(v.ctx.ref, ptr)
 	u_free(ptr)
 	return v_str(ptr)
+}
+
+pub fn (v Value) to_bytes() []u8 {
+	len := v.byte_len()
+	size := usize(len)
+	data := C.JS_GetArrayBuffer(v.ctx.ref, &size, v.ref)
+	mut bytes := []u8{cap: len}
+	for i in 0 .. len {
+		bytes << unsafe { data[i] }
+	}
+	return bytes
 }
 
 pub fn (v Value) str() string {
@@ -117,8 +129,20 @@ pub fn (v Value) get(key GetSet) Value {
 	return v.ctx.c_val(C.JS_GetProperty(v.ctx.ref, v.ref, prop.atom.ref))
 }
 
-pub fn (v Value) len() i64 {
-	return v.get('length').to_i64()
+pub fn (v Value) len() int {
+	return v.get('length').to_int()
+}
+
+pub fn (v Value) byte_len() int {
+	return v.get('byteLength').to_int()
+}
+
+pub fn (v Value) await() !Value {
+	val := v.ctx.c_val(C.js_std_await(v.ctx.ref, v.ref))
+	if val.is_exception() {
+		return v.ctx.js_exception()
+	}
+	return val
 }
 
 pub fn (v Value) callback(args ...AnyValue) !Value {
