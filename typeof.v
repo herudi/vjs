@@ -13,6 +13,7 @@ fn C.JS_IsObject(JSValueConst) int
 fn C.JS_IsArray(&C.JSContext, JSValueConst) int
 fn C.JS_IsError(&C.JSContext, JSValueConst) int
 fn C.JS_IsFunction(&C.JSContext, JSValueConst) int
+fn C.JS_IsInstanceOf(&C.JSContext, JSValueConst, JSValueConst) int
 
 // fn Type Is
 pub fn (v Value) is_exception() bool {
@@ -63,8 +64,11 @@ pub fn (v Value) is_function() bool {
 	return C.JS_IsFunction(v.ctx.ref, v.ref) == 1
 }
 
-pub fn (v Value) is_promise() bool {
-	return v.to_string() == '[object Promise]'
+pub fn (v Value) instanceof(key string) bool {
+	glob := v.ctx.js_global().get(key)
+	stat := C.JS_IsInstanceOf(v.ctx.ref, v.ref, glob.ref) == 1
+	glob.free()
+	return stat
 }
 
 pub fn (v Value) typeof_name() string {
