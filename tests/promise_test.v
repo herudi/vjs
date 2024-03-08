@@ -12,8 +12,6 @@ fn test_promise() {
 
 	assert val.str() == 'foo'
 
-	val.free()
-	res.free()
 	ctx.free()
 	rt.free()
 }
