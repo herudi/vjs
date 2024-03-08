@@ -1,9 +1,8 @@
-name: CI
+name: Test
 
-on:
-  workflow_dispatch:
-  # push:
-  #   branches: [master]
+# on:
+#   push:
+#     branches: [master]
 
 jobs:
   test:

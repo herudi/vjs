@@ -3,9 +3,9 @@ import { foo } from "./foo.js";
 
 try {
   const text = await readFile("./js/text.txt");
-  console.log(text)
+  console.log(text);
 } catch (error) {
-  console.log(error)
+  console.log(error);
 }
 
 console.log(foo());

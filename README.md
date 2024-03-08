@@ -1,10 +1,7 @@
 # VJS
 
-[V](https://vlang.io/) bindings to [QuickJS](https://bellard.org/quickjs/) javascript engine. Run JS in V.
-
-> Current status: [WIP]
-
-> Not complete tests.
+[V](https://vlang.io/) bindings to [QuickJS](https://bellard.org/quickjs/)
+javascript engine. Run JS in V.
 
 ## Features
 
@@ -13,7 +10,7 @@
 - Callback function support.
 - Set-Globals support.
 - Set-Module support.
-- Top level-await support. using `vjs.type_module`.
+- Top-Level `await` support. using `vjs.type_module`.
 
 ## Install
 
@@ -22,7 +19,9 @@ v install herudi.vjs
 ```
 
 ## Basic Usage
+
 Create file `main.v` and copy-paste this code.
+
 ```v
 import herudi.vjs
 
@@ -46,7 +45,9 @@ fn main() {
   rt.free()
 }
 ```
+
 ## Run
+
 ```bash
 v run main.v
 ```
@@ -118,6 +119,20 @@ ctx.end()
       [clearInterval](https://developer.mozilla.org/en-US/docs/Web/API/clearInterval)
 - [x] [btoa](https://developer.mozilla.org/en-US/docs/Web/API/btoa),
       [atob](https://developer.mozilla.org/en-US/docs/Web/API/atob)
+- [x] [URL](https://developer.mozilla.org/en-US/docs/Web/API/URL)
+- [x] [URLSearchParams](https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams)
+- [x] [Encoding API](https://developer.mozilla.org/en-US/docs/Web/API/Encoding_API)
+  - [x] [TextEncoder](https://developer.mozilla.org/en-US/docs/Web/API/TextEncoder)
+  - [x] [TextDecoder](https://developer.mozilla.org/en-US/docs/Web/API/TextDecoder)
+  - [ ] TextEncoderStream
+  - [ ] TextDecoderStream
+- [ ] Fetch API
+  - [ ] Headers
+  - [ ] Request
+  - [ ] Response
+- [ ] Streams API
+- [ ] Crypto API
+- [ ] FormData
 - <i>More...</i>
 
 ### It's Fun Project. PRs Wellcome :)
