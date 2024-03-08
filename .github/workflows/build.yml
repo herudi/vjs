@@ -16,8 +16,7 @@ jobs:
       uses: actions/checkout@v4
       with:
         submodules: true
-        persist-credentials: false
-        fetch-depth: 0
+        fetch-depth: 1
 
     - name: Build Linux x64
       if: matrix.platform == 'ubuntu-latest'
@@ -32,6 +31,8 @@ jobs:
         sudo mkdir libs/include
         sudo cp quickjs/quickjs.h libs/include/quickjs.h
         sudo cp quickjs/quickjs-libc.h libs/include/quickjs-libc.h
+        ls libs/include
+        sudo chmod -R 777 libs/*
     - name: Create PR For Linux x64 
       if: matrix.platform == 'ubuntu-latest'
       uses: peter-evans/create-pull-request@v6
