@@ -13,7 +13,7 @@ struct C.JSValue {
 	tag i64
 }
 
-type GetSet = Atom | PropertyEnum | string
+type GetSet = Atom | PropertyEnum | int | string
 type JSValueConst = C.JSValue
 
 pub struct Value {
@@ -33,6 +33,7 @@ fn C.JS_ToFloat64(&C.JSContext, &f64, JSValueConst)
 fn C.JS_SetPropertyStr(&C.JSContext, JSValueConst, &char, C.JSValue) int
 fn C.JS_SetProperty(&C.JSContext, JSValueConst, C.JSAtom, C.JSValue) int
 fn C.JS_GetPropertyStr(&C.JSContext, JSValueConst, &char) C.JSValue
+fn C.JS_GetPropertyUint32(&C.JSContext, JSValueConst, u32) C.JSValue
 fn C.JS_GetProperty(&C.JSContext, JSValueConst, C.JSAtom) C.JSValue
 fn C.JS_Call(&C.JSContext, JSValueConst, JSValueConst, int, &JSValueConst) C.JSValue
 fn C.JS_DupValue(&C.JSContext, JSValueConst) C.JSValue
@@ -69,13 +70,19 @@ pub fn (v Value) json_stringify() string {
 }
 
 pub fn (v Value) to_error() &JSError {
+	if !v.is_error() {
+		return &JSError{}
+	}
 	message := v.to_string()
+	name := v.get('name')
 	stack := v.get('stack')
 	err := &JSError{
+		name: if name.is_undefined() { '' } else { name.to_string() }
 		message: message
 		stack: if stack.is_undefined() { '' } else { stack.to_string() }
 	}
 	stack.free()
+	name.free()
 	return err
 }
 
@@ -115,6 +122,8 @@ pub fn (v Value) set(key GetSet, any AnyValue) {
 		C.JS_SetProperty(v.ctx.ref, v.ref, key.ref, val.ref)
 	} else if key is PropertyEnum {
 		C.JS_SetProperty(v.ctx.ref, v.ref, key.atom.ref, val.ref)
+	} else if key is int {
+		C.JS_SetPropertyStr(v.ctx.ref, v.ref, u_free(key.str().str), val.ref)
 	}
 }
 
@@ -124,6 +133,9 @@ pub fn (v Value) get(key GetSet) Value {
 	}
 	if key is Atom {
 		return v.ctx.c_val(C.JS_GetProperty(v.ctx.ref, v.ref, key.ref))
+	}
+	if key is int {
+		return v.ctx.c_val(C.JS_GetPropertyUint32(v.ctx.ref, v.ref, u32(key)))
 	}
 	prop := key as PropertyEnum
 	return v.ctx.c_val(C.JS_GetProperty(v.ctx.ref, v.ref, prop.atom.ref))
@@ -148,6 +160,7 @@ pub fn (v Value) await() !Value {
 pub fn (v Value) callback(args ...AnyValue) !Value {
 	if !v.is_function() {
 		return &JSError{
+			name: 'TypeError'
 			message: 'Value is not a function'
 		}
 	}

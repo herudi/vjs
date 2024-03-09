@@ -3,7 +3,10 @@ module vjs
 // Declare Type Is
 fn C.JS_IsException(JSValueConst) int
 fn C.JS_IsNumber(JSValueConst) int
+fn C.JS_IsBigInt(&C.JSContext, JSValueConst) int
 fn C.JS_IsBool(JSValueConst) int
+fn C.JS_IsBigFloat(JSValueConst) int
+fn C.JS_IsBigDecimal(JSValueConst) int
 fn C.JS_IsNull(JSValueConst) int
 fn C.JS_IsUndefined(JSValueConst) int
 fn C.JS_IsUninitialized(JSValueConst) int
@@ -22,6 +25,18 @@ pub fn (v Value) is_exception() bool {
 
 pub fn (v Value) is_number() bool {
 	return C.JS_IsNumber(v.ref) == 1
+}
+
+pub fn (v Value) is_big_float() bool {
+	return C.JS_IsBigFloat(v.ref) == 1
+}
+
+pub fn (v Value) is_big_decimal() bool {
+	return C.JS_IsBigDecimal(v.ref) == 1
+}
+
+pub fn (v Value) is_big_int() bool {
+	return C.JS_IsBigInt(v.ctx.ref, v.ref) == 1
 }
 
 pub fn (v Value) is_bool() bool {

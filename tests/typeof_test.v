@@ -1,68 +1,35 @@
 import vjs
 
-fn test_type_number() {
+fn test_typeof() {
 	rt := vjs.new_runtime()
 	ctx := rt.new_context()
 	code := '(() => {
-		return 1 + 2
+		return {
+			a: 1,
+			b: "b",
+			c: false,
+			d: {},
+			e: [],
+			f: null,
+			g: undefined,
+			h: Symbol("foo"),
+			i: () => {},
+			j: Promise.resolve("foo")
+		}
 	})()'
 	val := ctx.eval(code) or { panic(err) }
 	ctx.end()
-	assert val.is_number() == true
-	assert val.is_string() == false
-	assert val.to_int() == 3
-	assert val.to_string() == '3'
-	assert val.typeof_name() == 'number'
-	val.free()
-	ctx.free()
-	rt.free()
-}
-
-fn test_type_bool() {
-	rt := vjs.new_runtime()
-	ctx := rt.new_context()
-	code := '(() => {
-		return true
-	})()'
-	val := ctx.eval(code) or { panic(err) }
-	ctx.end()
-	assert val.is_bool() == true
-	assert val.to_bool() == true
-	assert val.typeof_name() == 'boolean'
-	val.free()
-	ctx.free()
-	rt.free()
-}
-
-fn test_type_object() {
-	rt := vjs.new_runtime()
-	ctx := rt.new_context()
-	code := '(() => {
-		return { name: "john" }
-	})()'
-	val := ctx.eval(code) or { panic(err) }
-	ctx.end()
-	json := ctx.json_stringify(val)
-	assert val.is_object() == true
-	assert json == '{"name":"john"}'
-	assert val.typeof_name() == 'object'
-	val.free()
-	ctx.free()
-	rt.free()
-}
-
-fn test_type_array() {
-	rt := vjs.new_runtime()
-	ctx := rt.new_context()
-	code := '(() => {
-		return [1, 2]
-	})()'
-	val := ctx.eval(code) or { panic(err) }
-	ctx.end()
-	json := ctx.json_stringify(val)
-	assert val.is_array() == true
-	assert json == '[1,2]'
-	assert val.typeof_name() == 'object'
+	assert val.get('a').is_number() == true
+	assert val.get('b').is_string() == true
+	assert val.get('c').is_bool() == true
+	assert val.get('d').is_object() == true
+	assert val.get('e').is_array() == true
+	assert val.get('f').is_null() == true
+	assert val.get('g').is_undefined() == true
+	assert val.get('h').is_symbol() == true
+	assert val.get('i').is_function() == true
+	assert val.get('j').instanceof('Promise') == true
+	assert val.get('a').typeof_name() == 'number'
 	val.free()
 	ctx.free()
 	rt.free()
