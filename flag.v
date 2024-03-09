@@ -17,11 +17,7 @@ $if x64 {
 		#flag @VMODROOT/libs/qjs_macos_x64.a
 	} $else $if windows {
 		#flag @VMODROOT/libs/qjs_win_x64.a
-	} $else {
-		#flag @VMODROOT/quickjs/libquickjs.a
 	}
-} $else {
-	#flag @VMODROOT/quickjs/libquickjs.a
 }
 #include "quickjs-libc.h"
 #include "quickjs.h"
