@@ -1,7 +1,7 @@
 module vjs
 
 #flag -I @VMODROOT/libs/include
-#flag -lm -ldl -pthread
+#flag -lm
 
 $if tinyc {
 	#flag @VMODROOT/libs/tcc/builtin.c
