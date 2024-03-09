@@ -7,4 +7,4 @@
 **/*.vsh linguist-language=V
 **/v.mod linguist-language=V
 
-libs/**/* linguist-vendored
+libs/include/* linguist-vendored
