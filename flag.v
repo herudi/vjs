@@ -1,6 +1,6 @@
 module vjs
 
-#flag -I @VMODROOT/quickjs
+#flag -I @VMODROOT/libs/include
 #flag -lm
 
 $if tinyc {
