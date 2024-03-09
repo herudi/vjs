@@ -2,7 +2,4 @@
 * text=auto eol=lf
 *.bat eol=crlf
 
-path:*.v linguist-language=V
-v.mod linguist-language=V
-
 libs/include/* linguist-vendored
