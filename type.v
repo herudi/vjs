@@ -33,6 +33,7 @@ fn (ctx &Context) c_tag(tag int) Value {
 }
 
 // create js exception
+@[manualfree]
 pub fn (ctx &Context) js_exception() &JSError {
 	val := ctx.c_val(C.JS_GetException(ctx.ref))
 	err := val.to_error()
@@ -54,12 +55,15 @@ pub fn (ctx &Context) js_uninitialized() Value {
 	return ctx.c_tag(4)
 }
 
+@[manualfree]
 pub fn (ctx &Context) json_stringify_op(val Value, rep Value, ind AnyValue) string {
 	indent := ctx.any_to_val(ind)
 	ref := C.JS_JSONStringify(ctx.ref, val.ref, rep.ref, indent.ref)
 	ptr := C.JS_ToCString(ctx.ref, ref)
 	C.JS_FreeCString(ctx.ref, ptr)
-	u_free(ptr)
+	unsafe {
+		free(ptr)
+	}
 	return v_str(ptr)
 }
 
@@ -68,6 +72,7 @@ pub fn (ctx &Context) json_stringify(val Value) string {
 	return ctx.json_stringify_op(val, null, null)
 }
 
+@[manualfree]
 pub fn (ctx &Context) json_parse(str string) Value {
 	len := str.len
 	c_str := str.str
@@ -106,8 +111,14 @@ pub fn (ctx &Context) js_dump(err IError) Value {
 	return val
 }
 
+@[manualfree]
 pub fn (ctx &Context) js_string(data string) Value {
-	return ctx.c_val(C.JS_NewString(ctx.ref, u_free(data.str)))
+	ptr := data.str
+	val := ctx.c_val(C.JS_NewString(ctx.ref, ptr))
+	unsafe {
+		free(ptr)
+	}
+	return val
 }
 
 pub fn (ctx &Context) js_bool(data bool) Value {

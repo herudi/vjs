@@ -43,10 +43,13 @@ pub fn (v Value) dup_value() Value {
 	return v.ctx.c_val(C.JS_DupValue(v.ctx.ref, v.ref))
 }
 
+@[manualfree]
 pub fn (v Value) to_string() string {
 	ptr := C.JS_ToCString(v.ctx.ref, v.ref)
 	C.JS_FreeCString(v.ctx.ref, ptr)
-	u_free(ptr)
+	unsafe {
+		free(ptr)
+	}
 	return v_str(ptr)
 }
 
@@ -69,6 +72,7 @@ pub fn (v Value) json_stringify() string {
 	return v.ctx.json_stringify(v)
 }
 
+@[manualfree]
 pub fn (v Value) to_error() &JSError {
 	if !v.is_error() {
 		return &JSError{}
@@ -114,22 +118,37 @@ pub fn (v Value) to_f64() f64 {
 	return val
 }
 
+@[manualfree]
 pub fn (v Value) set(key GetSet, any AnyValue) {
 	val := v.ctx.any_to_val(any)
 	if key is string {
-		C.JS_SetPropertyStr(v.ctx.ref, v.ref, u_free(key.str), val.ref)
+		ptr := key.str
+		C.JS_SetPropertyStr(v.ctx.ref, v.ref, ptr, val.ref)
+		unsafe {
+			free(ptr)
+		}
 	} else if key is Atom {
 		C.JS_SetProperty(v.ctx.ref, v.ref, key.ref, val.ref)
 	} else if key is PropertyEnum {
 		C.JS_SetProperty(v.ctx.ref, v.ref, key.atom.ref, val.ref)
 	} else if key is int {
-		C.JS_SetPropertyStr(v.ctx.ref, v.ref, u_free(key.str().str), val.ref)
+		ptr := key.str().str
+		C.JS_SetPropertyStr(v.ctx.ref, v.ref, ptr, val.ref)
+		unsafe {
+			free(ptr)
+		}
 	}
 }
 
+@[manualfree]
 pub fn (v Value) get(key GetSet) Value {
 	if key is string {
-		return v.ctx.c_val(C.JS_GetPropertyStr(v.ctx.ref, v.ref, u_free(key.str)))
+		ptr := key.str
+		val := v.ctx.c_val(C.JS_GetPropertyStr(v.ctx.ref, v.ref, ptr))
+		unsafe {
+			free(ptr)
+		}
+		return val
 	}
 	if key is Atom {
 		return v.ctx.c_val(C.JS_GetProperty(v.ctx.ref, v.ref, key.ref))
@@ -167,6 +186,7 @@ pub fn (v Value) callback(args ...AnyValue) !Value {
 	return v.ctx.call(v, ...args)
 }
 
+@[manualfree]
 pub fn (v Value) call(key string, args ...AnyValue) Value {
 	if !v.is_object() {
 		return v.ctx.js_error(message: 'Value is not Object')
@@ -180,7 +200,9 @@ pub fn (v Value) call(key string, args ...AnyValue) Value {
 	}
 	c_vals := args.map(v.ctx.any_to_val(it).ref)
 	c_ptr := if c_vals.len == 0 { unsafe { nil } } else { &c_vals[0] }
-	u_free(c_ptr)
+	unsafe {
+		free(c_ptr)
+	}
 	ret := v.ctx.c_val(C.JS_Call(v.ctx.ref, data.ref, v.ref, c_vals.len, c_ptr))
 	defer {
 		ret.free()
@@ -191,7 +213,6 @@ pub fn (v Value) call(key string, args ...AnyValue) Value {
 	return ret
 }
 
-@[manualfree]
 pub fn (v &Value) free() {
 	C.JS_FreeValue(v.ctx.ref, v.ref)
 }

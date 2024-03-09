@@ -29,6 +29,7 @@ fn C.JS_FreeAtom(&C.JSContext, C.JSAtom)
 fn C.JS_NewAtomUInt32(&C.JSContext, u32) C.JSAtom
 fn C.JS_GetOwnPropertyNames(&C.JSContext, &&C.JSPropertyEnum, &u32, JSValueConst, int) int
 
+@[manualfree]
 pub fn (ctx &Context) new_atom(val AtomValue) Atom {
 	if val is string {
 		ptr := val.str
@@ -36,7 +37,9 @@ pub fn (ctx &Context) new_atom(val AtomValue) Atom {
 			ctx: ctx
 			ref: C.JS_NewAtom(ctx.ref, ptr)
 		}
-		u_free(ptr)
+		unsafe {
+			free(ptr)
+		}
 		return atom
 	}
 	return Atom{
@@ -45,10 +48,13 @@ pub fn (ctx &Context) new_atom(val AtomValue) Atom {
 	}
 }
 
+@[manualfree]
 pub fn (a Atom) to_string() string {
 	ptr := C.JS_AtomToCString(a.ctx.ref, a.ref)
 	C.JS_FreeCString(a.ctx.ref, ptr)
-	u_free(ptr)
+	unsafe {
+		free(ptr)
+	}
 	return v_str(ptr)
 }
 
@@ -60,6 +66,7 @@ pub fn (a Atom) to_value() Value {
 	return a.ctx.c_val(C.JS_AtomToValue(a.ctx.ref, a.ref))
 }
 
+@[manualfree]
 pub fn (v Value) property_names() ![]PropertyEnum {
 	mut ref := &C.JSPropertyEnum{}
 	mut size := u32(0)
@@ -87,7 +94,6 @@ pub fn (v Value) property_names() ![]PropertyEnum {
 	return props
 }
 
-@[manualfree]
 pub fn (a &Atom) free() {
 	C.JS_FreeAtom(a.ctx.ref, a.ref)
 }

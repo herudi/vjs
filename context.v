@@ -98,6 +98,7 @@ pub fn (rt Runtime) new_context(config ContextConfig) &Context {
 	return ctx
 }
 
+@[manualfree]
 pub fn (ctx &Context) js_eval_core(input &char, len usize, fname &char, flag int, from_file bool) !Value {
 	mut ref := ctx.js_undefined().ref
 	if (flag & vjs.type_mask) == vjs.type_module {
@@ -137,6 +138,7 @@ pub fn (ctx &Context) eval_module(input string, fname string) !Value {
 	return ctx.js_eval(input, fname, vjs.type_module)
 }
 
+@[manualfree]
 pub fn (ctx &Context) eval_file(args ...EvalArgs) !Value {
 	fname := args[0] as string
 	c_fname := fname.str
@@ -155,11 +157,14 @@ pub fn (ctx &Context) eval_function(val Value) Value {
 	return ctx.c_val(C.JS_EvalFunction(ctx.ref, val.ref))
 }
 
+@[manualfree]
 pub fn (ctx &Context) call_this(this Value, val Value, args ...AnyValue) !Value {
 	c_args := args.map(ctx.any_to_val(it).ref)
 	c_ptr := if c_args.len == 0 { unsafe { nil } } else { &c_args[0] }
 	ret := ctx.c_val(C.JS_Call(ctx.ref, val.ref, this.ref, c_args.len, c_ptr))
-	u_free(c_ptr)
+	unsafe {
+		free(c_ptr)
+	}
 	if ret.is_exception() {
 		return ctx.js_exception()
 	}
@@ -201,7 +206,6 @@ pub fn (ctx &Context) runtime() Runtime {
 	}
 }
 
-@[manualfree]
 pub fn (ctx &Context) free() {
 	C.js_std_free_handlers(ctx.rt.ref)
 	C.JS_FreeContext(ctx.ref)

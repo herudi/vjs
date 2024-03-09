@@ -79,6 +79,7 @@ pub fn (v Value) is_function() bool {
 	return C.JS_IsFunction(v.ctx.ref, v.ref) == 1
 }
 
+@[manualfree]
 pub fn (v Value) instanceof(key string) bool {
 	glob := v.ctx.js_global().get(key)
 	stat := C.JS_IsInstanceOf(v.ctx.ref, v.ref, glob.ref) == 1

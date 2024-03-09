@@ -22,12 +22,15 @@ pub fn (ctx &Context) js_module(name string) Module {
 	}
 }
 
+@[manualfree]
 pub fn (mut m Module) export(name string, any AnyValue) {
 	ptr := name.str
 	m.exports_str << name
 	m.exports << ptr
 	m.values << m.ctx.any_to_val(any)
-	u_free(ptr)
+	unsafe {
+		free(ptr)
+	}
 }
 
 pub fn (mut m Module) set(name string, any AnyValue) {

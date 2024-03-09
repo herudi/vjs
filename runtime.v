@@ -55,7 +55,6 @@ pub fn (rt Runtime) run_gc() {
 	C.JS_RunGC(rt.ref)
 }
 
-@[manualfree]
 pub fn (rt &Runtime) free() {
 	C.JS_FreeRuntime(rt.ref)
 }

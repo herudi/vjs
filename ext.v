@@ -16,6 +16,7 @@ fn btoa_atob(ctx &Context, name string) JSFunction {
 	}
 }
 
+@[manualfree]
 pub fn (ctx &Context) init_ext() {
 	vjs_core := ctx.js_object()
 	vjs_core.set('print', ctx.js_function(fn [ctx] (args []Value) Value {

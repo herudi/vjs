@@ -10,6 +10,7 @@ pub struct Promise {
 	ctx Context
 }
 
+@[manualfree]
 fn resolve_or_reject(ctx &Context, code int, any AnyValue) Value {
 	resolving_funcs := [2]C.JSValue{}
 	mut result_funcs := [2]C.JSValue{}
