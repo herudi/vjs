@@ -51,11 +51,9 @@ pub fn (ctx &Context) new_atom(val AtomValue) Atom {
 @[manualfree]
 pub fn (a Atom) to_string() string {
 	ptr := C.JS_AtomToCString(a.ctx.ref, a.ref)
+	ret := v_str(ptr)
 	C.JS_FreeCString(a.ctx.ref, ptr)
-	unsafe {
-		free(ptr)
-	}
-	return v_str(ptr)
+	return ret
 }
 
 pub fn (a Atom) str() string {

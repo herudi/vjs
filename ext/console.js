@@ -1,4 +1,11 @@
 const { print } = globalThis.__bootstrap;
+Error.prototype.toJSON = function () {
+  return {
+    message: this.message,
+    name: this.name || "Error",
+    stack: this.stack || ""
+  }
+}
 const isObject = (val) => val?.constructor?.name === "Object";
 const isArray = Array.isArray;
 const KEY = "@@__VJS_REP__@@";

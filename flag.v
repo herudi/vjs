@@ -1,14 +1,13 @@
 module vjs
 
 #flag -I @VMODROOT/libs/include
-#flag -lm
+#flag -lm -lpthread
 
 $if tinyc {
-	#flag @VMODROOT/libs/tcc/builtin.c
-	#flag @VMODROOT/libs/tcc/divti3.c
-	#flag @VMODROOT/libs/tcc/udivti3.c
-	#flag @VMODROOT/libs/tcc/umodti3.c
-	#flag @VMODROOT/libs/tcc/udivmodti4.c
+	// misc for tcc
+	#flag @VMODROOT/libs/misc/divti3.c
+	#flag @VMODROOT/libs/misc/udivti3.c
+	#flag @VMODROOT/libs/misc/udivmodti4.c
 }
 $if x64 {
 	$if linux {

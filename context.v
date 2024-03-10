@@ -157,14 +157,10 @@ pub fn (ctx &Context) eval_function(val Value) Value {
 	return ctx.c_val(C.JS_EvalFunction(ctx.ref, val.ref))
 }
 
-@[manualfree]
 pub fn (ctx &Context) call_this(this Value, val Value, args ...AnyValue) !Value {
 	c_args := args.map(ctx.any_to_val(it).ref)
-	c_ptr := if c_args.len == 0 { unsafe { nil } } else { &c_args[0] }
-	ret := ctx.c_val(C.JS_Call(ctx.ref, val.ref, this.ref, c_args.len, c_ptr))
-	unsafe {
-		free(c_ptr)
-	}
+	c_val := if c_args.len == 0 { unsafe { nil } } else { &c_args[0] }
+	ret := ctx.c_val(C.JS_Call(ctx.ref, val.ref, this.ref, c_args.len, c_val))
 	if ret.is_exception() {
 		return ctx.js_exception()
 	}
