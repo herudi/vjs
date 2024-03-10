@@ -13,13 +13,14 @@ struct C.JSValue {
 	tag i64
 }
 
-type GetSet = Atom | PropertyEnum | int | string
-type JSValueConst = C.JSValue
-
 pub struct Value {
 	ref C.JSValue
 	ctx Context
 }
+
+type PropKey = Atom | PropertyEnum | int | string
+
+type JSValueConst = C.JSValue
 
 fn C.JS_FreeValue(&C.JSContext, C.JSValue)
 fn C.JS_ToCString(&C.JSContext, JSValueConst) &char
@@ -46,11 +47,9 @@ pub fn (v Value) dup_value() Value {
 @[manualfree]
 pub fn (v Value) to_string() string {
 	ptr := C.JS_ToCString(v.ctx.ref, v.ref)
+	ret := v_str(ptr)
 	C.JS_FreeCString(v.ctx.ref, ptr)
-	unsafe {
-		free(ptr)
-	}
-	return v_str(ptr)
+	return ret
 }
 
 pub fn (v Value) to_bytes() []u8 {
@@ -119,7 +118,7 @@ pub fn (v Value) to_f64() f64 {
 }
 
 @[manualfree]
-pub fn (v Value) set(key GetSet, any AnyValue) {
+pub fn (v Value) set(key PropKey, any AnyValue) {
 	val := v.ctx.any_to_val(any)
 	if key is string {
 		ptr := key.str
@@ -141,7 +140,7 @@ pub fn (v Value) set(key GetSet, any AnyValue) {
 }
 
 @[manualfree]
-pub fn (v Value) get(key GetSet) Value {
+pub fn (v Value) get(key PropKey) Value {
 	if key is string {
 		ptr := key.str
 		val := v.ctx.c_val(C.JS_GetPropertyStr(v.ctx.ref, v.ref, ptr))
@@ -199,11 +198,8 @@ pub fn (v Value) call(key string, args ...AnyValue) Value {
 		return v.ctx.js_error(message: 'Value is not Function')
 	}
 	c_vals := args.map(v.ctx.any_to_val(it).ref)
-	c_ptr := if c_vals.len == 0 { unsafe { nil } } else { &c_vals[0] }
-	unsafe {
-		free(c_ptr)
-	}
-	ret := v.ctx.c_val(C.JS_Call(v.ctx.ref, data.ref, v.ref, c_vals.len, c_ptr))
+	c_val := if c_vals.len == 0 { unsafe { nil } } else { &c_vals[0] }
+	ret := v.ctx.c_val(C.JS_Call(v.ctx.ref, data.ref, v.ref, c_vals.len, c_val))
 	defer {
 		ret.free()
 	}

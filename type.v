@@ -60,11 +60,9 @@ pub fn (ctx &Context) json_stringify_op(val Value, rep Value, ind AnyValue) stri
 	indent := ctx.any_to_val(ind)
 	ref := C.JS_JSONStringify(ctx.ref, val.ref, rep.ref, indent.ref)
 	ptr := C.JS_ToCString(ctx.ref, ref)
+	ret := v_str(ptr)
 	C.JS_FreeCString(ctx.ref, ptr)
-	unsafe {
-		free(ptr)
-	}
-	return v_str(ptr)
+	return ret
 }
 
 pub fn (ctx &Context) json_stringify(val Value) string {
@@ -77,11 +75,12 @@ pub fn (ctx &Context) json_parse(str string) Value {
 	len := str.len
 	c_str := str.str
 	c_fname := ''.str
+	ret := ctx.c_val(C.JS_ParseJSON(ctx.ref, c_str, usize(len), c_fname))
 	unsafe {
 		free(c_fname)
 		free(c_str)
 	}
-	return ctx.c_val(C.JS_ParseJSON(ctx.ref, c_str, usize(len), c_fname))
+	return ret
 }
 
 pub fn (ctx &Context) js_throw(any AnyValue) Value {
