@@ -20,6 +20,7 @@ fn C.JS_GetException(&C.JSContext) C.JSValue
 fn C.JS_Throw(&C.JSContext, C.JSValue) C.JSValue
 fn C.JS_ParseJSON(&C.JSContext, &char, usize, &char) C.JSValue
 fn C.JS_NewArrayBufferCopy(&C.JSContext, &u8, usize) C.JSValue
+fn C.JS_CallConstructor(&C.JSContext, JSValueConst, int, &JSValueConst) C.JSValue
 
 fn (ctx &Context) c_val(ref C.JSValue) Value {
 	return Value{ref, ctx}
@@ -156,8 +157,33 @@ pub fn (ctx &Context) js_object() Value {
 	return ctx.c_val(C.JS_NewObject(ctx.ref))
 }
 
-pub fn (ctx &Context) js_global() Value {
-	return ctx.c_val(C.JS_GetGlobalObject(ctx.ref))
+@[manualfree]
+pub fn (ctx &Context) js_global(keys ...string) Value {
+	if keys.len == 0 {
+		return ctx.c_val(C.JS_GetGlobalObject(ctx.ref))
+	}
+	glob := ctx.js_global()
+	ret := glob.get(keys[0])
+	glob.free()
+	return ret
+}
+
+pub fn (ctx &Context) js_await(val Value) !Value {
+	ret := ctx.c_val(C.js_std_await(ctx.ref, val.ref))
+	if ret.is_exception() {
+		return ctx.js_exception()
+	}
+	return ret
+}
+
+pub fn (ctx &Context) js_new_class(val Value, args ...AnyValue) !Value {
+	c_args := args.map(ctx.any_to_val(it).ref)
+	c_val := if c_args.len == 0 { unsafe { nil } } else { &c_args[0] }
+	ret := ctx.c_val(C.JS_CallConstructor(ctx.ref, val.ref, c_args.len, c_val))
+	if ret.is_exception() {
+		return ctx.js_exception()
+	}
+	return ret
 }
 
 pub fn (ctx &Context) any_to_val(val AnyValue) Value {

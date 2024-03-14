@@ -17,6 +17,7 @@ fn C.JS_IsArray(&C.JSContext, JSValueConst) int
 fn C.JS_IsError(&C.JSContext, JSValueConst) int
 fn C.JS_IsFunction(&C.JSContext, JSValueConst) int
 fn C.JS_IsInstanceOf(&C.JSContext, JSValueConst, JSValueConst) int
+fn C.JS_IsRegisteredClass(&C.JSRuntime, C.JSClassID) int
 
 // fn Type Is
 pub fn (v Value) is_exception() bool {

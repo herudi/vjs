@@ -15,6 +15,7 @@ struct C.JSValue {
 
 pub struct Value {
 	ref C.JSValue
+pub:
 	ctx Context
 }
 
@@ -39,6 +40,8 @@ fn C.JS_GetProperty(&C.JSContext, JSValueConst, C.JSAtom) C.JSValue
 fn C.JS_Call(&C.JSContext, JSValueConst, JSValueConst, int, &JSValueConst) C.JSValue
 fn C.JS_DupValue(&C.JSContext, JSValueConst) C.JSValue
 fn C.JS_GetArrayBuffer(&C.JSContext, &usize, JSValueConst) byteptr
+fn C.JS_DeleteProperty(&C.JSContext, JSValueConst, C.JSAtom, int) int
+fn C.JS_HasProperty(&C.JSContext, JSValueConst, C.JSAtom) int
 
 pub fn (v Value) dup_value() Value {
 	return v.ctx.c_val(C.JS_DupValue(v.ctx.ref, v.ref))
@@ -159,6 +162,34 @@ pub fn (v Value) get(key PropKey) Value {
 	return v.ctx.c_val(C.JS_GetProperty(v.ctx.ref, v.ref, prop.atom.ref))
 }
 
+fn (v Value) get_atom(key PropKey) Atom {
+	return if key is string {
+		v.ctx.new_atom(key)
+	} else if key is PropertyEnum {
+		key.atom
+	} else if key is int {
+		v.ctx.new_atom(key)
+	} else {
+		key as Atom
+	}
+}
+
+@[manualfree]
+pub fn (v Value) delete(key PropKey) bool {
+	atom := v.get_atom(key)
+	ret := C.JS_DeleteProperty(v.ctx.ref, v.ref, atom.ref, 1) == 1
+	atom.free()
+	return ret
+}
+
+@[manualfree]
+pub fn (v Value) has(key PropKey) bool {
+	atom := v.get_atom(key)
+	ret := C.JS_HasProperty(v.ctx.ref, v.ref, atom.ref) == 1
+	atom.free()
+	return ret
+}
+
 pub fn (v Value) len() int {
 	return v.get('length').to_int()
 }
@@ -167,22 +198,16 @@ pub fn (v Value) byte_len() int {
 	return v.get('byteLength').to_int()
 }
 
-pub fn (v Value) await() !Value {
-	val := v.ctx.c_val(C.js_std_await(v.ctx.ref, v.ref))
-	if val.is_exception() {
-		return v.ctx.js_exception()
-	}
-	return val
+pub fn (v Value) await() Value {
+	return v.ctx.js_await(v) or { panic(err) }
 }
 
-pub fn (v Value) callback(args ...AnyValue) !Value {
-	if !v.is_function() {
-		return &JSError{
-			name: 'TypeError'
-			message: 'Value is not a function'
-		}
-	}
-	return v.ctx.call(v, ...args)
+pub fn (v Value) callback(args ...AnyValue) Value {
+	return v.ctx.call(v, ...args) or { panic(err) }
+}
+
+pub fn (v Value) new(args ...AnyValue) Value {
+	return v.ctx.js_new_class(v, ...args) or { panic(err) }
 }
 
 @[manualfree]

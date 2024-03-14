@@ -10,6 +10,8 @@ javascript engine. Run JS in V.
 - Callback function support.
 - Set-Globals support.
 - Set-Module support.
+- Call V from JS.
+- Call JS from V.
 - Top-Level `await` support. using `vjs.type_module`.
 
 ## Install
@@ -111,6 +113,28 @@ ctx.end()
 ```
 
 ## Web Platform APIs
+
+Inject Web API to vjs.
+
+```v
+import herudi.vjs
+import herudi.vjs.web
+
+fn main() {
+  rt := vjs.new_runtime()
+  ctx := rt.new_context()
+
+  // inject all
+  web.inject(ctx)
+
+  // or inject one by one
+  // web.console_api(ctx)
+  // web.encoding_api(ctx)
+  // more..
+
+  ...
+}
+```
 
 - [x] [Console](https://developer.mozilla.org/en-US/docs/Web/API/console)
 - [x] [setTimeout](https://developer.mozilla.org/en-US/docs/Web/API/setTimeout),

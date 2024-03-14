@@ -11,8 +11,7 @@ fn main() {
 		}
 		return ctx.js_string(args.map(fn (val Value) string {
 			if val.is_function() {
-				val_from_fn := val.callback('baz') or { panic(err) }
-				return val_from_fn.str()
+				return val.callback('baz').str()
 			}
 			return val.str()
 		}).join(','))

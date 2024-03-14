@@ -6,14 +6,11 @@ fn test_promise() {
 
 	res := ctx.new_promise(fn (p Promise) Value {
 		return p.resolve('foo')
-	})
-	val := res.await()!
-	assert val.str() == 'foo'
+	}).await()
+	assert res.str() == 'foo'
 
-	res2 := ctx.js_promise()
-	val2 := res2.resolve('bar')
-	val3 := val2.await()!
-	assert val3.str() == 'bar'
+	res2 := ctx.js_promise().resolve('bar').await()
+	assert res2.str() == 'bar'
 
 	ctx.free()
 	rt.free()

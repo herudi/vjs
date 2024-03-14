@@ -1,9 +1,12 @@
 import herudi.vjs { Value }
+import herudi.vjs.web
 import os
 
 fn main() {
 	rt := vjs.new_runtime()
 	ctx := rt.new_context()
+
+	web.inject(ctx)
 
 	mut fs := ctx.js_module('fs')
 
