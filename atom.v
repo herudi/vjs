@@ -20,7 +20,7 @@ pub:
 	is_enumerable bool
 }
 
-type AtomValue = i64 | string
+type AtomValue = int | string
 
 fn C.JS_AtomToCString(&C.JSContext, C.JSAtom) &char
 fn C.JS_AtomToValue(&C.JSContext, C.JSAtom) C.JSValue
@@ -44,7 +44,7 @@ pub fn (ctx &Context) new_atom(val AtomValue) Atom {
 	}
 	return Atom{
 		ctx: ctx
-		ref: C.JS_NewAtomUInt32(ctx.ref, u32(val as i64))
+		ref: C.JS_NewAtomUInt32(ctx.ref, u32(val as int))
 	}
 }
 

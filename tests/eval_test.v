@@ -43,7 +43,7 @@ fn test_eval_file() {
 	rt := vjs.new_runtime()
 	ctx := rt.new_context()
 
-	value := ctx.eval_file('./tests/test.js') or { panic(err) }
+	value := ctx.eval_file('./test.js') or { panic(err) }
 	ctx.end()
 
 	assert value.is_string() == true

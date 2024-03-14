@@ -63,6 +63,7 @@ fn C.js_std_free_handlers(&C.JSRuntime)
 fn C.js_std_add_helpers(&C.JSContext, int, &&char)
 fn C.js_load_file(&C.JSContext, &usize, &char) &u8
 fn C.js_module_set_import_meta(&C.JSContext, JSValueConst, bool, bool) int
+fn C.JS_CallConstructor(&C.JSContext, JSValueConst, int, &JSValueConst) C.JSValue
 
 fn fn_custom_context(config ContextConfig) FnNewContext {
 	return fn [config] (rt &C.JSRuntime) &C.JSContext {
@@ -94,7 +95,6 @@ pub fn (rt Runtime) new_context(config ContextConfig) &Context {
 		ref: ref
 		rt: rt
 	}
-	ctx.init_ext()
 	return ctx
 }
 

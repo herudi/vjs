@@ -1,9 +1,12 @@
 import herudi.vjs { Value }
+import herudi.vjs.web
 import os
 
 fn main() {
 	rt := vjs.new_runtime()
 	ctx := rt.new_context()
+
+	web.inject(ctx)
 
 	global := ctx.js_global()
 	global.set('readFile', ctx.js_function(fn [ctx] (args []Value) Value {

@@ -1,11 +1,11 @@
-const { print } = globalThis.__bootstrap;
+const print = globalThis.__print;
 Error.prototype.toJSON = function () {
   return {
     message: this.message,
     name: this.name || "Error",
-    stack: this.stack || ""
-  }
-}
+    stack: this.stack || "",
+  };
+};
 const isObject = (val) => val?.constructor?.name === "Object";
 const isArray = Array.isArray;
 const KEY = "@@__VJS_REP__@@";
@@ -36,7 +36,7 @@ function rep(k, v) {
     if (v instanceof RegExp) {
       return `${KEY}${v.toString()}${KEY}`;
     }
-    const c_name = v.constructor?.name;
+    const c_name = v?.constructor?.name;
     if (c_name !== void 0) {
       return v;
     }
@@ -58,7 +58,7 @@ const formatter = (val) => {
     if (val instanceof RegExp) {
       return val;
     }
-    const c_name = val.constructor?.name;
+    const c_name = val?.constructor?.name;
     if (c_name !== void 0) {
       if (val instanceof Uint8Array) {
         return `${c_name}(${val.byteLength}) [${
@@ -114,3 +114,4 @@ class Console {
 }
 
 globalThis.console = new Console();
+// delete globalThis.__print;

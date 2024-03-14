@@ -4,10 +4,10 @@ fn test_atom() {
 	rt := vjs.new_runtime()
 	ctx := rt.new_context()
 	atom_str := ctx.new_atom('foo')
-	atom_i64 := ctx.new_atom(i64(20))
+	atom_int := ctx.new_atom(20)
 
 	assert atom_str.str() == 'foo'
-	assert atom_i64.to_value().to_i64() == 20
+	assert atom_int.to_value().to_int() == 20
 
 	obj := ctx.js_object()
 	obj.set('foo', 'foo')
@@ -19,7 +19,7 @@ fn test_atom() {
 	assert props[0].atom.str() == 'foo'
 	assert props[1].atom.str() == 'bar'
 	obj.free()
-	atom_i64.free()
+	atom_int.free()
 	atom_str.free()
 	ctx.free()
 	rt.free()
@@ -35,8 +35,7 @@ fn test_callback() {
 		}
 		return ctx.js_string(args.map(fn (val Value) string {
 			if val.is_function() {
-				val_from_fn := val.callback('baz') or { panic(err) }
-				return val_from_fn.str()
+				return val.callback('baz').str()
 			}
 			return val.str()
 		}).join(','))

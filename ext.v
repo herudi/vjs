@@ -35,6 +35,6 @@ pub fn (ctx &Context) init_ext() {
 	glob.set('__bootstrap', vjs_core)
 	glob.set('btoa', ctx.js_function(btoa_atob(ctx, 'btoa')))
 	glob.set('atob', ctx.js_function(btoa_atob(ctx, 'atob')))
-	ctx.eval_file('${@VMODROOT}/ext/main.js', type_module) or { panic(err) }
+	ctx.eval_file('${@VMODROOT}/ext/js/main.js', type_module) or { panic(err) }
 	glob.free()
 }
