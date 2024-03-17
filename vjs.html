@@ -1,0 +1,1643 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="x-ua-compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>vjs | vdoc</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&display=swap"
+			rel="stylesheet"
+		/>
+		<link
+			href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap"
+			rel="stylesheet"
+		/>
+		<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+		<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+		<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+		<link rel="manifest" href="site.webmanifest" />
+		<link rel="mask-icon" href="safari-pinned-tab.svg" color="#5bbad5" />
+		<meta name="msapplication-TileColor" content="#da532c" />
+		<meta name="theme-color" content="#ffffff" />
+		<link rel="stylesheet" href="doc.css" />
+		<link rel="stylesheet" href="normalize.css" />
+		<script src="dark-mode.js"></script>
+	</head>
+
+	<body>
+		<div><a id="skip-to-content-link" href="#main-content">Skip to content</a></div>
+		<div id="page">
+			<header class="doc-nav hidden">
+				<div class="heading-container">
+					<div class="heading">
+						<div class="info">
+							<div class="module">vjs</div>
+							<div class="toggle-version-container">
+								<span>0.0.3 549654a</span>
+								<div
+									id="dark-mode-toggle"
+									role="switch"
+									aria-checked="false"
+									aria-label="Toggle dark mode"
+								>
+									<svg xmlns="http://www.w3.org/2000/svg" class="light-icon" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M6.76 4.84l-1.8-1.79-1.41 1.41 1.79 1.79 1.42-1.41zM4 10.5H1v2h3v-2zm9-9.95h-2V3.5h2V.55zm7.45 3.91l-1.41-1.41-1.79 1.79 1.41 1.41 1.79-1.79zm-3.21 13.7l1.79 1.8 1.41-1.41-1.8-1.79-1.4 1.4zM20 10.5v2h3v-2h-3zm-8-5c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm-1 16.95h2V19.5h-2v2.95zm-7.45-3.91l1.41 1.41 1.79-1.8-1.41-1.41-1.79 1.8z"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" class="dark-icon" enable-background="new 0 0 24 24" height="24" viewBox="0 0 24 24" width="24"><g><rect fill="none" height="24" width="24"/></g><g><g><g><path d="M11.1,12.08C8.77,7.57,10.6,3.6,11.63,2.01C6.27,2.2,1.98,6.59,1.98,12c0,0.14,0.02,0.28,0.02,0.42 C2.62,12.15,3.29,12,4,12c1.66,0,3.18,0.83,4.1,2.15C9.77,14.63,11,16.17,11,18c0,1.52-0.87,2.83-2.12,3.51 c0.98,0.32,2.03,0.5,3.11,0.5c3.5,0,6.58-1.8,8.37-4.52C18,17.72,13.38,16.52,11.1,12.08z"/></g><path d="M7,16l-0.18,0C6.4,14.84,5.3,14,4,14c-1.66,0-3,1.34-3,3s1.34,3,3,3c0.62,0,2.49,0,3,0c1.1,0,2-0.9,2-2 C9,16.9,8.1,16,7,16z"/></g></g></svg>
+
+								</div>
+							</div>
+							<svg xmlns="http://www.w3.org/2000/svg" id="toggle-menu" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
+
+						</div>
+						<div id="search">
+							<input type="text" placeholder="Search... (beta)" autocomplete="off" />
+						</div>
+					</div>
+				</div>
+				<nav class="search hidden"></nav>
+				<nav class="content hidden">
+					<ul>
+						<li class="open">
+<div class="menu-row"><a href="./index.html">README</a></div>
+</li>
+<li class="open active">
+<div class="menu-row"><a href="./vjs.html">vjs</a></div>
+</li>
+<li class="open">
+<div class="menu-row"><a href="./web.html">web</a></div>
+</li>
+
+					</ul>
+				</nav>
+			</header>
+			<div class="doc-scrollview" tabindex="-1" id="main-content">
+				<div class="doc-container">
+					<div class="doc-content">
+								<section id="readme_vjs" class="doc-node">
+			<div class="title"><h1> vjs <a href="#readme_vjs">#</a></h1></div>
+<h1>VJS</h1><p><a href="https://vlang.io/">V</a> bindings to <a href="https://bellard.org/quickjs/">QuickJS</a> javascript engine. Run JS in V.</p><h2>Features</h2><ul><li>Evaluate js (code, file, module, etc).</li><li>Multi evaluate support.</li><li>Callback function support.</li><li>Set-Globals support.</li><li>Set-Module support.</li><li>Call V from JS.</li><li>Call JS from V.</li><li>Top-Level <code>await</code> support. using <code>vjs.type_module</code>.</li></ul><h2>Install</h2><pre><code class="language-bash">v install herudi.vjs
+</code></pre><h2>Basic Usage</h2><p>Create file <code>main.v</code> and copy-paste this code.</p><pre><code class="language-v"><span class="token keyword">import</span> herudi<span class="token punctuation">.</span>vjs
+
+<span class="token keyword">fn</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+rt <span class="token operator">:=</span> vjs<span class="token punctuation">.</span><span class="token function">new_runtime</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+ctx <span class="token operator">:=</span> rt<span class="token punctuation">.</span><span class="token function">new_context</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+value <span class="token operator">:=</span> ctx<span class="token punctuation">.</span><span class="token function">eval</span><span class="token punctuation">(</span><span class="token string">'1 + 2'</span><span class="token punctuation">)</span> <span class="token keyword">or</span> <span class="token punctuation">{</span> <span class="token function">panic</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span> <span class="token punctuation">}</span>
+ctx<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token keyword">assert</span> value<span class="token punctuation">.</span><span class="token function">is_number</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token boolean">true</span>
+<span class="token keyword">assert</span> value<span class="token punctuation">.</span><span class="token function">is_string</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token boolean">false</span>
+<span class="token keyword">assert</span> value<span class="token punctuation">.</span><span class="token function">to_int</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">3</span>
+
+<span class="token function">println</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span>
+<span class="token comment">// 3</span>
+
+<span class="token comment">// free</span>
+value<span class="token punctuation">.</span><span class="token function">free</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+ctx<span class="token punctuation">.</span><span class="token function">free</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+rt<span class="token punctuation">.</span><span class="token function">free</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span></code></pre><h2>Run</h2><pre><code class="language-bash">v run main.v
+</code></pre><p>Explore <a href="https://github.com/herudi/vjs/tree/master/examples">examples</a></p><blockquote><p>Currently support linux/mac/win (x64).</p></blockquote><blockquote><p>in windows, requires <code>-cc gcc</code>.</p></blockquote><h2>Multi Evaluate</h2><pre><code class="language-v">ctx<span class="token punctuation">.</span><span class="token function">eval</span><span class="token punctuation">(</span><span class="token string">'const sum = (a, b) =&gt; a + b'</span><span class="token punctuation">)</span> <span class="token keyword">or</span> <span class="token punctuation">{</span> <span class="token function">panic</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span> <span class="token punctuation">}</span>
+ctx<span class="token punctuation">.</span><span class="token function">eval</span><span class="token punctuation">(</span><span class="token string">'const mul = (a, b) =&gt; a * b'</span><span class="token punctuation">)</span> <span class="token keyword">or</span> <span class="token punctuation">{</span> <span class="token function">panic</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span> <span class="token punctuation">}</span>
+
+sum <span class="token operator">:=</span> ctx<span class="token punctuation">.</span><span class="token function">eval</span><span class="token punctuation">(</span><span class="token string">'sum(</span><span class="token string_interp">$</span>{<span class="token number">1</span>}<span class="token string">, </span><span class="token string_interp">$</span>{<span class="token number">2</span>}<span class="token string">)'</span><span class="token punctuation">)</span> <span class="token keyword">or</span> <span class="token punctuation">{</span> <span class="token function">panic</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span> <span class="token punctuation">}</span>
+mul <span class="token operator">:=</span> ctx<span class="token punctuation">.</span><span class="token function">eval</span><span class="token punctuation">(</span><span class="token string">'mul(</span><span class="token string_interp">$</span>{<span class="token number">1</span>}<span class="token string">, </span><span class="token string_interp">$</span>{<span class="token number">2</span>}<span class="token string">)'</span><span class="token punctuation">)</span> <span class="token keyword">or</span> <span class="token punctuation">{</span> <span class="token function">panic</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span> <span class="token punctuation">}</span>
+
+ctx<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token function">println</span><span class="token punctuation">(</span>sum<span class="token punctuation">)</span>
+<span class="token comment">// 3</span>
+
+<span class="token function">println</span><span class="token punctuation">(</span>mul<span class="token punctuation">)</span>
+<span class="token comment">// 2</span></code></pre><h2>Add Global</h2><pre><code class="language-v">glob <span class="token operator">:=</span> ctx<span class="token punctuation">.</span><span class="token function">js_global</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+glob<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span><span class="token string">'foo'</span><span class="token punctuation">,</span> <span class="token string">'bar'</span><span class="token punctuation">)</span>
+
+value <span class="token operator">:=</span> ctx<span class="token punctuation">.</span><span class="token function">eval</span><span class="token punctuation">(</span><span class="token string">'foo'</span><span class="token punctuation">)</span> <span class="token keyword">or</span> <span class="token punctuation">{</span> <span class="token function">panic</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span> <span class="token punctuation">}</span>
+ctx<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token function">println</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span>
+<span class="token comment">// bar</span></code></pre><h2>Add Module</h2><pre><code class="language-v"><span class="token keyword">mut</span> mod <span class="token operator">:=</span> ctx<span class="token punctuation">.</span><span class="token function">js_module</span><span class="token punctuation">(</span><span class="token string">'my-module'</span><span class="token punctuation">)</span>
+mod<span class="token punctuation">.</span><span class="token function">export</span><span class="token punctuation">(</span><span class="token string">'foo'</span><span class="token punctuation">,</span> <span class="token string">'foo'</span><span class="token punctuation">)</span>
+mod<span class="token punctuation">.</span><span class="token function">export</span><span class="token punctuation">(</span><span class="token string">'bar'</span><span class="token punctuation">,</span> <span class="token string">'bar'</span><span class="token punctuation">)</span>
+mod<span class="token punctuation">.</span><span class="token function">export_default</span><span class="token punctuation">(</span>mod<span class="token punctuation">.</span><span class="token function">to_object</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+mod<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+code <span class="token operator">:=</span> <span class="token string">'
+import mod, { foo, bar } from "my-module";
+
+console.log(foo, bar);
+
+console.log(mod);
+'</span>
+
+ctx<span class="token punctuation">.</span><span class="token function">eval</span><span class="token punctuation">(</span>code<span class="token punctuation">,</span> vjs<span class="token punctuation">.</span>type_module<span class="token punctuation">)</span> <span class="token keyword">or</span> <span class="token punctuation">{</span> <span class="token function">panic</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span> <span class="token punctuation">}</span>
+ctx<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre><h2>Web Platform APIs</h2><p>Inject Web API to vjs.</p><pre><code class="language-v"><span class="token keyword">import</span> herudi<span class="token punctuation">.</span>vjs
+<span class="token keyword">import</span> herudi<span class="token punctuation">.</span>vjs<span class="token punctuation">.</span>web
+
+<span class="token keyword">fn</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+rt <span class="token operator">:=</span> vjs<span class="token punctuation">.</span><span class="token function">new_runtime</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+ctx <span class="token operator">:=</span> rt<span class="token punctuation">.</span><span class="token function">new_context</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment">// inject all</span>
+web<span class="token punctuation">.</span><span class="token function">inject</span><span class="token punctuation">(</span>ctx<span class="token punctuation">)</span>
+
+<span class="token comment">// or inject one by one</span>
+<span class="token comment">// web.console_api(ctx)</span>
+<span class="token comment">// web.encoding_api(ctx)</span>
+<span class="token comment">// more..</span>
+
+<span class="token punctuation">...</span>
+<span class="token punctuation">}</span></code></pre><h3>List Web Platform APIs</h3><ul><li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled checked><a href="https://developer.mozilla.org/en-US/docs/Web/API/console">Console</a></li><li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled checked><a href="https://developer.mozilla.org/en-US/docs/Web/API/setTimeout">setTimeout</a>,<a href="https://developer.mozilla.org/en-US/docs/Web/API/clearTimeout">clearTimeout</a>- [x] <a href="https://developer.mozilla.org/en-US/docs/Web/API/setInterval">setInterval</a>,<a href="https://developer.mozilla.org/en-US/docs/Web/API/clearInterval">clearInterval</a>- [x] <a href="https://developer.mozilla.org/en-US/docs/Web/API/btoa">btoa</a>,<a href="https://developer.mozilla.org/en-US/docs/Web/API/atob">atob</a>- [x] <a href="https://developer.mozilla.org/en-US/docs/Web/API/URL">URL</a></li><li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled checked><a href="https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams">URLSearchParams</a></li><li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled checked><a href="https://developer.mozilla.org/en-US/docs/Web/API/Encoding_API">Encoding API</a></li><li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled checked><a href="https://developer.mozilla.org/en-US/docs/Web/API/TextEncoder">TextEncoder</a></li><li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled checked><a href="https://developer.mozilla.org/en-US/docs/Web/API/TextDecoder">TextDecoder</a></li><li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled>TextEncoderStream</li><li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled>TextDecoderStream</li><li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled checked><a href="https://developer.mozilla.org/en-US/docs/Web/API/Crypto">Crypto API</a></li><li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled checked><a href="https://developer.mozilla.org/en-US/docs/Web/API/Crypto/randomUUID">randomUUID</a></li><li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled checked><a href="https://developer.mozilla.org/en-US/docs/Web/API/Crypto/getRandomValues">getRandomValues</a></li><li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled checked><a href="https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto">SubtleCrypto</a></li><li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled checked><a href="https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/digest">digest</a></li><li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled>encrypt</li><li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled>decrypt</li><li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled>sign</li><li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled>verify</li><li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled>Fetch API</li><li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled>Headers</li><li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled>Request</li><li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled>Response</li><li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled>Streams API</li><li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled>FormData</li><li><i>More...</i></li></ul><h3>It's Fun Project. PRs Wellcome :)</h3>
+
+</section>
+
+		<section id="Constants" class="doc-node const">
+			<div class="title"><h2>Constants <a href="#Constants">#</a></h2></div>
+
+
+</section>
+
+		<section id="" class="doc-node const">
+<pre class="signature">
+<code><span class="token keyword">const</span> type_global <span class="token operator">=</span> C<span class="token punctuation">.</span>JS_EVAL_TYPE_GLOBAL</code></pre>
+<p>Evaluate JS type global.</p>
+
+</section>
+
+		<section id="" class="doc-node const">
+<pre class="signature">
+<code><span class="token keyword">const</span> type_module <span class="token operator">=</span> C<span class="token punctuation">.</span>JS_EVAL_TYPE_MODULE</code></pre>
+<p>Evaluate JS type module.</p>
+
+</section>
+
+		<section id="" class="doc-node const">
+<pre class="signature">
+<code><span class="token keyword">const</span> type_direct <span class="token operator">=</span> C<span class="token punctuation">.</span>JS_EVAL_TYPE_DIRECT</code></pre>
+<p>Evaluate JS type direct.</p>
+
+</section>
+
+		<section id="" class="doc-node const">
+<pre class="signature">
+<code><span class="token keyword">const</span> type_indirect <span class="token operator">=</span> C<span class="token punctuation">.</span>JS_EVAL_TYPE_INDIRECT</code></pre>
+<p>Evaluate JS type indirect.</p>
+
+</section>
+
+		<section id="" class="doc-node const">
+<pre class="signature">
+<code><span class="token keyword">const</span> type_mask <span class="token operator">=</span> C<span class="token punctuation">.</span>JS_EVAL_TYPE_MASK</code></pre>
+<p>Evaluate JS type mask.</p>
+
+</section>
+
+		<section id="" class="doc-node const">
+<pre class="signature">
+<code><span class="token keyword">const</span> type_strict <span class="token operator">=</span> C<span class="token punctuation">.</span>JS_EVAL_FLAG_STRICT</code></pre>
+<p>Evaluate JS type strict.</p>
+
+</section>
+
+		<section id="" class="doc-node const">
+<pre class="signature">
+<code><span class="token keyword">const</span> type_strip <span class="token operator">=</span> C<span class="token punctuation">.</span>JS_EVAL_FLAG_STRIP</code></pre>
+<p>Evaluate JS type strip.</p>
+
+</section>
+
+		<section id="" class="doc-node const">
+<pre class="signature">
+<code><span class="token keyword">const</span> type_compile_only <span class="token operator">=</span> C<span class="token punctuation">.</span>JS_EVAL_FLAG_COMPILE_ONLY</code></pre>
+<p>Evaluate JS type compile only.</p>
+
+</section>
+
+		<section id="" class="doc-node const">
+<pre class="signature">
+<code><span class="token keyword">const</span> type_barrier <span class="token operator">=</span> C<span class="token punctuation">.</span>JS_EVAL_FLAG_BACKTRACE_BARRIER</code></pre>
+<p>Evaluate JS type barrier.</p>
+
+</section>
+
+		<section id="" class="doc-node const">
+<pre class="signature">
+<code><span class="token keyword">const</span> type_async <span class="token operator">=</span> C<span class="token punctuation">.</span>JS_EVAL_FLAG_ASYNC</code></pre>
+<p>Evaluate JS type async.</p>
+
+</section>
+
+		<section id="new_runtime" class="doc-node">
+			<div class="title"><h2>fn new_runtime <a href="#new_runtime">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/runtime.v#L41"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token function">new_runtime</span><span class="token punctuation">(</span><span class="token punctuation">)</span> Runtime</code></pre>
+<p>Create new Runtime.</p>
+
+<section class="doc-node examples"><h4>Example</h4>
+<pre>
+<code class="language-v">rt <span class="token operator">:=</span> vjs<span class="token punctuation">.</span><span class="token function">new_runtime</span><span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre>
+</section>
+</section>
+
+		<section id="AnyValue" class="doc-node">
+			<div class="title"><h2>type AnyValue <a href="#AnyValue">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/type.v#L4"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">type</span> AnyValue <span class="token operator">=</span> Value <span class="token operator">|</span> <span class="token builtin">bool</span> <span class="token operator">|</span> <span class="token builtin">f64</span> <span class="token operator">|</span> <span class="token builtin">i64</span> <span class="token operator">|</span> <span class="token builtin">int</span> <span class="token operator">|</span> <span class="token builtin">string</span> <span class="token operator">|</span> <span class="token builtin">u32</span> <span class="token operator">|</span> <span class="token builtin">u64</span></code></pre>
+<p><code>type</code> Anything Value in <code>vjs</code></p>
+
+</section>
+
+		<section id="AtomValue" class="doc-node">
+			<div class="title"><h2>type AtomValue <a href="#AtomValue">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/atom.v#L26"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">type</span> AtomValue <span class="token operator">=</span> <span class="token builtin">int</span> <span class="token operator">|</span> <span class="token builtin">string</span></code></pre>
+
+
+</section>
+
+		<section id="CallbackPromise" class="doc-node">
+			<div class="title"><h2>type CallbackPromise <a href="#CallbackPromise">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/promise.v#L6"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">type</span> CallbackPromise <span class="token operator">=</span> <span class="token keyword">fn</span> <span class="token punctuation">(</span>Promise<span class="token punctuation">)</span> Value</code></pre>
+<p><code>type</code> Callback JS Promise.</p>
+
+</section>
+
+		<section id="JSCFunction" class="doc-node">
+			<div class="title"><h2>type JSCFunction <a href="#JSCFunction">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/function.v#L6"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">type</span> JSCFunction <span class="token operator">=</span> <span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token operator">&</span>C<span class="token punctuation">.</span>JSContext<span class="token punctuation">,</span> JSValueConst<span class="token punctuation">,</span> <span class="token builtin">int</span><span class="token punctuation">,</span> <span class="token operator">&</span>JSValueConst<span class="token punctuation">)</span> C<span class="token punctuation">.</span>JSValue</code></pre>
+<p>Original <code>type</code> JS Callback function from <code>qjs</code></p>
+
+</section>
+
+		<section id="JSConstructor" class="doc-node">
+			<div class="title"><h2>type JSConstructor <a href="#JSConstructor">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/function.v#L15"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">type</span> JSConstructor <span class="token operator">=</span> <span class="token keyword">fn</span> <span class="token punctuation">(</span>this Value<span class="token punctuation">,</span> args <span class="token punctuation">[</span><span class="token punctuation">]</span>Value<span class="token punctuation">)</span></code></pre>
+<p><code>type</code> Constructor Class function</p>
+
+</section>
+
+		<section id="JSFunction" class="doc-node">
+			<div class="title"><h2>type JSFunction <a href="#JSFunction">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/function.v#L12"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">type</span> JSFunction <span class="token operator">=</span> <span class="token keyword">fn</span> <span class="token punctuation">(</span>args <span class="token punctuation">[</span><span class="token punctuation">]</span>Value<span class="token punctuation">)</span> Value</code></pre>
+<p><code>type</code> JS Callback function</p>
+
+</section>
+
+		<section id="JSFunctionThis" class="doc-node">
+			<div class="title"><h2>type JSFunctionThis <a href="#JSFunctionThis">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/function.v#L9"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">type</span> JSFunctionThis <span class="token operator">=</span> <span class="token keyword">fn</span> <span class="token punctuation">(</span>this Value<span class="token punctuation">,</span> args <span class="token punctuation">[</span><span class="token punctuation">]</span>Value<span class="token punctuation">)</span> Value</code></pre>
+<p><code>type</code> JS Callback function with <code>this</code></p>
+
+</section>
+
+		<section id="JSValueConst" class="doc-node">
+			<div class="title"><h2>type JSValueConst <a href="#JSValueConst">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/value.v#L28"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">type</span> JSValueConst <span class="token operator">=</span> C<span class="token punctuation">.</span>JSValue</code></pre>
+<p><code>type</code> JSValueConst. this type is free.</p>
+
+</section>
+
+		<section id="PropKey" class="doc-node">
+			<div class="title"><h2>type PropKey <a href="#PropKey">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/value.v#L25"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">type</span> PropKey <span class="token operator">=</span> Atom <span class="token operator">|</span> PropertyEnum <span class="token operator">|</span> <span class="token builtin">int</span> <span class="token operator">|</span> <span class="token builtin">string</span></code></pre>
+<p><code>type</code> property keys. to use get/set values.</p>
+
+</section>
+
+		<section id="Atom" class="doc-node">
+			<div class="title"><h2>struct Atom <a href="#Atom">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/atom.v#L14"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">struct</span> <span class="token symbol">Atom</span> <span class="token punctuation">{</span>
+	ref C<span class="token punctuation">.</span>JSAtom
+	ctx Context
+<span class="token punctuation">}</span></code></pre>
+<p>Atom structure based on <code>JSAtom</code> in qjs and implemented into <code>ref</code>.</p>
+
+</section>
+
+		<section id="Atom.to_string" class="doc-node">
+			<div class="title"><h2>fn (Atom) to_string <a href="#Atom.to_string">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/atom.v#L61"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>a Atom<span class="token punctuation">)</span> <span class="token function">to_string</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">string</span></code></pre>
+<p>Convert Atom to string.</p>
+
+</section>
+
+		<section id="Atom.str" class="doc-node">
+			<div class="title"><h2>fn (Atom) str <a href="#Atom.str">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/atom.v#L69"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>a Atom<span class="token punctuation">)</span> <span class="token function">str</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">string</span></code></pre>
+<p>Convert Atom to string.</p>
+
+</section>
+
+		<section id="Atom.to_value" class="doc-node">
+			<div class="title"><h2>fn (Atom) to_value <a href="#Atom.to_value">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/atom.v#L79"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>a Atom<span class="token punctuation">)</span> <span class="token function">to_value</span><span class="token punctuation">(</span><span class="token punctuation">)</span> Value</code></pre>
+<p>Convert Atom to Value.</p>
+
+<section class="doc-node examples"><h4>Example</h4>
+<pre>
+<code class="language-v">val <span class="token operator">:=</span> atom<span class="token punctuation">.</span><span class="token function">to_value</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token function">println</span><span class="token punctuation">(</span>val<span class="token punctuation">)</span></code></pre>
+</section>
+</section>
+
+		<section id="Atom.free" class="doc-node">
+			<div class="title"><h2>fn (Atom) free <a href="#Atom.free">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/atom.v#L123"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>a <span class="token operator">&</span>Atom<span class="token punctuation">)</span> <span class="token function">free</span><span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre>
+<p>Free Atom</p>
+
+</section>
+
+		<section id="ClassParams" class="doc-node">
+			<div class="title"><h2>struct ClassParams <a href="#ClassParams">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/function.v#L28"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<div class="attributes"><div class="attribute">@[params]</div></div>
+<pre class="signature">
+<code><span class="token keyword">struct</span> <span class="token symbol">ClassParams</span> <span class="token punctuation">{</span>
+	id   <span class="token operator">?</span><span class="token builtin">u32</span>
+	name <span class="token builtin">string</span>
+	ctor <span class="token operator">?</span>JSConstructor
+<span class="token punctuation">}</span></code></pre>
+
+
+</section>
+
+		<section id="Context" class="doc-node">
+			<div class="title"><h2>struct Context <a href="#Context">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/context.v#L11"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">struct</span> <span class="token symbol">Context</span> <span class="token punctuation">{</span>
+	ref <span class="token operator">&</span>C<span class="token punctuation">.</span>JSContext
+	rt  Runtime
+<span class="token punctuation">}</span></code></pre>
+<p>Context structure based on <code>JSContext</code> in qjs and implemented into <code>ref</code>.</p>
+
+</section>
+
+		<section id="Context.any_to_val" class="doc-node">
+			<div class="title"><h2>fn (Context) any_to_val <a href="#Context.any_to_val">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/type.v#L218"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>ctx <span class="token operator">&</span>Context<span class="token punctuation">)</span> <span class="token function">any_to_val</span><span class="token punctuation">(</span>val AnyValue<span class="token punctuation">)</span> Value</code></pre>
+<p>Convert any to value.</p>
+
+</section>
+
+		<section id="Context.call" class="doc-node">
+			<div class="title"><h2>fn (Context) call <a href="#Context.call">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/context.v#L223"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>ctx <span class="token operator">&</span>Context<span class="token punctuation">)</span> <span class="token function">call</span><span class="token punctuation">(</span>val Value<span class="token punctuation">,</span> args <span class="token punctuation">...</span>AnyValue<span class="token punctuation">)</span> <span class="token operator">!</span>Value</code></pre>
+<p>Callback from Context</p>
+
+</section>
+
+		<section id="Context.call_this" class="doc-node">
+			<div class="title"><h2>fn (Context) call_this <a href="#Context.call_this">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/context.v#L212"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>ctx <span class="token operator">&</span>Context<span class="token punctuation">)</span> <span class="token function">call_this</span><span class="token punctuation">(</span>this Value<span class="token punctuation">,</span> val Value<span class="token punctuation">,</span> args <span class="token punctuation">...</span>AnyValue<span class="token punctuation">)</span> <span class="token operator">!</span>Value</code></pre>
+<p>Callback this from Context</p>
+
+</section>
+
+		<section id="Context.dump_error" class="doc-node">
+			<div class="title"><h2>fn (Context) dump_error <a href="#Context.dump_error">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/context.v#L237"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>ctx <span class="token operator">&</span>Context<span class="token punctuation">)</span> <span class="token function">dump_error</span><span class="token punctuation">(</span><span class="token punctuation">)</span> Value</code></pre>
+<p>Dump std Error</p>
+
+</section>
+
+		<section id="Context.dup_context" class="doc-node">
+			<div class="title"><h2>fn (Context) dup_context <a href="#Context.dup_context">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/context.v#L228"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>ctx <span class="token operator">&</span>Context<span class="token punctuation">)</span> <span class="token function">dup_context</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&</span>Context</code></pre>
+<p>Duplicate context</p>
+
+</section>
+
+		<section id="Context.end" class="doc-node">
+			<div class="title"><h2>fn (Context) end <a href="#Context.end">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/context.v#L248"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>ctx <span class="token operator">&</span>Context<span class="token punctuation">)</span> <span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre>
+<p>Context end</p>
+
+</section>
+
+		<section id="Context.eval" class="doc-node">
+			<div class="title"><h2>fn (Context) eval <a href="#Context.eval">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/context.v#L168"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>ctx <span class="token operator">&</span>Context<span class="token punctuation">)</span> <span class="token function">eval</span><span class="token punctuation">(</span>args <span class="token punctuation">...</span>EvalArgs<span class="token punctuation">)</span> <span class="token operator">!</span>Value</code></pre>
+<p>Evaluate JS</p>
+
+<section class="doc-node examples"><h4>Example</h4>
+<pre>
+<code class="language-v">val1 <span class="token operator">:=</span> ctx<span class="token punctuation">.</span><span class="token function">eval</span><span class="token punctuation">(</span><span class="token string">'1 + 1'</span><span class="token punctuation">)</span><span class="token operator">!</span>
+
+<span class="token comment">// or module</span>
+val2 <span class="token operator">:=</span> ctx<span class="token punctuation">.</span><span class="token function">eval</span><span class="token punctuation">(</span><span class="token string">'1 + 1'</span><span class="token punctuation">,</span> vjs<span class="token punctuation">.</span>type_module<span class="token punctuation">)</span><span class="token operator">!</span></code></pre>
+</section>
+</section>
+
+		<section id="Context.eval_file" class="doc-node">
+			<div class="title"><h2>fn (Context) eval_file <a href="#Context.eval_file">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/context.v#L192"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>ctx <span class="token operator">&</span>Context<span class="token punctuation">)</span> <span class="token function">eval_file</span><span class="token punctuation">(</span>args <span class="token punctuation">...</span>EvalArgs<span class="token punctuation">)</span> <span class="token operator">!</span>Value</code></pre>
+<p>Evaluate File</p>
+
+<section class="doc-node examples"><h4>Example</h4>
+<pre>
+<code class="language-v">ctx<span class="token punctuation">.</span><span class="token function">eval_file</span><span class="token punctuation">(</span><span class="token string">'./path/to/file.js'</span><span class="token punctuation">)</span><span class="token operator">!</span>
+
+<span class="token comment">// or module</span>
+ctx<span class="token punctuation">.</span><span class="token function">eval_file</span><span class="token punctuation">(</span><span class="token string">'./path/to/file.js'</span><span class="token punctuation">,</span> vjs<span class="token punctuation">.</span>type_module<span class="token punctuation">)</span><span class="token operator">!</span></code></pre>
+</section>
+</section>
+
+		<section id="Context.eval_function" class="doc-node">
+			<div class="title"><h2>fn (Context) eval_function <a href="#Context.eval_function">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/context.v#L207"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>ctx <span class="token operator">&</span>Context<span class="token punctuation">)</span> <span class="token function">eval_function</span><span class="token punctuation">(</span>val Value<span class="token punctuation">)</span> Value</code></pre>
+<p>Evaluate Function</p>
+
+</section>
+
+		<section id="Context.eval_module" class="doc-node">
+			<div class="title"><h2>fn (Context) eval_module <a href="#Context.eval_module">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/context.v#L179"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>ctx <span class="token operator">&</span>Context<span class="token punctuation">)</span> <span class="token function">eval_module</span><span class="token punctuation">(</span>input <span class="token builtin">string</span><span class="token punctuation">,</span> fname <span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token operator">!</span>Value</code></pre>
+<p>Evaluate JS module</p>
+
+<section class="doc-node examples"><h4>Example</h4>
+<pre>
+<code class="language-v">ctx<span class="token punctuation">.</span><span class="token function">eval_module</span><span class="token punctuation">(</span><span class="token string">'1 + 1'</span><span class="token punctuation">,</span> <span class="token string">'index.js'</span><span class="token punctuation">)</span><span class="token operator">!</span></code></pre>
+</section>
+</section>
+
+		<section id="Context.free" class="doc-node">
+			<div class="title"><h2>fn (Context) free <a href="#Context.free">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/context.v#L260"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>ctx <span class="token operator">&</span>Context<span class="token punctuation">)</span> <span class="token function">free</span><span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre>
+<p>Free the context</p>
+
+</section>
+
+		<section id="Context.js_array" class="doc-node">
+			<div class="title"><h2>fn (Context) js_array <a href="#Context.js_array">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/type.v#L244"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>ctx <span class="token operator">&</span>Context<span class="token punctuation">)</span> <span class="token function">js_array</span><span class="token punctuation">(</span><span class="token punctuation">)</span> Value</code></pre>
+<p>Create JS Array.</p>
+
+</section>
+
+		<section id="Context.js_array_buffer" class="doc-node">
+			<div class="title"><h2>fn (Context) js_array_buffer <a href="#Context.js_array_buffer">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/type.v#L161"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>ctx <span class="token operator">&</span>Context<span class="token punctuation">)</span> <span class="token function">js_array_buffer</span><span class="token punctuation">(</span>data <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">u8</span><span class="token punctuation">)</span> Value</code></pre>
+<p>Create JS ArrayBuffer.</p>
+
+</section>
+
+		<section id="Context.js_await" class="doc-node">
+			<div class="title"><h2>fn (Context) js_await <a href="#Context.js_await">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/type.v#L198"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>ctx <span class="token operator">&</span>Context<span class="token punctuation">)</span> <span class="token function">js_await</span><span class="token punctuation">(</span>val Value<span class="token punctuation">)</span> <span class="token operator">!</span>Value</code></pre>
+<p>JS call await.</p>
+
+</section>
+
+		<section id="Context.js_big_int" class="doc-node">
+			<div class="title"><h2>fn (Context) js_big_int <a href="#Context.js_big_int">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/type.v#L156"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>ctx <span class="token operator">&</span>Context<span class="token punctuation">)</span> <span class="token function">js_big_int</span><span class="token punctuation">(</span>data <span class="token builtin">i64</span><span class="token punctuation">)</span> Value</code></pre>
+<p>Create JS Bigint.</p>
+
+</section>
+
+		<section id="Context.js_big_uint" class="doc-node">
+			<div class="title"><h2>fn (Context) js_big_uint <a href="#Context.js_big_uint">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/type.v#L166"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>ctx <span class="token operator">&</span>Context<span class="token punctuation">)</span> <span class="token function">js_big_uint</span><span class="token punctuation">(</span>data <span class="token builtin">u64</span><span class="token punctuation">)</span> Value</code></pre>
+<p>Create JS Big Uint.</p>
+
+</section>
+
+		<section id="Context.js_bool" class="doc-node">
+			<div class="title"><h2>fn (Context) js_bool <a href="#Context.js_bool">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/type.v#L141"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>ctx <span class="token operator">&</span>Context<span class="token punctuation">)</span> <span class="token function">js_bool</span><span class="token punctuation">(</span>data <span class="token builtin">bool</span><span class="token punctuation">)</span> Value</code></pre>
+<p>Create JS Boolean.</p>
+
+</section>
+
+		<section id="Context.js_class" class="doc-node">
+			<div class="title"><h2>fn (Context) js_class <a href="#Context.js_class">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/function.v#L100"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>ctx <span class="token operator">&</span>Context<span class="token punctuation">)</span> <span class="token function">js_class</span><span class="token punctuation">(</span>cls ClassParams<span class="token punctuation">)</span> Value</code></pre>
+<p>Create JS Class</p>
+
+<section class="doc-node examples"><h4>Example</h4>
+<pre>
+<code class="language-v">foo_class <span class="token operator">:=</span> ctx<span class="token punctuation">.</span><span class="token function">js_class</span><span class="token punctuation">(</span>
+	 name<span class="token punctuation">:</span> <span class="token string">'Foo'</span><span class="token punctuation">,</span>
+	 ctor<span class="token punctuation">:</span> <span class="token keyword">fn</span> <span class="token punctuation">(</span>this Value<span class="token punctuation">,</span> args <span class="token punctuation">[</span><span class="token punctuation">]</span>Value<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		 <span class="token comment">// constructor code here</span>
+	 <span class="token punctuation">}</span>
+<span class="token punctuation">)</span>
+
+foo <span class="token operator">:=</span> foo_class<span class="token punctuation">.</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre>
+</section>
+</section>
+
+		<section id="Context.js_dump" class="doc-node">
+			<div class="title"><h2>fn (Context) js_dump <a href="#Context.js_dump">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/type.v#L123"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>ctx <span class="token operator">&</span>Context<span class="token punctuation">)</span> <span class="token function">js_dump</span><span class="token punctuation">(</span>err <span class="token builtin">IError</span><span class="token punctuation">)</span> Value</code></pre>
+<p>js dump IError.</p>
+
+</section>
+
+		<section id="Context.js_error" class="doc-node">
+			<div class="title"><h2>fn (Context) js_error <a href="#Context.js_error">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/type.v#L105"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>ctx <span class="token operator">&</span>Context<span class="token punctuation">)</span> <span class="token function">js_error</span><span class="token punctuation">(</span>err JSError<span class="token punctuation">)</span> Value</code></pre>
+<p>create JS new Error.</p>
+
+</section>
+
+		<section id="Context.js_eval" class="doc-node">
+			<div class="title"><h2>fn (Context) js_eval <a href="#Context.js_eval">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/context.v#L156"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>ctx <span class="token operator">&</span>Context<span class="token punctuation">)</span> <span class="token function">js_eval</span><span class="token punctuation">(</span>input <span class="token builtin">string</span><span class="token punctuation">,</span> fname <span class="token builtin">string</span><span class="token punctuation">,</span> flag <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token operator">!</span>Value</code></pre>
+<p>Evaluate JS with complete params</p>
+
+<section class="doc-node examples"><h4>Example</h4>
+<pre>
+<code class="language-v">ctx<span class="token punctuation">.</span><span class="token function">js_eval</span><span class="token punctuation">(</span>code<span class="token punctuation">,</span> filename<span class="token punctuation">,</span> flag<span class="token punctuation">)</span><span class="token operator">!</span></code></pre>
+</section>
+</section>
+
+		<section id="Context.js_eval_core" class="doc-node">
+			<div class="title"><h2>fn (Context) js_eval_core <a href="#Context.js_eval_core">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/context.v#L129"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>ctx <span class="token operator">&</span>Context<span class="token punctuation">)</span> <span class="token function">js_eval_core</span><span class="token punctuation">(</span>input <span class="token operator">&</span><span class="token builtin">char</span><span class="token punctuation">,</span> len <span class="token builtin">usize</span><span class="token punctuation">,</span> fname <span class="token operator">&</span><span class="token builtin">char</span><span class="token punctuation">,</span> flag <span class="token builtin">int</span><span class="token punctuation">,</span> from_file <span class="token builtin">bool</span><span class="token punctuation">)</span> <span class="token operator">!</span>Value</code></pre>
+<p>Core evaluate JS</p>
+
+</section>
+
+		<section id="Context.js_exception" class="doc-node">
+			<div class="title"><h2>fn (Context) js_exception <a href="#Context.js_exception">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/type.v#L45"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>ctx <span class="token operator">&</span>Context<span class="token punctuation">)</span> <span class="token function">js_exception</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&</span>JSError</code></pre>
+<p>Create JS Exception.</p>
+
+<section class="doc-node examples"><h4>Example</h4>
+<pre>
+<code class="language-v"><span class="token keyword">if</span> val<span class="token punctuation">.</span><span class="token function">is_exception</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> ctx<span class="token punctuation">.</span><span class="token function">js_exception</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span></code></pre>
+</section>
+</section>
+
+		<section id="Context.js_float" class="doc-node">
+			<div class="title"><h2>fn (Context) js_float <a href="#Context.js_float">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/type.v#L176"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>ctx <span class="token operator">&</span>Context<span class="token punctuation">)</span> <span class="token function">js_float</span><span class="token punctuation">(</span>data <span class="token builtin">f64</span><span class="token punctuation">)</span> Value</code></pre>
+<p>Create JS Float.</p>
+
+</section>
+
+		<section id="Context.js_function" class="doc-node">
+			<div class="title"><h2>fn (Context) js_function <a href="#Context.js_function">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/function.v#L74"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>ctx <span class="token operator">&</span>Context<span class="token punctuation">)</span> <span class="token function">js_function</span><span class="token punctuation">(</span>cb JSFunction<span class="token punctuation">)</span> Value</code></pre>
+<p>JS Callback function</p>
+
+<section class="doc-node examples"><h4>Example</h4>
+<pre>
+<code class="language-v">my_fn <span class="token operator">:=</span> ctx<span class="token punctuation">.</span><span class="token function">js_function</span><span class="token punctuation">(</span><span class="token keyword">fn</span> <span class="token punctuation">[</span>ctx<span class="token punctuation">]</span><span class="token punctuation">(</span>args <span class="token punctuation">[</span><span class="token punctuation">]</span>Value<span class="token punctuation">)</span> <span class="token symbol">Value</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> ctx<span class="token punctuation">.</span><span class="token function">js_string</span><span class="token punctuation">(</span><span class="token string">'foo'</span><span class="token punctuation">)</span>	
+<span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre>
+</section>
+</section>
+
+		<section id="Context.js_function_this" class="doc-node">
+			<div class="title"><h2>fn (Context) js_function_this <a href="#Context.js_function_this">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/function.v#L63"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>ctx <span class="token operator">&</span>Context<span class="token punctuation">)</span> <span class="token function">js_function_this</span><span class="token punctuation">(</span>cb JSFunctionThis<span class="token punctuation">)</span> Value</code></pre>
+<p>JS Callback function with <code>this</code></p>
+
+<section class="doc-node examples"><h4>Example</h4>
+<pre>
+<code class="language-v">my_fn <span class="token operator">:=</span> ctx<span class="token punctuation">.</span><span class="token function">js_function_this</span><span class="token punctuation">(</span><span class="token keyword">fn</span> <span class="token punctuation">(</span>this Value<span class="token punctuation">,</span> args <span class="token punctuation">[</span><span class="token punctuation">]</span>Value<span class="token punctuation">)</span> <span class="token symbol">Value</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> this<span class="token punctuation">.</span>ctx<span class="token punctuation">.</span><span class="token function">js_string</span><span class="token punctuation">(</span><span class="token string">'foo'</span><span class="token punctuation">)</span>	
+<span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre>
+</section>
+</section>
+
+		<section id="Context.js_global" class="doc-node">
+			<div class="title"><h2>fn (Context) js_global <a href="#Context.js_global">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/type.v#L187"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>ctx <span class="token operator">&</span>Context<span class="token punctuation">)</span> <span class="token function">js_global</span><span class="token punctuation">(</span>keys <span class="token punctuation">...</span><span class="token builtin">string</span><span class="token punctuation">)</span> Value</code></pre>
+<p>Define JS Global (globalThis).</p>
+
+</section>
+
+		<section id="Context.js_i64" class="doc-node">
+			<div class="title"><h2>fn (Context) js_i64 <a href="#Context.js_i64">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/type.v#L171"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>ctx <span class="token operator">&</span>Context<span class="token punctuation">)</span> <span class="token function">js_i64</span><span class="token punctuation">(</span>data <span class="token builtin">i64</span><span class="token punctuation">)</span> Value</code></pre>
+<p>Create JS int64.</p>
+
+</section>
+
+		<section id="Context.js_int" class="doc-node">
+			<div class="title"><h2>fn (Context) js_int <a href="#Context.js_int">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/type.v#L146"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>ctx <span class="token operator">&</span>Context<span class="token punctuation">)</span> <span class="token function">js_int</span><span class="token punctuation">(</span>data <span class="token builtin">int</span><span class="token punctuation">)</span> Value</code></pre>
+<p>Create JS Int.</p>
+
+</section>
+
+		<section id="Context.js_module" class="doc-node">
+			<div class="title"><h2>fn (Context) js_module <a href="#Context.js_module">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/module.v#L24"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>ctx <span class="token operator">&</span>Context<span class="token punctuation">)</span> <span class="token function">js_module</span><span class="token punctuation">(</span>name <span class="token builtin">string</span><span class="token punctuation">)</span> Module</code></pre>
+<p>Initial <code>js_module</code>.</p>
+
+<section class="doc-node examples"><h4>Example</h4>
+<pre>
+<code class="language-v">mod <span class="token operator">:=</span> ctx<span class="token punctuation">.</span><span class="token function">js_module</span><span class="token punctuation">(</span><span class="token string">'my-module'</span><span class="token punctuation">)</span></code></pre>
+</section>
+</section>
+
+		<section id="Context.js_new_class" class="doc-node">
+			<div class="title"><h2>fn (Context) js_new_class <a href="#Context.js_new_class">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/type.v#L207"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>ctx <span class="token operator">&</span>Context<span class="token punctuation">)</span> <span class="token function">js_new_class</span><span class="token punctuation">(</span>val Value<span class="token punctuation">,</span> args <span class="token punctuation">...</span>AnyValue<span class="token punctuation">)</span> <span class="token operator">!</span>Value</code></pre>
+<p>JS call new class.</p>
+
+</section>
+
+		<section id="Context.js_null" class="doc-node">
+			<div class="title"><h2>fn (Context) js_null <a href="#Context.js_null">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/type.v#L53"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>ctx <span class="token operator">&</span>Context<span class="token punctuation">)</span> <span class="token function">js_null</span><span class="token punctuation">(</span><span class="token punctuation">)</span> Value</code></pre>
+<p>Create JS Null.</p>
+
+</section>
+
+		<section id="Context.js_object" class="doc-node">
+			<div class="title"><h2>fn (Context) js_object <a href="#Context.js_object">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/type.v#L181"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>ctx <span class="token operator">&</span>Context<span class="token punctuation">)</span> <span class="token function">js_object</span><span class="token punctuation">(</span><span class="token punctuation">)</span> Value</code></pre>
+<p>Create JS Object.</p>
+
+</section>
+
+		<section id="Context.js_only_function" class="doc-node">
+			<div class="title"><h2>fn (Context) js_only_function <a href="#Context.js_only_function">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/function.v#L84"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>ctx <span class="token operator">&</span>Context<span class="token punctuation">)</span> <span class="token function">js_only_function</span><span class="token punctuation">(</span>cb JSFunction<span class="token punctuation">)</span> JSCFunction</code></pre>
+<p>JS Callback only function</p>
+
+</section>
+
+		<section id="Context.js_only_function_this" class="doc-node">
+			<div class="title"><h2>fn (Context) js_only_function_this <a href="#Context.js_only_function_this">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/function.v#L79"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>ctx <span class="token operator">&</span>Context<span class="token punctuation">)</span> <span class="token function">js_only_function_this</span><span class="token punctuation">(</span>cb JSFunctionThis<span class="token punctuation">)</span> JSCFunction</code></pre>
+<p>JS Callback only function this</p>
+
+</section>
+
+		<section id="Context.js_promise" class="doc-node">
+			<div class="title"><h2>fn (Context) js_promise <a href="#Context.js_promise">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/promise.v#L48"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>ctx <span class="token operator">&</span>Context<span class="token punctuation">)</span> <span class="token function">js_promise</span><span class="token punctuation">(</span><span class="token punctuation">)</span> Promise</code></pre>
+<p>Same as new_promise, but without callback.</p>
+
+</section>
+
+		<section id="Context.js_string" class="doc-node">
+			<div class="title"><h2>fn (Context) js_string <a href="#Context.js_string">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/type.v#L131"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>ctx <span class="token operator">&</span>Context<span class="token punctuation">)</span> <span class="token function">js_string</span><span class="token punctuation">(</span>data <span class="token builtin">string</span><span class="token punctuation">)</span> Value</code></pre>
+<p>Create JS String.</p>
+
+</section>
+
+		<section id="Context.js_throw" class="doc-node">
+			<div class="title"><h2>fn (Context) js_throw <a href="#Context.js_throw">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/type.v#L99"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>ctx <span class="token operator">&</span>Context<span class="token punctuation">)</span> <span class="token function">js_throw</span><span class="token punctuation">(</span><span class="token builtin">any</span> AnyValue<span class="token punctuation">)</span> Value</code></pre>
+<p>JS Throw Error.</p>
+
+</section>
+
+		<section id="Context.js_type_error" class="doc-node">
+			<div class="title"><h2>fn (Context) js_type_error <a href="#Context.js_type_error">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/type.v#L116"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>ctx <span class="token operator">&</span>Context<span class="token punctuation">)</span> <span class="token function">js_type_error</span><span class="token punctuation">(</span>err JSError<span class="token punctuation">)</span> Value</code></pre>
+<p>create JS new TypeError.</p>
+
+</section>
+
+		<section id="Context.js_u32" class="doc-node">
+			<div class="title"><h2>fn (Context) js_u32 <a href="#Context.js_u32">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/type.v#L151"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>ctx <span class="token operator">&</span>Context<span class="token punctuation">)</span> <span class="token function">js_u32</span><span class="token punctuation">(</span>data <span class="token builtin">u32</span><span class="token punctuation">)</span> Value</code></pre>
+<p>Create JS u32.</p>
+
+</section>
+
+		<section id="Context.js_undefined" class="doc-node">
+			<div class="title"><h2>fn (Context) js_undefined <a href="#Context.js_undefined">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/type.v#L58"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>ctx <span class="token operator">&</span>Context<span class="token punctuation">)</span> <span class="token function">js_undefined</span><span class="token punctuation">(</span><span class="token punctuation">)</span> Value</code></pre>
+<p>Create JS Undefined.</p>
+
+</section>
+
+		<section id="Context.js_uninitialized" class="doc-node">
+			<div class="title"><h2>fn (Context) js_uninitialized <a href="#Context.js_uninitialized">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/type.v#L63"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>ctx <span class="token operator">&</span>Context<span class="token punctuation">)</span> <span class="token function">js_uninitialized</span><span class="token punctuation">(</span><span class="token punctuation">)</span> Value</code></pre>
+<p>Create JS Uninitialized.</p>
+
+</section>
+
+		<section id="Context.json_parse" class="doc-node">
+			<div class="title"><h2>fn (Context) json_parse <a href="#Context.json_parse">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/type.v#L86"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>ctx <span class="token operator">&</span>Context<span class="token punctuation">)</span> <span class="token function">json_parse</span><span class="token punctuation">(</span>str <span class="token builtin">string</span><span class="token punctuation">)</span> Value</code></pre>
+<p>Convert value string to <code>js_object</code>.</p>
+
+</section>
+
+		<section id="Context.json_stringify" class="doc-node">
+			<div class="title"><h2>fn (Context) json_stringify <a href="#Context.json_stringify">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/type.v#L79"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>ctx <span class="token operator">&</span>Context<span class="token punctuation">)</span> <span class="token function">json_stringify</span><span class="token punctuation">(</span>val Value<span class="token punctuation">)</span> <span class="token builtin">string</span></code></pre>
+<p>Convert value <code>js_object</code> to json string.</p>
+
+</section>
+
+		<section id="Context.json_stringify_op" class="doc-node">
+			<div class="title"><h2>fn (Context) json_stringify_op <a href="#Context.json_stringify_op">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/type.v#L69"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>ctx <span class="token operator">&</span>Context<span class="token punctuation">)</span> <span class="token function">json_stringify_op</span><span class="token punctuation">(</span>val Value<span class="token punctuation">,</span> rep Value<span class="token punctuation">,</span> ind AnyValue<span class="token punctuation">)</span> <span class="token builtin">string</span></code></pre>
+<p>Convert value <code>js_object</code> to json string with optionals.</p>
+
+</section>
+
+		<section id="Context.loop" class="doc-node">
+			<div class="title"><h2>fn (Context) loop <a href="#Context.loop">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/context.v#L243"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>ctx <span class="token operator">&</span>Context<span class="token punctuation">)</span> <span class="token function">loop</span><span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre>
+<p>std loop form <code>qjs</code></p>
+
+</section>
+
+		<section id="Context.new_atom" class="doc-node">
+			<div class="title"><h2>fn (Context) new_atom <a href="#Context.new_atom">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/atom.v#L41"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>ctx <span class="token operator">&</span>Context<span class="token punctuation">)</span> <span class="token function">new_atom</span><span class="token punctuation">(</span>val AtomValue<span class="token punctuation">)</span> Atom</code></pre>
+<p>Create new Atom support <code>int</code> | <code>string</code>.</p>
+
+<section class="doc-node examples"><h4>Example</h4>
+<pre>
+<code class="language-v">atom <span class="token operator">:=</span> ctx<span class="token punctuation">.</span><span class="token function">new_atom</span><span class="token punctuation">(</span><span class="token string">'my_atom'</span><span class="token punctuation">)</span></code></pre>
+</section>
+</section>
+
+		<section id="Context.new_promise" class="doc-node">
+			<div class="title"><h2>fn (Context) new_promise <a href="#Context.new_promise">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/promise.v#L43"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>ctx <span class="token operator">&</span>Context<span class="token punctuation">)</span> <span class="token function">new_promise</span><span class="token punctuation">(</span>cb CallbackPromise<span class="token punctuation">)</span> Value</code></pre>
+<p>Create new Promise.</p>
+
+<section class="doc-node examples"><h4>Example</h4>
+<pre>
+<code class="language-v">promise <span class="token operator">:=</span> ctx<span class="token punctuation">.</span><span class="token function">new_promise</span><span class="token punctuation">(</span><span class="token keyword">fn</span> <span class="token punctuation">[</span>ctx<span class="token punctuation">]</span><span class="token punctuation">(</span>p Promise<span class="token punctuation">)</span> <span class="token symbol">Value</span> <span class="token punctuation">{</span>
+	 <span class="token keyword">if</span> <span class="token symbol">err</span> <span class="token punctuation">{</span>
+		 <span class="token keyword">return</span> p<span class="token punctuation">.</span><span class="token function">reject</span><span class="token punctuation">(</span>ctx<span class="token punctuation">.</span><span class="token function">js_error</span><span class="token punctuation">(</span>message<span class="token punctuation">:</span> <span class="token string">'rejected'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+	 <span class="token punctuation">}</span>
+	 <span class="token keyword">return</span> p<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span>ctx<span class="token punctuation">.</span><span class="token function">js_string</span><span class="token punctuation">(</span><span class="token string">'resolved'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+value <span class="token operator">:=</span> promise<span class="token punctuation">.</span><span class="token function">await</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token function">println</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span></code></pre>
+</section>
+</section>
+
+		<section id="Context.runtime" class="doc-node">
+			<div class="title"><h2>fn (Context) runtime <a href="#Context.runtime">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/context.v#L253"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>ctx <span class="token operator">&</span>Context<span class="token punctuation">)</span> <span class="token function">runtime</span><span class="token punctuation">(</span><span class="token punctuation">)</span> Runtime</code></pre>
+<p>Get runtime from context</p>
+
+</section>
+
+		<section id="ContextConfig" class="doc-node">
+			<div class="title"><h2>struct ContextConfig <a href="#ContextConfig">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/context.v#L18"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<div class="attributes"><div class="attribute">@[params]</div></div>
+<pre class="signature">
+<code><span class="token keyword">struct</span> <span class="token symbol">ContextConfig</span> <span class="token punctuation">{</span>
+	unhandled_rejection <span class="token builtin">bool</span> <span class="token operator">=</span> <span class="token boolean">true</span>
+	bignum              <span class="token builtin">bool</span> <span class="token operator">=</span> <span class="token boolean">true</span>
+	module_std          <span class="token builtin">bool</span>
+<span class="token punctuation">}</span></code></pre>
+<p>ContextConfig structure params.</p>
+
+</section>
+
+		<section id="JSError" class="doc-node">
+			<div class="title"><h2>struct JSError <a href="#JSError">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/runtime.v#L14"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<div class="attributes"><div class="attribute">@[params]</div></div>
+<pre class="signature">
+<code><span class="token keyword">struct</span> <span class="token symbol">JSError</span> <span class="token punctuation">{</span>
+	Error
+<span class="token keyword">pub</span> <span class="token keyword">mut</span><span class="token punctuation">:</span>
+	name    <span class="token builtin">string</span> <span class="token operator">=</span> <span class="token string">'Error'</span>
+	stack   <span class="token builtin">string</span>
+	message <span class="token builtin">string</span>
+<span class="token punctuation">}</span></code></pre>
+<p>JSError structure.</p>
+
+</section>
+
+		<section id="JSError.msg" class="doc-node">
+			<div class="title"><h2>fn (JSError) msg <a href="#JSError.msg">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/runtime.v#L23"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>err <span class="token operator">&</span>JSError<span class="token punctuation">)</span> <span class="token function">msg</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">string</span></code></pre>
+<p>lookup/print JSError message.</p>
+
+</section>
+
+		<section id="Module" class="doc-node">
+			<div class="title"><h2>struct Module <a href="#Module">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/module.v#L10"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">struct</span> <span class="token symbol">Module</span> <span class="token punctuation">{</span>
+	ctx  Context
+	name <span class="token builtin">string</span>
+<span class="token keyword">mut</span><span class="token punctuation">:</span>
+	exports_str <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">string</span>
+	exports     <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token operator">&</span><span class="token builtin">char</span>
+	values      <span class="token punctuation">[</span><span class="token punctuation">]</span>Value
+<span class="token punctuation">}</span></code></pre>
+<p>Module structure.</p>
+
+</section>
+
+		<section id="Module.export" class="doc-node">
+			<div class="title"><h2>fn (Module) export <a href="#Module.export">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/module.v#L37"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> m Module<span class="token punctuation">)</span> <span class="token function">export</span><span class="token punctuation">(</span>name <span class="token builtin">string</span><span class="token punctuation">,</span> <span class="token builtin">any</span> AnyValue<span class="token punctuation">)</span></code></pre>
+<p>Export module.</p>
+
+<section class="doc-node examples"><h4>Example</h4>
+<pre>
+<code class="language-v">mod<span class="token punctuation">.</span><span class="token function">export</span><span class="token punctuation">(</span><span class="token string">'foo'</span><span class="token punctuation">,</span> <span class="token string">'bar'</span><span class="token punctuation">)</span></code></pre>
+</section>
+</section>
+
+		<section id="Module.set" class="doc-node">
+			<div class="title"><h2>fn (Module) set <a href="#Module.set">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/module.v#L48"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> m Module<span class="token punctuation">)</span> <span class="token function">set</span><span class="token punctuation">(</span>name <span class="token builtin">string</span><span class="token punctuation">,</span> <span class="token builtin">any</span> AnyValue<span class="token punctuation">)</span></code></pre>
+<p>Same as Export.</p>
+
+</section>
+
+		<section id="Module.get" class="doc-node">
+			<div class="title"><h2>fn (Module) get <a href="#Module.get">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/module.v#L53"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> m Module<span class="token punctuation">)</span> <span class="token function">get</span><span class="token punctuation">(</span>name <span class="token builtin">string</span><span class="token punctuation">)</span> Value</code></pre>
+<p>Get value from export/set.</p>
+
+</section>
+
+		<section id="Module.to_object" class="doc-node">
+			<div class="title"><h2>fn (Module) to_object <a href="#Module.to_object">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/module.v#L67"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> m Module<span class="token punctuation">)</span> <span class="token function">to_object</span><span class="token punctuation">(</span><span class="token punctuation">)</span> Value</code></pre>
+<p>Convert module to JS object.</p>
+
+</section>
+
+		<section id="Module.export_default" class="doc-node">
+			<div class="title"><h2>fn (Module) export_default <a href="#Module.export_default">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/module.v#L81"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> m Module<span class="token punctuation">)</span> <span class="token function">export_default</span><span class="token punctuation">(</span><span class="token builtin">any</span> AnyValue<span class="token punctuation">)</span></code></pre>
+<p>Export default.</p>
+
+<section class="doc-node examples"><h4>Example</h4>
+<pre>
+<code class="language-v">mod<span class="token punctuation">.</span><span class="token function">export_default</span><span class="token punctuation">(</span>mod<span class="token punctuation">.</span><span class="token function">to_object</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
+</section>
+</section>
+
+		<section id="Module.create" class="doc-node">
+			<div class="title"><h2>fn (Module) create <a href="#Module.create">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/module.v#L93"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span><span class="token keyword">mut</span> m Module<span class="token punctuation">)</span> <span class="token function">create</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&</span>C<span class="token punctuation">.</span>JSModuleDef</code></pre>
+<p>Create module.</p>
+
+<section class="doc-node examples"><h4>Example</h4>
+<pre>
+<code class="language-v">mod <span class="token operator">:=</span> ctx<span class="token punctuation">.</span><span class="token function">js_module</span><span class="token punctuation">(</span><span class="token string">'my-module'</span><span class="token punctuation">)</span>
+mod<span class="token punctuation">.</span><span class="token function">export</span><span class="token punctuation">(</span><span class="token string">'foo'</span><span class="token punctuation">,</span> <span class="token string">'bar'</span><span class="token punctuation">)</span>
+mod<span class="token punctuation">.</span><span class="token function">export_default</span><span class="token punctuation">(</span>mod<span class="token punctuation">.</span><span class="token function">to_object</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+mod<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre>
+</section>
+</section>
+
+		<section id="Promise" class="doc-node">
+			<div class="title"><h2>struct Promise <a href="#Promise">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/promise.v#L13"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">struct</span> <span class="token symbol">Promise</span> <span class="token punctuation">{</span>
+	ctx Context
+<span class="token punctuation">}</span></code></pre>
+<p>Promise structure.</p>
+
+</section>
+
+		<section id="Promise.resolve" class="doc-node">
+			<div class="title"><h2>fn (Promise) resolve <a href="#Promise.resolve">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/promise.v#L55"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>p Promise<span class="token punctuation">)</span> <span class="token function">resolve</span><span class="token punctuation">(</span><span class="token builtin">any</span> AnyValue<span class="token punctuation">)</span> Value</code></pre>
+<p>Promise resolve</p>
+
+</section>
+
+		<section id="Promise.reject" class="doc-node">
+			<div class="title"><h2>fn (Promise) reject <a href="#Promise.reject">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/promise.v#L60"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>p Promise<span class="token punctuation">)</span> <span class="token function">reject</span><span class="token punctuation">(</span><span class="token builtin">any</span> AnyValue<span class="token punctuation">)</span> Value</code></pre>
+<p>Promise reject</p>
+
+</section>
+
+		<section id="PropertyEnum" class="doc-node">
+			<div class="title"><h2>struct PropertyEnum <a href="#PropertyEnum">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/atom.v#L20"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">struct</span> <span class="token symbol">PropertyEnum</span> <span class="token punctuation">{</span>
+<span class="token keyword">pub</span><span class="token punctuation">:</span>
+	atom          Atom
+	is_enumerable <span class="token builtin">bool</span>
+<span class="token punctuation">}</span></code></pre>
+<p>PropertyEnum structure based on <code>JSPropertyEnum</code> in qjs.</p>
+
+</section>
+
+		<section id="Runtime" class="doc-node">
+			<div class="title"><h2>struct Runtime <a href="#Runtime">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/runtime.v#L8"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">struct</span> <span class="token symbol">Runtime</span> <span class="token punctuation">{</span>
+	ref <span class="token operator">&</span>C<span class="token punctuation">.</span>JSRuntime
+<span class="token punctuation">}</span></code></pre>
+<p>Runtime structure based on <code>JSRuntime</code> in qjs and implemented into <code>ref</code>.</p>
+
+</section>
+
+		<section id="Runtime.free" class="doc-node">
+			<div class="title"><h2>fn (Runtime) free <a href="#Runtime.free">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/runtime.v#L73"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>rt <span class="token operator">&</span>Runtime<span class="token punctuation">)</span> <span class="token function">free</span><span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre>
+<p>Free runtime</p>
+
+</section>
+
+		<section id="Runtime.is_job_pending" class="doc-node">
+			<div class="title"><h2>fn (Runtime) is_job_pending <a href="#Runtime.is_job_pending">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/runtime.v#L48"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>rt Runtime<span class="token punctuation">)</span> <span class="token function">is_job_pending</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">bool</span></code></pre>
+<p>Check if job is pending</p>
+
+</section>
+
+		<section id="Runtime.new_context" class="doc-node">
+			<div class="title"><h2>fn (Runtime) new_context <a href="#Runtime.new_context">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/context.v#L111"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>rt Runtime<span class="token punctuation">)</span> <span class="token function">new_context</span><span class="token punctuation">(</span>config ContextConfig<span class="token punctuation">)</span> <span class="token operator">&</span>Context</code></pre>
+<p>Create new Context from <code>Runtime</code>.</p>
+
+<section class="doc-node examples"><h4>Example</h4>
+<pre>
+<code class="language-v">rt <span class="token operator">:=</span> vjs<span class="token punctuation">.</span><span class="token function">new_runtime</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+ctx <span class="token operator">:=</span> rt<span class="token punctuation">.</span><span class="token function">new_context</span><span class="token punctuation">(</span>opts_config<span class="token punctuation">)</span></code></pre>
+</section>
+</section>
+
+		<section id="Runtime.promise_rejection_tracker" class="doc-node">
+			<div class="title"><h2>fn (Runtime) promise_rejection_tracker <a href="#Runtime.promise_rejection_tracker">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/promise.v#L65"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>rt Runtime<span class="token punctuation">)</span> <span class="token function">promise_rejection_tracker</span><span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre>
+<p>Promise rejection tracker (default true)</p>
+
+</section>
+
+		<section id="Runtime.run_gc" class="doc-node">
+			<div class="title"><h2>fn (Runtime) run_gc <a href="#Runtime.run_gc">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/runtime.v#L68"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>rt Runtime<span class="token punctuation">)</span> <span class="token function">run_gc</span><span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre>
+<p>Run qjs garbage collector</p>
+
+</section>
+
+		<section id="Runtime.set_gc_threshold" class="doc-node">
+			<div class="title"><h2>fn (Runtime) set_gc_threshold <a href="#Runtime.set_gc_threshold">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/runtime.v#L63"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>rt Runtime<span class="token punctuation">)</span> <span class="token function">set_gc_threshold</span><span class="token punctuation">(</span>th <span class="token builtin">i64</span><span class="token punctuation">)</span></code></pre>
+<p>Set gc threshold.</p>
+
+</section>
+
+		<section id="Runtime.set_max_stack_size" class="doc-node">
+			<div class="title"><h2>fn (Runtime) set_max_stack_size <a href="#Runtime.set_max_stack_size">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/runtime.v#L58"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>rt Runtime<span class="token punctuation">)</span> <span class="token function">set_max_stack_size</span><span class="token punctuation">(</span>stack_size <span class="token builtin">u32</span><span class="token punctuation">)</span></code></pre>
+<p>Set maximum stack size. (default to 255)</p>
+
+</section>
+
+		<section id="Runtime.set_memory_limit" class="doc-node">
+			<div class="title"><h2>fn (Runtime) set_memory_limit <a href="#Runtime.set_memory_limit">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/runtime.v#L53"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>rt Runtime<span class="token punctuation">)</span> <span class="token function">set_memory_limit</span><span class="token punctuation">(</span>limit <span class="token builtin">u32</span><span class="token punctuation">)</span></code></pre>
+<p>Set limit memory. (default to unlimited)</p>
+
+</section>
+
+		<section id="Value" class="doc-node">
+			<div class="title"><h2>struct Value <a href="#Value">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/value.v#L18"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">struct</span> <span class="token symbol">Value</span> <span class="token punctuation">{</span>
+	ref C<span class="token punctuation">.</span>JSValue
+<span class="token keyword">pub</span><span class="token punctuation">:</span>
+	ctx Context
+<span class="token punctuation">}</span></code></pre>
+<p>Value structure based on <code>JSValue</code> in qjs and implemented into <code>ref</code>.</p>
+
+</section>
+
+		<section id="Value.await" class="doc-node">
+			<div class="title"><h2>fn (Value) await <a href="#Value.await">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/value.v#L241"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>v Value<span class="token punctuation">)</span> <span class="token function">await</span><span class="token punctuation">(</span><span class="token punctuation">)</span> Value</code></pre>
+<p>Awaited from Promise</p>
+
+<section class="doc-node examples"><h4>Example</h4>
+<pre>
+<code class="language-v">val <span class="token operator">:=</span> my_promise<span class="token punctuation">.</span><span class="token function">await</span><span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre>
+</section>
+</section>
+
+		<section id="Value.byte_len" class="doc-node">
+			<div class="title"><h2>fn (Value) byte_len <a href="#Value.byte_len">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/value.v#L232"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>v Value<span class="token punctuation">)</span> <span class="token function">byte_len</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">int</span></code></pre>
+<p>byteLength value</p>
+
+</section>
+
+		<section id="Value.call" class="doc-node">
+			<div class="title"><h2>fn (Value) call <a href="#Value.call">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/value.v#L269"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>v Value<span class="token punctuation">)</span> <span class="token function">call</span><span class="token punctuation">(</span>key <span class="token builtin">string</span><span class="token punctuation">,</span> args <span class="token punctuation">...</span>AnyValue<span class="token punctuation">)</span> Value</code></pre>
+<p>Call fn.</p>
+
+<section class="doc-node examples"><h4>Example</h4>
+<pre>
+<code class="language-v"><span class="token builtin">array</span><span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span><span class="token string">'push'</span><span class="token punctuation">,</span> <span class="token punctuation">...</span>args<span class="token punctuation">)</span></code></pre>
+</section>
+</section>
+
+		<section id="Value.callback" class="doc-node">
+			<div class="title"><h2>fn (Value) callback <a href="#Value.callback">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/value.v#L250"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>v Value<span class="token punctuation">)</span> <span class="token function">callback</span><span class="token punctuation">(</span>args <span class="token punctuation">...</span>AnyValue<span class="token punctuation">)</span> Value</code></pre>
+<p>Callback function self</p>
+
+<section class="doc-node examples"><h4>Example</h4>
+<pre>
+<code class="language-v">val <span class="token operator">:=</span> my_fn<span class="token punctuation">.</span><span class="token function">callback</span><span class="token punctuation">(</span><span class="token punctuation">...</span>args<span class="token punctuation">)</span></code></pre>
+</section>
+</section>
+
+		<section id="Value.delete" class="doc-node">
+			<div class="title"><h2>fn (Value) delete <a href="#Value.delete">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/value.v#L206"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>v Value<span class="token punctuation">)</span> <span class="token function">delete</span><span class="token punctuation">(</span>key PropKey<span class="token punctuation">)</span> <span class="token builtin">bool</span></code></pre>
+<p>Delete property</p>
+
+<section class="doc-node examples"><h4>Example</h4>
+<pre>
+<code class="language-v">obj<span class="token punctuation">.</span><span class="token function">delete</span><span class="token punctuation">(</span><span class="token string">'foo'</span><span class="token punctuation">)</span></code></pre>
+</section>
+</section>
+
+		<section id="Value.dup_value" class="doc-node">
+			<div class="title"><h2>fn (Value) dup_value <a href="#Value.dup_value">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/value.v#L52"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>v Value<span class="token punctuation">)</span> <span class="token function">dup_value</span><span class="token punctuation">(</span><span class="token punctuation">)</span> Value</code></pre>
+<p>Duplicate value</p>
+
+</section>
+
+		<section id="Value.free" class="doc-node">
+			<div class="title"><h2>fn (Value) free <a href="#Value.free">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/value.v#L293"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>v <span class="token operator">&</span>Value<span class="token punctuation">)</span> <span class="token function">free</span><span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre>
+<p>Free Value</p>
+
+</section>
+
+		<section id="Value.get" class="doc-node">
+			<div class="title"><h2>fn (Value) get <a href="#Value.get">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/value.v#L169"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>v Value<span class="token punctuation">)</span> <span class="token function">get</span><span class="token punctuation">(</span>key PropKey<span class="token punctuation">)</span> Value</code></pre>
+<p>Get property</p>
+
+<section class="doc-node examples"><h4>Example</h4>
+<pre>
+<code class="language-v">foo <span class="token operator">:=</span> obj<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">'foo'</span><span class="token punctuation">)</span></code></pre>
+</section>
+</section>
+
+		<section id="Value.has" class="doc-node">
+			<div class="title"><h2>fn (Value) has <a href="#Value.has">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/value.v#L219"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>v Value<span class="token punctuation">)</span> <span class="token function">has</span><span class="token punctuation">(</span>key PropKey<span class="token punctuation">)</span> <span class="token builtin">bool</span></code></pre>
+<p>Has property</p>
+
+<section class="doc-node examples"><h4>Example</h4>
+<pre>
+<code class="language-v">has <span class="token operator">:=</span> obj<span class="token punctuation">.</span><span class="token function">has</span><span class="token punctuation">(</span><span class="token string">'foo'</span><span class="token punctuation">)</span></code></pre>
+</section>
+</section>
+
+		<section id="Value.instanceof" class="doc-node">
+			<div class="title"><h2>fn (Value) instanceof <a href="#Value.instanceof">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/typeof.v#L100"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>v Value<span class="token punctuation">)</span> <span class="token function">instanceof</span><span class="token punctuation">(</span>key <span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token builtin">bool</span></code></pre>
+<p>Check value with instanceof.</p>
+
+<section class="doc-node examples"><h4>Example</h4>
+<pre>
+<code class="language-v"><span class="token keyword">assert</span> val<span class="token punctuation">.</span><span class="token function">instanceof</span><span class="token punctuation">(</span><span class="token string">'Promise'</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token boolean">true</span></code></pre>
+</section>
+</section>
+
+		<section id="Value.is_array" class="doc-node">
+			<div class="title"><h2>fn (Value) is_array <a href="#Value.is_array">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/typeof.v#L83"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>v Value<span class="token punctuation">)</span> <span class="token function">is_array</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">bool</span></code></pre>
+<p>Check value is array.</p>
+
+</section>
+
+		<section id="Value.is_big_decimal" class="doc-node">
+			<div class="title"><h2>fn (Value) is_big_decimal <a href="#Value.is_big_decimal">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/typeof.v#L38"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>v Value<span class="token punctuation">)</span> <span class="token function">is_big_decimal</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">bool</span></code></pre>
+<p>Check value is big decimal.</p>
+
+</section>
+
+		<section id="Value.is_big_float" class="doc-node">
+			<div class="title"><h2>fn (Value) is_big_float <a href="#Value.is_big_float">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/typeof.v#L33"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>v Value<span class="token punctuation">)</span> <span class="token function">is_big_float</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">bool</span></code></pre>
+<p>Check value is bigfloat.</p>
+
+</section>
+
+		<section id="Value.is_big_int" class="doc-node">
+			<div class="title"><h2>fn (Value) is_big_int <a href="#Value.is_big_int">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/typeof.v#L43"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>v Value<span class="token punctuation">)</span> <span class="token function">is_big_int</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">bool</span></code></pre>
+<p>Check value is bigint.</p>
+
+</section>
+
+		<section id="Value.is_bool" class="doc-node">
+			<div class="title"><h2>fn (Value) is_bool <a href="#Value.is_bool">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/typeof.v#L48"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>v Value<span class="token punctuation">)</span> <span class="token function">is_bool</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">bool</span></code></pre>
+<p>Check value is boolean.</p>
+
+</section>
+
+		<section id="Value.is_error" class="doc-node">
+			<div class="title"><h2>fn (Value) is_error <a href="#Value.is_error">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/typeof.v#L88"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>v Value<span class="token punctuation">)</span> <span class="token function">is_error</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">bool</span></code></pre>
+<p>Check value is error.</p>
+
+</section>
+
+		<section id="Value.is_exception" class="doc-node">
+			<div class="title"><h2>fn (Value) is_exception <a href="#Value.is_exception">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/typeof.v#L23"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>v Value<span class="token punctuation">)</span> <span class="token function">is_exception</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">bool</span></code></pre>
+<p>Check value is exception.</p>
+
+</section>
+
+		<section id="Value.is_function" class="doc-node">
+			<div class="title"><h2>fn (Value) is_function <a href="#Value.is_function">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/typeof.v#L93"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>v Value<span class="token punctuation">)</span> <span class="token function">is_function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">bool</span></code></pre>
+<p>Check value is function.</p>
+
+</section>
+
+		<section id="Value.is_null" class="doc-node">
+			<div class="title"><h2>fn (Value) is_null <a href="#Value.is_null">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/typeof.v#L53"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>v Value<span class="token punctuation">)</span> <span class="token function">is_null</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">bool</span></code></pre>
+<p>Check value is null.</p>
+
+</section>
+
+		<section id="Value.is_number" class="doc-node">
+			<div class="title"><h2>fn (Value) is_number <a href="#Value.is_number">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/typeof.v#L28"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>v Value<span class="token punctuation">)</span> <span class="token function">is_number</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">bool</span></code></pre>
+<p>Check value is number.</p>
+
+</section>
+
+		<section id="Value.is_object" class="doc-node">
+			<div class="title"><h2>fn (Value) is_object <a href="#Value.is_object">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/typeof.v#L78"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>v Value<span class="token punctuation">)</span> <span class="token function">is_object</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">bool</span></code></pre>
+<p>Check value is object.</p>
+
+</section>
+
+		<section id="Value.is_string" class="doc-node">
+			<div class="title"><h2>fn (Value) is_string <a href="#Value.is_string">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/typeof.v#L68"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>v Value<span class="token punctuation">)</span> <span class="token function">is_string</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">bool</span></code></pre>
+<p>Check value is string.</p>
+
+</section>
+
+		<section id="Value.is_symbol" class="doc-node">
+			<div class="title"><h2>fn (Value) is_symbol <a href="#Value.is_symbol">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/typeof.v#L73"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>v Value<span class="token punctuation">)</span> <span class="token function">is_symbol</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">bool</span></code></pre>
+<p>Check value is symbol.</p>
+
+</section>
+
+		<section id="Value.is_undefined" class="doc-node">
+			<div class="title"><h2>fn (Value) is_undefined <a href="#Value.is_undefined">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/typeof.v#L58"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>v Value<span class="token punctuation">)</span> <span class="token function">is_undefined</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">bool</span></code></pre>
+<p>Check value is undefined.</p>
+
+</section>
+
+		<section id="Value.is_uninitialized" class="doc-node">
+			<div class="title"><h2>fn (Value) is_uninitialized <a href="#Value.is_uninitialized">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/typeof.v#L63"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>v Value<span class="token punctuation">)</span> <span class="token function">is_uninitialized</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">bool</span></code></pre>
+<p>Check value is uninitialized.</p>
+
+</section>
+
+		<section id="Value.json_stringify" class="doc-node">
+			<div class="title"><h2>fn (Value) json_stringify <a href="#Value.json_stringify">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/value.v#L83"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>v Value<span class="token punctuation">)</span> <span class="token function">json_stringify</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">string</span></code></pre>
+<p>Convert Value object to <code>V</code> string json</p>
+
+</section>
+
+		<section id="Value.len" class="doc-node">
+			<div class="title"><h2>fn (Value) len <a href="#Value.len">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/value.v#L227"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>v Value<span class="token punctuation">)</span> <span class="token function">len</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">int</span></code></pre>
+<p>Length value</p>
+
+</section>
+
+		<section id="Value.new" class="doc-node">
+			<div class="title"><h2>fn (Value) new <a href="#Value.new">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/value.v#L259"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>v Value<span class="token punctuation">)</span> <span class="token function">new</span><span class="token punctuation">(</span>args <span class="token punctuation">...</span>AnyValue<span class="token punctuation">)</span> Value</code></pre>
+<p>New from classes</p>
+
+<section class="doc-node examples"><h4>Example</h4>
+<pre>
+<code class="language-v">val <span class="token operator">:=</span> my_class<span class="token punctuation">.</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token punctuation">...</span>args<span class="token punctuation">)</span></code></pre>
+</section>
+</section>
+
+		<section id="Value.property_names" class="doc-node">
+			<div class="title"><h2>fn (Value) property_names <a href="#Value.property_names">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/atom.v#L95"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>v Value<span class="token punctuation">)</span> <span class="token function">property_names</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">!</span><span class="token punctuation">[</span><span class="token punctuation">]</span>PropertyEnum</code></pre>
+<p>arrays property_names <code>[]PropertyEnum</code>.</p>
+
+<section class="doc-node examples"><h4>Example</h4>
+<pre>
+<code class="language-v">props <span class="token operator">:=</span> val<span class="token punctuation">.</span><span class="token function">property_names</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">or</span> <span class="token punctuation">{</span> <span class="token function">panic</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span> <span class="token punctuation">}</span>
+<span class="token function">println</span><span class="token punctuation">(</span>props<span class="token punctuation">)</span>
+
+<span class="token keyword">for</span> prop <span class="token keyword">in</span> <span class="token symbol">props</span> <span class="token punctuation">{</span>
+  <span class="token function">println</span><span class="token punctuation">(</span>prop<span class="token punctuation">.</span>atom<span class="token punctuation">)</span>
+	 <span class="token function">println</span><span class="token punctuation">(</span>prop<span class="token punctuation">.</span>is_enumerable<span class="token punctuation">)</span>
+<span class="token punctuation">}</span></code></pre>
+</section>
+</section>
+
+		<section id="Value.set" class="doc-node">
+			<div class="title"><h2>fn (Value) set <a href="#Value.set">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/value.v#L146"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>v Value<span class="token punctuation">)</span> <span class="token function">set</span><span class="token punctuation">(</span>key PropKey<span class="token punctuation">,</span> <span class="token builtin">any</span> AnyValue<span class="token punctuation">)</span></code></pre>
+<p>Set property</p>
+
+<section class="doc-node examples"><h4>Example</h4>
+<pre>
+<code class="language-v">obj <span class="token operator">:=</span> ctx<span class="token punctuation">.</span><span class="token function">js_object</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+obj<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span><span class="token string">'foo'</span><span class="token punctuation">,</span> <span class="token string">'foo'</span><span class="token punctuation">)</span></code></pre>
+</section>
+</section>
+
+		<section id="Value.str" class="doc-node">
+			<div class="title"><h2>fn (Value) str <a href="#Value.str">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/value.v#L78"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>v Value<span class="token punctuation">)</span> <span class="token function">str</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">string</span></code></pre>
+<p>Convert Value to <code>V</code> String</p>
+
+</section>
+
+		<section id="Value.to_bool" class="doc-node">
+			<div class="title"><h2>fn (Value) to_bool <a href="#Value.to_bool">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/value.v#L107"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>v Value<span class="token punctuation">)</span> <span class="token function">to_bool</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">bool</span></code></pre>
+<p>Convert Value to <code>V</code> bool</p>
+
+</section>
+
+		<section id="Value.to_bytes" class="doc-node">
+			<div class="title"><h2>fn (Value) to_bytes <a href="#Value.to_bytes">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/value.v#L66"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>v Value<span class="token punctuation">)</span> <span class="token function">to_bytes</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">u8</span></code></pre>
+<p>Convert Value to <code>V</code> []u8</p>
+
+</section>
+
+		<section id="Value.to_error" class="doc-node">
+			<div class="title"><h2>fn (Value) to_error <a href="#Value.to_error">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/value.v#L89"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>v Value<span class="token punctuation">)</span> <span class="token function">to_error</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&</span>JSError</code></pre>
+<p>Convert Value to <code>V</code> JSError</p>
+
+</section>
+
+		<section id="Value.to_f64" class="doc-node">
+			<div class="title"><h2>fn (Value) to_f64 <a href="#Value.to_f64">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/value.v#L133"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>v Value<span class="token punctuation">)</span> <span class="token function">to_f64</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">f64</span></code></pre>
+<p>Convert Value to <code>V</code> f64</p>
+
+</section>
+
+		<section id="Value.to_i64" class="doc-node">
+			<div class="title"><h2>fn (Value) to_i64 <a href="#Value.to_i64">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/value.v#L119"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>v Value<span class="token punctuation">)</span> <span class="token function">to_i64</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">i64</span></code></pre>
+<p>Convert Value to <code>V</code> i64</p>
+
+</section>
+
+		<section id="Value.to_int" class="doc-node">
+			<div class="title"><h2>fn (Value) to_int <a href="#Value.to_int">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/value.v#L112"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>v Value<span class="token punctuation">)</span> <span class="token function">to_int</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">int</span></code></pre>
+<p>Convert Value to <code>V</code> int</p>
+
+</section>
+
+		<section id="Value.to_string" class="doc-node">
+			<div class="title"><h2>fn (Value) to_string <a href="#Value.to_string">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/value.v#L58"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>v Value<span class="token punctuation">)</span> <span class="token function">to_string</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">string</span></code></pre>
+<p>Convert Value to <code>V</code> String</p>
+
+</section>
+
+		<section id="Value.to_u32" class="doc-node">
+			<div class="title"><h2>fn (Value) to_u32 <a href="#Value.to_u32">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/value.v#L126"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>v Value<span class="token punctuation">)</span> <span class="token function">to_u32</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">u32</span></code></pre>
+<p>Convert Value to <code>V</code> u32</p>
+
+</section>
+
+		<section id="Value.typeof_name" class="doc-node">
+			<div class="title"><h2>fn (Value) typeof_name <a href="#Value.typeof_name">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/typeof.v#L108"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>v Value<span class="token punctuation">)</span> <span class="token function">typeof_name</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">string</span></code></pre>
+<p>Check typeof name value.</p>
+
+</section>
+
+
+						<div class="footer">Powered by vdoc. Generated on: 17 Mar 2024 08:37:11</div>
+					</div>
+					<div class="doc-toc"><ul><li class="open"><a href="#readme_vjs">README</a></li>
+<li class="open"><a href="#Constants">Constants</a></li>
+<li class="open"><a href="#new_runtime">fn new_runtime</a>        <ul>
+</ul>
+</li>
+<li class="open"><a href="#AnyValue">type AnyValue</a>        <ul>
+</ul>
+</li>
+<li class="open"><a href="#AtomValue">type AtomValue</a>        <ul>
+</ul>
+</li>
+<li class="open"><a href="#CallbackPromise">type CallbackPromise</a>        <ul>
+</ul>
+</li>
+<li class="open"><a href="#JSCFunction">type JSCFunction</a>        <ul>
+</ul>
+</li>
+<li class="open"><a href="#JSConstructor">type JSConstructor</a>        <ul>
+</ul>
+</li>
+<li class="open"><a href="#JSFunction">type JSFunction</a>        <ul>
+</ul>
+</li>
+<li class="open"><a href="#JSFunctionThis">type JSFunctionThis</a>        <ul>
+</ul>
+</li>
+<li class="open"><a href="#JSValueConst">type JSValueConst</a>        <ul>
+</ul>
+</li>
+<li class="open"><a href="#PropKey">type PropKey</a>        <ul>
+</ul>
+</li>
+<li class="open"><a href="#Atom">struct Atom</a>        <ul>
+<li><a href="#Atom.to_string">fn to_string</a></li>
+<li><a href="#Atom.str">fn str</a></li>
+<li><a href="#Atom.to_value">fn to_value</a></li>
+<li><a href="#Atom.free">fn free</a></li>
+</ul>
+</li>
+<li class="open"><a href="#ClassParams">struct ClassParams</a>        <ul>
+</ul>
+</li>
+<li class="open"><a href="#Context">struct Context</a>        <ul>
+<li><a href="#Context.any_to_val">fn any_to_val</a></li>
+<li><a href="#Context.call">fn call</a></li>
+<li><a href="#Context.call_this">fn call_this</a></li>
+<li><a href="#Context.dump_error">fn dump_error</a></li>
+<li><a href="#Context.dup_context">fn dup_context</a></li>
+<li><a href="#Context.end">fn end</a></li>
+<li><a href="#Context.eval">fn eval</a></li>
+<li><a href="#Context.eval_file">fn eval_file</a></li>
+<li><a href="#Context.eval_function">fn eval_function</a></li>
+<li><a href="#Context.eval_module">fn eval_module</a></li>
+<li><a href="#Context.free">fn free</a></li>
+<li><a href="#Context.js_array">fn js_array</a></li>
+<li><a href="#Context.js_array_buffer">fn js_array_buffer</a></li>
+<li><a href="#Context.js_await">fn js_await</a></li>
+<li><a href="#Context.js_big_int">fn js_big_int</a></li>
+<li><a href="#Context.js_big_uint">fn js_big_uint</a></li>
+<li><a href="#Context.js_bool">fn js_bool</a></li>
+<li><a href="#Context.js_class">fn js_class</a></li>
+<li><a href="#Context.js_dump">fn js_dump</a></li>
+<li><a href="#Context.js_error">fn js_error</a></li>
+<li><a href="#Context.js_eval">fn js_eval</a></li>
+<li><a href="#Context.js_eval_core">fn js_eval_core</a></li>
+<li><a href="#Context.js_exception">fn js_exception</a></li>
+<li><a href="#Context.js_float">fn js_float</a></li>
+<li><a href="#Context.js_function">fn js_function</a></li>
+<li><a href="#Context.js_function_this">fn js_function_this</a></li>
+<li><a href="#Context.js_global">fn js_global</a></li>
+<li><a href="#Context.js_i64">fn js_i64</a></li>
+<li><a href="#Context.js_int">fn js_int</a></li>
+<li><a href="#Context.js_module">fn js_module</a></li>
+<li><a href="#Context.js_new_class">fn js_new_class</a></li>
+<li><a href="#Context.js_null">fn js_null</a></li>
+<li><a href="#Context.js_object">fn js_object</a></li>
+<li><a href="#Context.js_only_function">fn js_only_function</a></li>
+<li><a href="#Context.js_only_function_this">fn js_only_function_this</a></li>
+<li><a href="#Context.js_promise">fn js_promise</a></li>
+<li><a href="#Context.js_string">fn js_string</a></li>
+<li><a href="#Context.js_throw">fn js_throw</a></li>
+<li><a href="#Context.js_type_error">fn js_type_error</a></li>
+<li><a href="#Context.js_u32">fn js_u32</a></li>
+<li><a href="#Context.js_undefined">fn js_undefined</a></li>
+<li><a href="#Context.js_uninitialized">fn js_uninitialized</a></li>
+<li><a href="#Context.json_parse">fn json_parse</a></li>
+<li><a href="#Context.json_stringify">fn json_stringify</a></li>
+<li><a href="#Context.json_stringify_op">fn json_stringify_op</a></li>
+<li><a href="#Context.loop">fn loop</a></li>
+<li><a href="#Context.new_atom">fn new_atom</a></li>
+<li><a href="#Context.new_promise">fn new_promise</a></li>
+<li><a href="#Context.runtime">fn runtime</a></li>
+</ul>
+</li>
+<li class="open"><a href="#ContextConfig">struct ContextConfig</a>        <ul>
+</ul>
+</li>
+<li class="open"><a href="#JSError">struct JSError</a>        <ul>
+<li><a href="#JSError.msg">fn msg</a></li>
+</ul>
+</li>
+<li class="open"><a href="#Module">struct Module</a>        <ul>
+<li><a href="#Module.export">fn export</a></li>
+<li><a href="#Module.set">fn set</a></li>
+<li><a href="#Module.get">fn get</a></li>
+<li><a href="#Module.to_object">fn to_object</a></li>
+<li><a href="#Module.export_default">fn export_default</a></li>
+<li><a href="#Module.create">fn create</a></li>
+</ul>
+</li>
+<li class="open"><a href="#Promise">struct Promise</a>        <ul>
+<li><a href="#Promise.resolve">fn resolve</a></li>
+<li><a href="#Promise.reject">fn reject</a></li>
+</ul>
+</li>
+<li class="open"><a href="#PropertyEnum">struct PropertyEnum</a>        <ul>
+</ul>
+</li>
+<li class="open"><a href="#Runtime">struct Runtime</a>        <ul>
+<li><a href="#Runtime.free">fn free</a></li>
+<li><a href="#Runtime.is_job_pending">fn is_job_pending</a></li>
+<li><a href="#Runtime.new_context">fn new_context</a></li>
+<li><a href="#Runtime.promise_rejection_tracker">fn promise_rejection_tracker</a></li>
+<li><a href="#Runtime.run_gc">fn run_gc</a></li>
+<li><a href="#Runtime.set_gc_threshold">fn set_gc_threshold</a></li>
+<li><a href="#Runtime.set_max_stack_size">fn set_max_stack_size</a></li>
+<li><a href="#Runtime.set_memory_limit">fn set_memory_limit</a></li>
+</ul>
+</li>
+<li class="open"><a href="#Value">struct Value</a>        <ul>
+<li><a href="#Value.await">fn await</a></li>
+<li><a href="#Value.byte_len">fn byte_len</a></li>
+<li><a href="#Value.call">fn call</a></li>
+<li><a href="#Value.callback">fn callback</a></li>
+<li><a href="#Value.delete">fn delete</a></li>
+<li><a href="#Value.dup_value">fn dup_value</a></li>
+<li><a href="#Value.free">fn free</a></li>
+<li><a href="#Value.get">fn get</a></li>
+<li><a href="#Value.has">fn has</a></li>
+<li><a href="#Value.instanceof">fn instanceof</a></li>
+<li><a href="#Value.is_array">fn is_array</a></li>
+<li><a href="#Value.is_big_decimal">fn is_big_decimal</a></li>
+<li><a href="#Value.is_big_float">fn is_big_float</a></li>
+<li><a href="#Value.is_big_int">fn is_big_int</a></li>
+<li><a href="#Value.is_bool">fn is_bool</a></li>
+<li><a href="#Value.is_error">fn is_error</a></li>
+<li><a href="#Value.is_exception">fn is_exception</a></li>
+<li><a href="#Value.is_function">fn is_function</a></li>
+<li><a href="#Value.is_null">fn is_null</a></li>
+<li><a href="#Value.is_number">fn is_number</a></li>
+<li><a href="#Value.is_object">fn is_object</a></li>
+<li><a href="#Value.is_string">fn is_string</a></li>
+<li><a href="#Value.is_symbol">fn is_symbol</a></li>
+<li><a href="#Value.is_undefined">fn is_undefined</a></li>
+<li><a href="#Value.is_uninitialized">fn is_uninitialized</a></li>
+<li><a href="#Value.json_stringify">fn json_stringify</a></li>
+<li><a href="#Value.len">fn len</a></li>
+<li><a href="#Value.new">fn new</a></li>
+<li><a href="#Value.property_names">fn property_names</a></li>
+<li><a href="#Value.set">fn set</a></li>
+<li><a href="#Value.str">fn str</a></li>
+<li><a href="#Value.to_bool">fn to_bool</a></li>
+<li><a href="#Value.to_bytes">fn to_bytes</a></li>
+<li><a href="#Value.to_error">fn to_error</a></li>
+<li><a href="#Value.to_f64">fn to_f64</a></li>
+<li><a href="#Value.to_i64">fn to_i64</a></li>
+<li><a href="#Value.to_int">fn to_int</a></li>
+<li><a href="#Value.to_string">fn to_string</a></li>
+<li><a href="#Value.to_u32">fn to_u32</a></li>
+<li><a href="#Value.typeof_name">fn typeof_name</a></li>
+</ul>
+</li>
+</ul></div>
+				</div>
+			</div>
+		</div>
+		<script src="doc.js"></script>
+		<script async src="search_index.js"></script>
+	</body>
+</html>

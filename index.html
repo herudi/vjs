@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="x-ua-compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>README | vdoc</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&display=swap"
+			rel="stylesheet"
+		/>
+		<link
+			href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap"
+			rel="stylesheet"
+		/>
+		<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+		<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+		<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+		<link rel="manifest" href="site.webmanifest" />
+		<link rel="mask-icon" href="safari-pinned-tab.svg" color="#5bbad5" />
+		<meta name="msapplication-TileColor" content="#da532c" />
+		<meta name="theme-color" content="#ffffff" />
+		<link rel="stylesheet" href="doc.css" />
+		<link rel="stylesheet" href="normalize.css" />
+		<script src="dark-mode.js"></script>
+	</head>
+
+	<body>
+		<div><a id="skip-to-content-link" href="#main-content">Skip to content</a></div>
+		<div id="page">
+			<header class="doc-nav hidden">
+				<div class="heading-container">
+					<div class="heading">
+						<div class="info">
+							<div class="module">vjs</div>
+							<div class="toggle-version-container">
+								<span>0.0.3 549654a</span>
+								<div
+									id="dark-mode-toggle"
+									role="switch"
+									aria-checked="false"
+									aria-label="Toggle dark mode"
+								>
+									<svg xmlns="http://www.w3.org/2000/svg" class="light-icon" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M6.76 4.84l-1.8-1.79-1.41 1.41 1.79 1.79 1.42-1.41zM4 10.5H1v2h3v-2zm9-9.95h-2V3.5h2V.55zm7.45 3.91l-1.41-1.41-1.79 1.79 1.41 1.41 1.79-1.79zm-3.21 13.7l1.79 1.8 1.41-1.41-1.8-1.79-1.4 1.4zM20 10.5v2h3v-2h-3zm-8-5c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm-1 16.95h2V19.5h-2v2.95zm-7.45-3.91l1.41 1.41 1.79-1.8-1.41-1.41-1.79 1.8z"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" class="dark-icon" enable-background="new 0 0 24 24" height="24" viewBox="0 0 24 24" width="24"><g><rect fill="none" height="24" width="24"/></g><g><g><g><path d="M11.1,12.08C8.77,7.57,10.6,3.6,11.63,2.01C6.27,2.2,1.98,6.59,1.98,12c0,0.14,0.02,0.28,0.02,0.42 C2.62,12.15,3.29,12,4,12c1.66,0,3.18,0.83,4.1,2.15C9.77,14.63,11,16.17,11,18c0,1.52-0.87,2.83-2.12,3.51 c0.98,0.32,2.03,0.5,3.11,0.5c3.5,0,6.58-1.8,8.37-4.52C18,17.72,13.38,16.52,11.1,12.08z"/></g><path d="M7,16l-0.18,0C6.4,14.84,5.3,14,4,14c-1.66,0-3,1.34-3,3s1.34,3,3,3c0.62,0,2.49,0,3,0c1.1,0,2-0.9,2-2 C9,16.9,8.1,16,7,16z"/></g></g></svg>
+
+								</div>
+							</div>
+							<svg xmlns="http://www.w3.org/2000/svg" id="toggle-menu" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
+
+						</div>
+						<div id="search">
+							<input type="text" placeholder="Search... (beta)" autocomplete="off" />
+						</div>
+					</div>
+				</div>
+				<nav class="search hidden"></nav>
+				<nav class="content hidden">
+					<ul>
+						<li class="open active">
+<div class="menu-row"><a href="./index.html">README</a></div>
+</li>
+<li class="open">
+<div class="menu-row"><a href="./vjs.html">vjs</a></div>
+</li>
+<li class="open">
+<div class="menu-row"><a href="./web.html">web</a></div>
+</li>
+
+					</ul>
+				</nav>
+			</header>
+			<div class="doc-scrollview" tabindex="-1" id="main-content">
+				<div class="doc-container">
+					<div class="doc-content">
+								<section id="README" class="doc-node">
+			<div class="title"><h1> README</h1></div>
+<h1>VJS</h1><p><a href="https://vlang.io/">V</a> bindings to <a href="https://bellard.org/quickjs/">QuickJS</a> javascript engine. Run JS in V.</p><h2>Features</h2><ul><li>Evaluate js (code, file, module, etc).</li><li>Multi evaluate support.</li><li>Callback function support.</li><li>Set-Globals support.</li><li>Set-Module support.</li><li>Call V from JS.</li><li>Call JS from V.</li><li>Top-Level <code>await</code> support. using <code>vjs.type_module</code>.</li></ul><h2>Install</h2><pre><code class="language-bash">v install herudi.vjs
+</code></pre><h2>Basic Usage</h2><p>Create file <code>main.v</code> and copy-paste this code.</p><pre><code class="language-v"><span class="token keyword">import</span> herudi<span class="token punctuation">.</span>vjs
+
+<span class="token keyword">fn</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+rt <span class="token operator">:=</span> vjs<span class="token punctuation">.</span><span class="token function">new_runtime</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+ctx <span class="token operator">:=</span> rt<span class="token punctuation">.</span><span class="token function">new_context</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+value <span class="token operator">:=</span> ctx<span class="token punctuation">.</span><span class="token function">eval</span><span class="token punctuation">(</span><span class="token string">'1 + 2'</span><span class="token punctuation">)</span> <span class="token keyword">or</span> <span class="token punctuation">{</span> <span class="token function">panic</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span> <span class="token punctuation">}</span>
+ctx<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token keyword">assert</span> value<span class="token punctuation">.</span><span class="token function">is_number</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token boolean">true</span>
+<span class="token keyword">assert</span> value<span class="token punctuation">.</span><span class="token function">is_string</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token boolean">false</span>
+<span class="token keyword">assert</span> value<span class="token punctuation">.</span><span class="token function">to_int</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">3</span>
+
+<span class="token function">println</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span>
+<span class="token comment">// 3</span>
+
+<span class="token comment">// free</span>
+value<span class="token punctuation">.</span><span class="token function">free</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+ctx<span class="token punctuation">.</span><span class="token function">free</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+rt<span class="token punctuation">.</span><span class="token function">free</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span></code></pre><h2>Run</h2><pre><code class="language-bash">v run main.v
+</code></pre><p>Explore <a href="https://github.com/herudi/vjs/tree/master/examples">examples</a></p><blockquote><p>Currently support linux/mac/win (x64).</p></blockquote><blockquote><p>in windows, requires <code>-cc gcc</code>.</p></blockquote><h2>Multi Evaluate</h2><pre><code class="language-v">ctx<span class="token punctuation">.</span><span class="token function">eval</span><span class="token punctuation">(</span><span class="token string">'const sum = (a, b) =&gt; a + b'</span><span class="token punctuation">)</span> <span class="token keyword">or</span> <span class="token punctuation">{</span> <span class="token function">panic</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span> <span class="token punctuation">}</span>
+ctx<span class="token punctuation">.</span><span class="token function">eval</span><span class="token punctuation">(</span><span class="token string">'const mul = (a, b) =&gt; a * b'</span><span class="token punctuation">)</span> <span class="token keyword">or</span> <span class="token punctuation">{</span> <span class="token function">panic</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span> <span class="token punctuation">}</span>
+
+sum <span class="token operator">:=</span> ctx<span class="token punctuation">.</span><span class="token function">eval</span><span class="token punctuation">(</span><span class="token string">'sum(</span><span class="token string_interp">$</span>{<span class="token number">1</span>}<span class="token string">, </span><span class="token string_interp">$</span>{<span class="token number">2</span>}<span class="token string">)'</span><span class="token punctuation">)</span> <span class="token keyword">or</span> <span class="token punctuation">{</span> <span class="token function">panic</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span> <span class="token punctuation">}</span>
+mul <span class="token operator">:=</span> ctx<span class="token punctuation">.</span><span class="token function">eval</span><span class="token punctuation">(</span><span class="token string">'mul(</span><span class="token string_interp">$</span>{<span class="token number">1</span>}<span class="token string">, </span><span class="token string_interp">$</span>{<span class="token number">2</span>}<span class="token string">)'</span><span class="token punctuation">)</span> <span class="token keyword">or</span> <span class="token punctuation">{</span> <span class="token function">panic</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span> <span class="token punctuation">}</span>
+
+ctx<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token function">println</span><span class="token punctuation">(</span>sum<span class="token punctuation">)</span>
+<span class="token comment">// 3</span>
+
+<span class="token function">println</span><span class="token punctuation">(</span>mul<span class="token punctuation">)</span>
+<span class="token comment">// 2</span></code></pre><h2>Add Global</h2><pre><code class="language-v">glob <span class="token operator">:=</span> ctx<span class="token punctuation">.</span><span class="token function">js_global</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+glob<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span><span class="token string">'foo'</span><span class="token punctuation">,</span> <span class="token string">'bar'</span><span class="token punctuation">)</span>
+
+value <span class="token operator">:=</span> ctx<span class="token punctuation">.</span><span class="token function">eval</span><span class="token punctuation">(</span><span class="token string">'foo'</span><span class="token punctuation">)</span> <span class="token keyword">or</span> <span class="token punctuation">{</span> <span class="token function">panic</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span> <span class="token punctuation">}</span>
+ctx<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token function">println</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span>
+<span class="token comment">// bar</span></code></pre><h2>Add Module</h2><pre><code class="language-v"><span class="token keyword">mut</span> mod <span class="token operator">:=</span> ctx<span class="token punctuation">.</span><span class="token function">js_module</span><span class="token punctuation">(</span><span class="token string">'my-module'</span><span class="token punctuation">)</span>
+mod<span class="token punctuation">.</span><span class="token function">export</span><span class="token punctuation">(</span><span class="token string">'foo'</span><span class="token punctuation">,</span> <span class="token string">'foo'</span><span class="token punctuation">)</span>
+mod<span class="token punctuation">.</span><span class="token function">export</span><span class="token punctuation">(</span><span class="token string">'bar'</span><span class="token punctuation">,</span> <span class="token string">'bar'</span><span class="token punctuation">)</span>
+mod<span class="token punctuation">.</span><span class="token function">export_default</span><span class="token punctuation">(</span>mod<span class="token punctuation">.</span><span class="token function">to_object</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+mod<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+code <span class="token operator">:=</span> <span class="token string">'
+import mod, { foo, bar } from "my-module";
+
+console.log(foo, bar);
+
+console.log(mod);
+'</span>
+
+ctx<span class="token punctuation">.</span><span class="token function">eval</span><span class="token punctuation">(</span>code<span class="token punctuation">,</span> vjs<span class="token punctuation">.</span>type_module<span class="token punctuation">)</span> <span class="token keyword">or</span> <span class="token punctuation">{</span> <span class="token function">panic</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span> <span class="token punctuation">}</span>
+ctx<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre><h2>Web Platform APIs</h2><p>Inject Web API to vjs.</p><pre><code class="language-v"><span class="token keyword">import</span> herudi<span class="token punctuation">.</span>vjs
+<span class="token keyword">import</span> herudi<span class="token punctuation">.</span>vjs<span class="token punctuation">.</span>web
+
+<span class="token keyword">fn</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+rt <span class="token operator">:=</span> vjs<span class="token punctuation">.</span><span class="token function">new_runtime</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+ctx <span class="token operator">:=</span> rt<span class="token punctuation">.</span><span class="token function">new_context</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment">// inject all</span>
+web<span class="token punctuation">.</span><span class="token function">inject</span><span class="token punctuation">(</span>ctx<span class="token punctuation">)</span>
+
+<span class="token comment">// or inject one by one</span>
+<span class="token comment">// web.console_api(ctx)</span>
+<span class="token comment">// web.encoding_api(ctx)</span>
+<span class="token comment">// more..</span>
+
+<span class="token punctuation">...</span>
+<span class="token punctuation">}</span></code></pre><h3>List Web Platform APIs</h3><ul><li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled checked><a href="https://developer.mozilla.org/en-US/docs/Web/API/console">Console</a></li><li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled checked><a href="https://developer.mozilla.org/en-US/docs/Web/API/setTimeout">setTimeout</a>,<a href="https://developer.mozilla.org/en-US/docs/Web/API/clearTimeout">clearTimeout</a>- [x] <a href="https://developer.mozilla.org/en-US/docs/Web/API/setInterval">setInterval</a>,<a href="https://developer.mozilla.org/en-US/docs/Web/API/clearInterval">clearInterval</a>- [x] <a href="https://developer.mozilla.org/en-US/docs/Web/API/btoa">btoa</a>,<a href="https://developer.mozilla.org/en-US/docs/Web/API/atob">atob</a>- [x] <a href="https://developer.mozilla.org/en-US/docs/Web/API/URL">URL</a></li><li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled checked><a href="https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams">URLSearchParams</a></li><li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled checked><a href="https://developer.mozilla.org/en-US/docs/Web/API/Encoding_API">Encoding API</a></li><li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled checked><a href="https://developer.mozilla.org/en-US/docs/Web/API/TextEncoder">TextEncoder</a></li><li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled checked><a href="https://developer.mozilla.org/en-US/docs/Web/API/TextDecoder">TextDecoder</a></li><li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled>TextEncoderStream</li><li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled>TextDecoderStream</li><li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled checked><a href="https://developer.mozilla.org/en-US/docs/Web/API/Crypto">Crypto API</a></li><li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled checked><a href="https://developer.mozilla.org/en-US/docs/Web/API/Crypto/randomUUID">randomUUID</a></li><li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled checked><a href="https://developer.mozilla.org/en-US/docs/Web/API/Crypto/getRandomValues">getRandomValues</a></li><li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled checked><a href="https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto">SubtleCrypto</a></li><li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled checked><a href="https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/digest">digest</a></li><li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled>encrypt</li><li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled>decrypt</li><li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled>sign</li><li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled>verify</li><li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled>Fetch API</li><li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled>Headers</li><li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled>Request</li><li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled>Response</li><li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled>Streams API</li><li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled>FormData</li><li><i>More...</i></li></ul><h3>It's Fun Project. PRs Wellcome :)</h3>
+
+</section>
+
+
+						<div class="footer">Powered by vdoc. Generated on: 17 Mar 2024 08:37:11</div>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+		<script src="doc.js"></script>
+		<script async src="search_index.js"></script>
+	</body>
+</html>
