@@ -1,3 +1,4 @@
+/* Credit: All VJS Author */
 const { str_to_ab, ab_to_str } = globalThis.__encoding;
 
 class TextEncoder {
@@ -5,9 +6,7 @@ class TextEncoder {
     return "utf-8";
   }
   encode(input) {
-    if (input === void 0) {
-      throw new TypeError("args[0] is required");
-    }
+    if (input === void 0) return new Uint8Array();
     return new Uint8Array(str_to_ab(input));
   }
   encodeInto(input, uint) {
@@ -19,14 +18,14 @@ class TextDecoder {
     return "utf-8";
   }
   decode(input) {
-    if (input === void 0) {
-      throw new TypeError("args[0] is required");
+    if (input === void 0) return "";
+    const buf = input?.buffer;
+    if (buf instanceof ArrayBuffer) {
+      return ab_to_str(buf);
     }
-    return ab_to_str(input.buffer);
+    throw new TypeError(`args[0] not ArrayBufferView`);
   }
 }
 
 globalThis.TextEncoder = TextEncoder;
 globalThis.TextDecoder = TextDecoder;
-
-delete globalThis.__encoding;

@@ -1,3 +1,4 @@
+/* Credit: All VJS Author */
 import * as os from "os";
 
 globalThis.setTimeout = os.setTimeout;
