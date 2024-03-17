@@ -4,8 +4,7 @@ main
 /test.js
 /test.tsx
 /note.txt
-/lib/quickjs.v
-/test
+/_docs
 *.exe
 *.exe~
 *.so

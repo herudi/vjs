@@ -6,11 +6,14 @@ struct C.JSContext {}
 @[typedef]
 struct C.JSModuleDef {}
 
+// Context structure based on `JSContext` in qjs
+// and implemented into `ref`.
 pub struct Context {
 	ref &C.JSContext
 	rt  Runtime
 }
 
+// ContextConfig structure params.
 @[params]
 pub struct ContextConfig {
 	unhandled_rejection bool = true
@@ -26,17 +29,34 @@ type JSModuleNormalizeFunc = fn (&C.JSContext, &char, &char, voidptr) &char
 
 type JSModuleLoaderFunc = fn (&C.JSContext, &char, voidptr) &C.JSModuleDef
 
-type CallbackPromise = fn (Promise) Value
-
+// Evaluate JS type global.
 pub const type_global = C.JS_EVAL_TYPE_GLOBAL
+
+// Evaluate JS type module.
 pub const type_module = C.JS_EVAL_TYPE_MODULE
+
+// Evaluate JS type direct.
 pub const type_direct = C.JS_EVAL_TYPE_DIRECT
+
+// Evaluate JS type indirect.
 pub const type_indirect = C.JS_EVAL_TYPE_INDIRECT
+
+// Evaluate JS type mask.
 pub const type_mask = C.JS_EVAL_TYPE_MASK
+
+// Evaluate JS type strict.
 pub const type_strict = C.JS_EVAL_FLAG_STRICT
+
+// Evaluate JS type strip.
 pub const type_strip = C.JS_EVAL_FLAG_STRIP
+
+// Evaluate JS type compile only.
 pub const type_compile_only = C.JS_EVAL_FLAG_COMPILE_ONLY
+
+// Evaluate JS type barrier.
 pub const type_barrier = C.JS_EVAL_FLAG_BACKTRACE_BARRIER
+
+// Evaluate JS type async.
 pub const type_async = C.JS_EVAL_FLAG_ASYNC
 
 fn C.js_std_init_handlers(&C.JSRuntime)
@@ -82,6 +102,12 @@ fn fn_custom_context(config ContextConfig) FnNewContext {
 	}
 }
 
+// Create new Context from `Runtime`.
+// Example:
+// ```v
+// rt := vjs.new_runtime()
+// ctx := rt.new_context(opts_config)
+// ```
 pub fn (rt Runtime) new_context(config ContextConfig) &Context {
 	new_context := fn_custom_context(config)
 	C.js_std_set_worker_new_context_func(new_context)
@@ -98,6 +124,7 @@ pub fn (rt Runtime) new_context(config ContextConfig) &Context {
 	return ctx
 }
 
+// Core evaluate JS
 @[manualfree]
 pub fn (ctx &Context) js_eval_core(input &char, len usize, fname &char, flag int, from_file bool) !Value {
 	mut ref := ctx.js_undefined().ref
@@ -124,20 +151,43 @@ pub fn (ctx &Context) js_eval_core(input &char, len usize, fname &char, flag int
 	return val
 }
 
+// Evaluate JS with complete params
+// Example: ctx.js_eval(code, filename, flag)!
 pub fn (ctx &Context) js_eval(input string, fname string, flag int) !Value {
 	return ctx.js_eval_core(input.str, usize(input.len), fname.str, flag, false)!
 }
 
+// Evaluate JS
+// Example:
+// ```v
+// val1 := ctx.eval('1 + 1')!
+//
+// // or module
+// val2 := ctx.eval('1 + 1', vjs.type_module)!
+// ```
 pub fn (ctx &Context) eval(args ...EvalArgs) !Value {
 	input := args[0] as string
 	flag := if args.len == 2 { args[1] as int } else { vjs.type_global }
 	return ctx.js_eval(input, '<input>', flag)
 }
 
+// Evaluate JS module
+// Example:
+// ```v
+// ctx.eval_module('1 + 1', 'index.js')!
+// ```
 pub fn (ctx &Context) eval_module(input string, fname string) !Value {
 	return ctx.js_eval(input, fname, vjs.type_module)
 }
 
+// Evaluate File
+// Example:
+// ```v
+// ctx.eval_file('./path/to/file.js')!
+//
+// // or module
+// ctx.eval_file('./path/to/file.js', vjs.type_module)!
+// ```
 @[manualfree]
 pub fn (ctx &Context) eval_file(args ...EvalArgs) !Value {
 	fname := args[0] as string
@@ -153,10 +203,12 @@ pub fn (ctx &Context) eval_file(args ...EvalArgs) !Value {
 	return val
 }
 
+// Evaluate Function
 pub fn (ctx &Context) eval_function(val Value) Value {
 	return ctx.c_val(C.JS_EvalFunction(ctx.ref, val.ref))
 }
 
+// Callback this from Context
 pub fn (ctx &Context) call_this(this Value, val Value, args ...AnyValue) !Value {
 	c_args := args.map(ctx.any_to_val(it).ref)
 	c_val := if c_args.len == 0 { unsafe { nil } } else { &c_args[0] }
@@ -167,10 +219,12 @@ pub fn (ctx &Context) call_this(this Value, val Value, args ...AnyValue) !Value 
 	return ret
 }
 
+// Callback from Context
 pub fn (ctx &Context) call(val Value, args ...AnyValue) !Value {
 	return ctx.call_this(ctx.js_null(), val, ...args)
 }
 
+// Duplicate context
 pub fn (ctx &Context) dup_context() &Context {
 	ref := C.JS_DupContext(ctx.ref)
 	return &Context{
@@ -179,29 +233,30 @@ pub fn (ctx &Context) dup_context() &Context {
 	}
 }
 
+// Dump std Error
 pub fn (ctx &Context) dump_error() Value {
 	C.js_std_dump_error(ctx.ref)
 	return ctx.js_undefined()
 }
 
+// std loop form `qjs`
 pub fn (ctx &Context) loop() {
 	C.js_std_loop(ctx.ref)
 }
 
+// Context end
 pub fn (ctx &Context) end() {
 	ctx.loop()
 }
 
-pub fn (ctx &Context) new_promise(cb CallbackPromise) Value {
-	return cb(Promise{ctx})
-}
-
+// Get runtime from context
 pub fn (ctx &Context) runtime() Runtime {
 	return Runtime{
 		ref: C.JS_GetRuntime(ctx.ref)
 	}
 }
 
+// Free the context
 pub fn (ctx &Context) free() {
 	C.js_std_free_handlers(ctx.rt.ref)
 	C.JS_FreeContext(ctx.ref)

@@ -1,3 +1,5 @@
+/* Credit: All VJS Author */
+import { vjs_inspect } from "./util.js";
 // Credit URLSearchParams => https://github.com/jerrybendy/url-search-params-polyfill/blob/master/index.js
 
 const isArray = Array.isArray;
@@ -303,6 +305,9 @@ class URL {
     return this.href;
   }
   toJSON() {
+    return this.href;
+  }
+  [vjs_inspect]() {
     return {
       href: this.href,
       origin: this.origin,
