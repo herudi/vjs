@@ -2,12 +2,16 @@ module vjs
 
 import rand
 
+// Original `type` JS Callback function from `qjs`
 pub type JSCFunction = fn (&C.JSContext, JSValueConst, int, &JSValueConst) C.JSValue
 
+// `type` JS Callback function with `this`
 pub type JSFunctionThis = fn (this Value, args []Value) Value
 
+// `type` JS Callback function
 pub type JSFunction = fn (args []Value) Value
 
+// `type` Constructor Class function
 pub type JSConstructor = fn (this Value, args []Value)
 
 @[typedef]
@@ -49,22 +53,50 @@ fn (ctx &Context) js_fn[T](cb T) JSCFunction {
 	}
 }
 
+// JS Callback function with `this`
+// Example:
+// ```v
+// my_fn := ctx.js_function_this(fn (this Value, args []Value) Value {
+//   return this.ctx.js_string('foo')	
+// })
+// ```
 pub fn (ctx &Context) js_function_this(cb JSFunctionThis) Value {
 	return ctx.c_val(C.JS_NewCFunction(ctx.ref, ctx.js_fn[JSFunctionThis](cb), 0, 1))
 }
 
+// JS Callback function
+// Example:
+// ```v
+// my_fn := ctx.js_function(fn [ctx](args []Value) Value {
+//   return ctx.js_string('foo')	
+// })
+// ```
 pub fn (ctx &Context) js_function(cb JSFunction) Value {
 	return ctx.c_val(C.JS_NewCFunction(ctx.ref, ctx.js_fn[JSFunction](cb), 0, 1))
 }
 
+// JS Callback only function this
 pub fn (ctx &Context) js_only_function_this(cb JSFunctionThis) JSCFunction {
 	return ctx.js_fn[JSFunctionThis](cb)
 }
 
+// JS Callback only function
 pub fn (ctx &Context) js_only_function(cb JSFunction) JSCFunction {
 	return ctx.js_fn[JSFunction](cb)
 }
 
+// Create JS Class
+// Example:
+// ```v
+// foo_class := ctx.js_class(
+// 	 name: 'Foo',
+// 	 ctor: fn (this Value, args []Value) {
+// 		 // constructor code here
+// 	 }
+// )
+//
+// foo := foo_class.new()
+// ```
 pub fn (ctx &Context) js_class(cls ClassParams) Value {
 	ctor := cls.ctor or {
 		fn (this Value, args []Value) {}

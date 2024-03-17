@@ -6,6 +6,7 @@ fn C.JS_NewCModule(&C.JSContext, &char, &JSModuleInitFunc) &C.JSModuleDef
 fn C.JS_SetModuleExport(&C.JSContext, &C.JSModuleDef, &char, C.JSValue) int
 fn C.JS_AddModuleExport(&C.JSContext, &C.JSModuleDef, &char) int
 
+// Module structure.
 pub struct Module {
 	ctx  Context
 	name string
@@ -15,6 +16,11 @@ mut:
 	values      []Value
 }
 
+// Initial `js_module`.
+// Example:
+// ```v
+// mod := ctx.js_module('my-module')
+// ```
 pub fn (ctx &Context) js_module(name string) Module {
 	return Module{
 		ctx: ctx
@@ -22,6 +28,11 @@ pub fn (ctx &Context) js_module(name string) Module {
 	}
 }
 
+// Export module.
+// Example:
+// ```v
+// mod.export('foo', 'bar')
+// ```
 @[manualfree]
 pub fn (mut m Module) export(name string, any AnyValue) {
 	ptr := name.str
@@ -33,10 +44,12 @@ pub fn (mut m Module) export(name string, any AnyValue) {
 	}
 }
 
+// Same as Export.
 pub fn (mut m Module) set(name string, any AnyValue) {
 	m.export(name, any)
 }
 
+// Get value from export/set.
 pub fn (mut m Module) get(name string) Value {
 	mut val := m.ctx.js_undefined()
 	len := m.exports_str.len
@@ -50,6 +63,7 @@ pub fn (mut m Module) get(name string) Value {
 	return val
 }
 
+// Convert module to JS object.
 pub fn (mut m Module) to_object() Value {
 	obj := m.ctx.js_object()
 	len := m.exports_str.len
@@ -59,10 +73,23 @@ pub fn (mut m Module) to_object() Value {
 	return obj
 }
 
+// Export default.
+// Example:
+// ```v
+// mod.export_default(mod.to_object())
+// ```
 pub fn (mut m Module) export_default(any AnyValue) {
 	m.export('default', any)
 }
 
+// Create module.
+// Example:
+// ```v
+// mod := ctx.js_module('my-module')
+// mod.export('foo', 'bar')
+// mod.export_default(mod.to_object())
+// mod.create()
+// ```
 pub fn (mut m Module) create() &C.JSModuleDef {
 	cb := fn [m] (ctx &C.JSContext, mod &C.JSModuleDef) int {
 		len := m.exports.len

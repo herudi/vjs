@@ -135,7 +135,7 @@ fn main() {
   ...
 }
 ```
-
+### List Web Platform APIs
 - [x] [Console](https://developer.mozilla.org/en-US/docs/Web/API/console)
 - [x] [setTimeout](https://developer.mozilla.org/en-US/docs/Web/API/setTimeout),
       [clearTimeout](https://developer.mozilla.org/en-US/docs/Web/API/clearTimeout)
@@ -150,12 +150,20 @@ fn main() {
   - [x] [TextDecoder](https://developer.mozilla.org/en-US/docs/Web/API/TextDecoder)
   - [ ] TextEncoderStream
   - [ ] TextDecoderStream
+- [x] [Crypto API](https://developer.mozilla.org/en-US/docs/Web/API/Crypto)
+  - [x] [randomUUID](https://developer.mozilla.org/en-US/docs/Web/API/Crypto/randomUUID)
+  - [x] [getRandomValues](https://developer.mozilla.org/en-US/docs/Web/API/Crypto/getRandomValues)
+- [x] [SubtleCrypto](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto)
+  - [x] [digest](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/digest)
+  - [ ] encrypt
+  - [ ] decrypt
+  - [ ] sign
+  - [ ] verify
 - [ ] Fetch API
   - [ ] Headers
   - [ ] Request
   - [ ] Response
 - [ ] Streams API
-- [ ] Crypto API
 - [ ] FormData
 - <i>More...</i>
 

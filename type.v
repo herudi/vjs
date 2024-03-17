@@ -1,5 +1,6 @@
 module vjs
 
+// `type` Anything Value in `vjs`
 pub type AnyValue = Value | bool | f64 | i64 | int | string | u32 | u64
 
 // Context JS TypeData.
@@ -33,7 +34,13 @@ fn (ctx &Context) c_tag(tag int) Value {
 	})
 }
 
-// create js exception
+// Create JS Exception.
+// Example:
+// ```v
+// if val.is_exception() {
+//   return ctx.js_exception()
+// }
+// ```
 @[manualfree]
 pub fn (ctx &Context) js_exception() &JSError {
 	val := ctx.c_val(C.JS_GetException(ctx.ref))
@@ -42,20 +49,22 @@ pub fn (ctx &Context) js_exception() &JSError {
 	return err
 }
 
-// create js null
+// Create JS Null.
 pub fn (ctx &Context) js_null() Value {
 	return ctx.c_tag(2)
 }
 
-// create js undefined
+// Create JS Undefined.
 pub fn (ctx &Context) js_undefined() Value {
 	return ctx.c_tag(3)
 }
 
+// Create JS Uninitialized.
 pub fn (ctx &Context) js_uninitialized() Value {
 	return ctx.c_tag(4)
 }
 
+// Convert value `js_object` to json string with optionals.
 @[manualfree]
 pub fn (ctx &Context) json_stringify_op(val Value, rep Value, ind AnyValue) string {
 	indent := ctx.any_to_val(ind)
@@ -66,11 +75,13 @@ pub fn (ctx &Context) json_stringify_op(val Value, rep Value, ind AnyValue) stri
 	return ret
 }
 
+// Convert value `js_object` to json string.
 pub fn (ctx &Context) json_stringify(val Value) string {
 	null := ctx.js_null()
 	return ctx.json_stringify_op(val, null, null)
 }
 
+// Convert value string to `js_object`.
 @[manualfree]
 pub fn (ctx &Context) json_parse(str string) Value {
 	len := str.len
@@ -84,11 +95,13 @@ pub fn (ctx &Context) json_parse(str string) Value {
 	return ret
 }
 
+// JS Throw Error.
 pub fn (ctx &Context) js_throw(any AnyValue) Value {
 	val := ctx.any_to_val(any)
 	return ctx.c_val(C.JS_Throw(ctx.ref, val.ref))
 }
 
+// create JS new Error.
 pub fn (ctx &Context) js_error(err JSError) Value {
 	val := ctx.c_val(C.JS_NewError(ctx.ref))
 	val.set('name', ctx.js_string(err.name))
@@ -99,18 +112,21 @@ pub fn (ctx &Context) js_error(err JSError) Value {
 	return val
 }
 
+// create JS new TypeError.
 pub fn (ctx &Context) js_type_error(err JSError) Value {
 	mut terr := err
 	terr.name = 'TypeError'
 	return ctx.js_error(terr)
 }
 
+// js dump IError.
 pub fn (ctx &Context) js_dump(err IError) Value {
 	val := ctx.c_val(C.JS_NewError(ctx.ref))
 	val.set('message', ctx.js_string(err.msg()))
 	return val
 }
 
+// Create JS String.
 @[manualfree]
 pub fn (ctx &Context) js_string(data string) Value {
 	ptr := data.str
@@ -121,42 +137,52 @@ pub fn (ctx &Context) js_string(data string) Value {
 	return val
 }
 
+// Create JS Boolean.
 pub fn (ctx &Context) js_bool(data bool) Value {
 	return ctx.c_val(C.JS_NewBool(ctx.ref, if data { 1 } else { 0 }))
 }
 
+// Create JS Int.
 pub fn (ctx &Context) js_int(data int) Value {
 	return ctx.c_val(C.JS_NewInt32(ctx.ref, data))
 }
 
+// Create JS u32.
 pub fn (ctx &Context) js_u32(data u32) Value {
 	return ctx.c_val(C.JS_NewUint32(ctx.ref, data))
 }
 
+// Create JS Bigint.
 pub fn (ctx &Context) js_big_int(data i64) Value {
 	return ctx.c_val(C.JS_NewBigInt64(ctx.ref, data))
 }
 
+// Create JS ArrayBuffer.
 pub fn (ctx &Context) js_array_buffer(data []u8) Value {
 	return ctx.c_val(C.JS_NewArrayBufferCopy(ctx.ref, &data[0], usize(data.len)))
 }
 
+// Create JS Big Uint.
 pub fn (ctx &Context) js_big_uint(data u64) Value {
 	return ctx.c_val(C.JS_NewBigUint64(ctx.ref, data))
 }
 
+// Create JS int64.
 pub fn (ctx &Context) js_i64(data i64) Value {
 	return ctx.c_val(C.JS_NewInt64(ctx.ref, data))
 }
 
+// Create JS Float.
 pub fn (ctx &Context) js_float(data f64) Value {
 	return ctx.c_val(C.JS_NewFloat64(ctx.ref, data))
 }
 
+// Create JS Object.
 pub fn (ctx &Context) js_object() Value {
 	return ctx.c_val(C.JS_NewObject(ctx.ref))
 }
 
+// Define JS Global (globalThis).
 @[manualfree]
 pub fn (ctx &Context) js_global(keys ...string) Value {
 	if keys.len == 0 {
@@ -168,6 +194,7 @@ pub fn (ctx &Context) js_global(keys ...string) Value {
 	return ret
 }
 
+// JS call await.
 pub fn (ctx &Context) js_await(val Value) !Value {
 	ret := ctx.c_val(C.js_std_await(ctx.ref, val.ref))
 	if ret.is_exception() {
@@ -176,6 +203,7 @@ pub fn (ctx &Context) js_await(val Value) !Value {
 	return ret
 }
 
+// JS call new class.
 pub fn (ctx &Context) js_new_class(val Value, args ...AnyValue) !Value {
 	c_args := args.map(ctx.any_to_val(it).ref)
 	c_val := if c_args.len == 0 { unsafe { nil } } else { &c_args[0] }
@@ -186,6 +214,7 @@ pub fn (ctx &Context) js_new_class(val Value, args ...AnyValue) !Value {
 	return ret
 }
 
+// Convert any to value.
 pub fn (ctx &Context) any_to_val(val AnyValue) Value {
 	if val is Value {
 		return val
@@ -211,6 +240,7 @@ pub fn (ctx &Context) any_to_val(val AnyValue) Value {
 	return ctx.js_u32(val as u32)
 }
 
+// Create JS Array.
 pub fn (ctx &Context) js_array() Value {
 	return ctx.c_val(C.JS_NewArray(ctx.ref))
 }
