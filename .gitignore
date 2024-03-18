@@ -4,6 +4,7 @@ main
 /test.js
 /test.tsx
 /note.txt
+/web/deno.json
 /_docs
 *.exe
 *.exe~

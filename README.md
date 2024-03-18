@@ -145,11 +145,12 @@ fn main() {
       [atob](https://developer.mozilla.org/en-US/docs/Web/API/atob)
 - [x] [URL](https://developer.mozilla.org/en-US/docs/Web/API/URL)
 - [x] [URLSearchParams](https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams)
+- [x] [URLPattern](https://developer.mozilla.org/en-US/docs/Web/API/URLPattern)
 - [x] [Encoding API](https://developer.mozilla.org/en-US/docs/Web/API/Encoding_API)
   - [x] [TextEncoder](https://developer.mozilla.org/en-US/docs/Web/API/TextEncoder)
   - [x] [TextDecoder](https://developer.mozilla.org/en-US/docs/Web/API/TextDecoder)
-  - [ ] TextEncoderStream
-  - [ ] TextDecoderStream
+  - [x] [TextEncoderStream](https://developer.mozilla.org/en-US/docs/Web/API/TextEncoderStream)
+  - [x] [TextDecoderStream](https://developer.mozilla.org/en-US/docs/Web/API/TextDecoderStream)
 - [x] [Crypto API](https://developer.mozilla.org/en-US/docs/Web/API/Crypto)
   - [x] [randomUUID](https://developer.mozilla.org/en-US/docs/Web/API/Crypto/randomUUID)
   - [x] [getRandomValues](https://developer.mozilla.org/en-US/docs/Web/API/Crypto/getRandomValues)
@@ -159,12 +160,17 @@ fn main() {
   - [ ] decrypt
   - [ ] sign
   - [ ] verify
+- [x] [Streams API](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API)
+- [x] [FormData](https://developer.mozilla.org/en-US/docs/Web/API/FormData)
+- [x] [Blob](https://developer.mozilla.org/en-US/docs/Web/API/Blob)
+- [x] [File](https://developer.mozilla.org/en-US/docs/Web/API/File)
+- [x] [Performance](https://developer.mozilla.org/en-US/docs/Web/API/Performance)
+- [x] [Navigator](https://developer.mozilla.org/en-US/docs/Web/API/Navigator)
 - [ ] Fetch API
   - [ ] Headers
   - [ ] Request
   - [ ] Response
-- [ ] Streams API
-- [ ] FormData
+
 - <i>More...</i>
 
 ### It's Fun Project. PRs Wellcome :)

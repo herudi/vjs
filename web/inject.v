@@ -17,11 +17,16 @@ import vjs { Context }
 // ```
 pub fn inject(ctx &Context) {
 	window_api(ctx)
+	console_api(ctx)
+	performance_api(ctx)
+	timer_api(ctx)
 	atob_api(ctx)
 	btoa_api(ctx)
-	console_api(ctx)
+	stream_api(ctx)
 	encoding_api(ctx)
-	timer_api(ctx)
 	url_api(ctx)
 	crypto_api(ctx)
+	navigator_api(ctx)
+	blob_api(ctx)
+	formdata_api(ctx)
 }

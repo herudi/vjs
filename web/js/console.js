@@ -9,6 +9,7 @@ import {
   isRegExp,
   isString,
   isTypedArray,
+  isTypeObject,
   vjs_inspect,
 } from "./util.js";
 
@@ -122,14 +123,13 @@ function formatArray(arr, ctx) {
     const cc = last === i ? "" : ", ";
     let gap = ctx.gap;
     const val = arr[i];
-    if (isObject(val) || isArray(val) || isArrayBuffer(val) || isTypedArray(val)) gap += "  ";
+    if (isTypeObject(val)) gap += "  ";
     const ret = formatValue(val, void 0, { ...ctx, gap });
     out += `${ctx.gap}${ret}${cc}\n`;
   }
   out += close;
   return out;
 }
-
 function formatClass(cls, ctx) {
   const out = formatObject(cls[vjs_inspect] ? cls[vjs_inspect]() : cls, ctx);
   return `${c_name(cls)} ${out}`;
@@ -146,7 +146,7 @@ function formatObject(obj, ctx) {
     const cc = last === i ? "" : ", ";
     const val = obj[key];
     let gap = ctx.gap;
-    if (isObject(val) || isArray(val) || isArrayBuffer(val) || isTypedArray(val)) gap += "  ";
+    if (isTypeObject(val)) gap += "  ";
     const ret = isCyclic(val)
       ? cyan("[Circular]")
       : formatValue(val, void 0, { ...ctx, gap });
