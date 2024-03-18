@@ -3,6 +3,7 @@ module web
 import vjs { Context }
 import os
 import runtime
+import v.vmod
 
 // Add Navigator API to globals.
 // Example:
@@ -18,12 +19,12 @@ import runtime
 // }
 // ```
 pub fn navigator_api(ctx &Context) {
-	version := os.read_file('${@VMODROOT}/VERSION') or { panic(err) }
 	uname := os.uname()
+	manifest := vmod.from_file('${@VMODROOT}/v.mod') or { panic(err) }
 	obj := ctx.js_object()
-	obj.set('version', version)
+	obj.set('userAgent', '${manifest.name}/${manifest.version}')
 	obj.set('platform', '${uname.sysname} ${uname.machine}')
-	obj.set('nr_cpu', runtime.nr_cpus())
+	obj.set('hardwareConcurrency', runtime.nr_cpus())
 	glob := ctx.js_global()
 	glob.set('__navigator', obj)
 	ctx.eval_file('${@VMODROOT}/web/js/navigator.js', vjs.type_module) or { panic(err) }

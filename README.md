@@ -170,7 +170,6 @@ fn main() {
   - [ ] Headers
   - [ ] Request
   - [ ] Response
-
 - <i>More...</i>
 
 ### It's Fun Project. PRs Wellcome :)

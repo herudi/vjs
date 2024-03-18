@@ -4,20 +4,16 @@ const nav = globalThis.__navigator;
 
 class Navigator {
   get userAgent() {
-    return `vjs/${nav.version}`;
+    return nav.userAgent;
   }
   get platform() {
     return nav.platform;
   }
   get hardwareConcurrency() {
-    return nav.nr_cpu;
+    return nav.hardwareConcurrency;
   }
   [vjs_inspect]() {
-    return {
-      userAgent: this.userAgent,
-      platform: this.platform,
-      hardwareConcurrency: this.hardwareConcurrency,
-    };
+    return nav;
   }
 }
 
