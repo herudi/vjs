@@ -1,5 +1,6 @@
 /* Credit: All VJS Author */
 export const isObject = (v) => v?.constructor?.name === "Object";
+export const isTypeObject = (v) => typeof v === "object";
 export const isArray = Array.isArray;
 export const isString = (v) => typeof v === "string";
 export const isNumber = (v) => typeof v === "number";
