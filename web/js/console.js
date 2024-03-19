@@ -12,8 +12,9 @@ import {
   isTypeObject,
   vjs_inspect,
 } from "./util.js";
-
+const { print, promise_state } = globalThis.__console;
 const isDate = (v) => v instanceof Date;
+const def_count = 25;
 let count = 0;
 const ett = {
   "\b": "\\b",
@@ -33,8 +34,17 @@ Error.prototype[vjs_inspect] = function () {
     stack: this.stack || "",
   };
 };
-
-const print = globalThis.__print;
+Promise.prototype[vjs_inspect] = function () {
+  return `Promise { ${cyan(`<${promise_state(this)}>`)} }`;
+};
+Map.prototype[vjs_inspect] = function () {
+  return `Map(${this.size}) ${
+    formatObject(Object.fromEntries(this.entries()))
+  }`;
+};
+Set.prototype[vjs_inspect] = function () {
+  return `Set(${this.size}) ${formatArray(Array.from(this))}`;
+};
 function isCyclic(obj) {
   const seenObjects = [];
   function detect(obj) {
@@ -86,11 +96,12 @@ function formatValue(val, is_str, ctx) {
   if (isArrayBuffer(val) || isTypedArray(val)) {
     let data;
     if (val instanceof ArrayBuffer) {
-      data = formatArray(new Uint8Array(val), ctx);
+      val = new Uint8Array(val);
+      data = formatArray(val, ctx);
     } else {
       data = formatArray(val, ctx);
     }
-    return `${my_name}(${val.byteLength}) ${data}`;
+    return `${my_name}(${val.length}) ${data}`;
   }
   if (isDate(val)) return blue(val.toISOString());
   if (my_name === "Symbol") return green(val.toString());
@@ -112,45 +123,113 @@ function createContext(ctx) {
   }
   return ctx;
 }
+function countObject(obj) {
+  let count = 0;
+  for (const k in obj) {
+    const v = obj[k];
+    if (v != null) {
+      if (isObject(v)) {
+        count += countObject(v);
+      } else if (isArray(v)) {
+        count += countArray(v);
+      } else {
+        count += k.length + (String(v).length ?? 0);
+      }
+    }
+  }
+  return count;
+}
+function countArray(arr) {
+  let count = 0, len = arr.length;
+  for (let i = 0; i < len; i++) {
+    const v = arr[i];
+    if (v != null) {
+      if (isObject(v)) {
+        count += countObject(v);
+      } else if (isArray(v)) {
+        count += countArray(v);
+      } else {
+        count += String(v).length ?? 0;
+      }
+    }
+  }
+  return count;
+}
 function formatArray(arr, ctx) {
-  ctx = createContext(ctx);
-  let out = "[\n";
   const len = arr.length;
   if (len === 0) return "[]";
+  let out = "";
+  if (countArray(arr) >= def_count) {
+    ctx = createContext(ctx);
+    out = "[\n";
+  } else {
+    ctx = void 0;
+    out = "[ ";
+  }
+  const hasCtx = ctx !== void 0;
   const last = len - 1;
-  const close = ctx.gap.slice(0, -2) + "]";
+  const close = hasCtx ? ctx.gap.slice(0, -2) + "]" : " ]";
   for (let i = 0; i < len; i++) {
     const cc = last === i ? "" : ", ";
-    let gap = ctx.gap;
-    const val = arr[i];
-    if (isTypeObject(val)) gap += "  ";
-    const ret = formatValue(val, void 0, { ...ctx, gap });
-    out += `${ctx.gap}${ret}${cc}\n`;
+    if (hasCtx) {
+      let gap = ctx.gap;
+      const val = arr[i];
+      if (isTypeObject(val)) gap += "  ";
+      const ret = formatValue(val, void 0, { ...ctx, gap });
+      out += `${ctx.gap}${ret}${cc}\n`;
+    } else {
+      const val = arr[i];
+      const ret = formatValue(val);
+      out += `${ret}${cc}`;
+    }
   }
   out += close;
   return out;
 }
 function formatClass(cls, ctx) {
-  const out = formatObject(cls[vjs_inspect] ? cls[vjs_inspect]() : cls, ctx);
+  let out;
+  if (cls[vjs_inspect] !== void 0) {
+    const data = cls[vjs_inspect]();
+    if (isTypeObject(data)) {
+      out = formatObject(data, ctx);
+    } else {
+      return data;
+    }
+  } else {
+    out = formatObject(cls, ctx);
+  }
   return `${c_name(cls)} ${out}`;
 }
+
 function formatObject(obj, ctx) {
-  ctx = createContext(ctx);
   const keys = Object.keys(obj);
   const len = keys.length;
   if (len === 0) return "{}";
-  let out = "{\n";
-  const close = ctx.gap.slice(0, -2) + "}";
+  let out = "";
+  if (countObject(obj) >= def_count) {
+    ctx = createContext(ctx);
+    out = "{\n";
+  } else {
+    ctx = void 0;
+    out = "{ ";
+  }
+  const hasCtx = ctx !== void 0;
+  const close = hasCtx ? ctx.gap.slice(0, -2) + "}" : " }";
   const last = len - 1;
   keys.forEach((key, i) => {
     const cc = last === i ? "" : ", ";
     const val = obj[key];
-    let gap = ctx.gap;
-    if (isTypeObject(val)) gap += "  ";
-    const ret = isCyclic(val)
-      ? cyan("[Circular]")
-      : formatValue(val, void 0, { ...ctx, gap });
-    out += `${ctx.gap}${key}: ${ret}${cc}\n`;
+    if (hasCtx) {
+      let gap = ctx.gap;
+      if (isTypeObject(val)) gap += "  ";
+      const ret = isCyclic(val)
+        ? cyan("[Circular]")
+        : formatValue(val, void 0, { ...ctx, gap });
+      out += `${ctx.gap}${key}: ${ret}${cc}\n`;
+    } else {
+      const ret = isCyclic(val) ? cyan("[Circular]") : formatValue(val);
+      out += `${key}: ${ret}${cc}`;
+    }
   });
   out += close;
   return out;

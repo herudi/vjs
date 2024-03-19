@@ -12,25 +12,35 @@ class TextEncoder {
     if (input === void 0) return new Uint8Array();
     return new Uint8Array(str_to_ab(input));
   }
-  encodeInto(input, uint) {
-    // soon.
+  encodeInto(text, array) {
+    const buf = this.encode(text);
+    const ret = {
+      read: text.length,
+      written: buf.length,
+    };
+    if (buf.length > array.length) {
+      ret.read = parseInt(array.length / buf.length * ret.read);
+      ret.written = array.length;
+    }
+    array.set(buf, 0);
+    return ret;
   }
 }
 class TextDecoder {
-  #enc;
+  #label;
   #opts;
-  constructor(encoding, opts) {
-    this.#enc = encoding ?? "utf-8";
-    this.#opts = opts ?? {};
+  constructor(label = "utf-8", opts = {}) {
+    this.#label = label;
+    this.#opts = opts;
   }
   get encoding() {
-    return this.#enc;
+    return this.#label;
   }
   get fatal() {
-    return this.#opts.fatal;
+    return this.#opts.fatal ?? false;
   }
   get ignoreBOM() {
-    return this.#opts.ignoreBOM;
+    return this.#opts.ignoreBOM ?? false;
   }
   decode(input, opts = {}) {
     if (input === void 0) return "";

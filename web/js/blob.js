@@ -169,7 +169,6 @@ Object.defineProperties(Blob.prototype, {
 class File extends Blob {
   #lastModified = 0;
   #name = "";
-
   constructor(fileBits, fileName, options = {}) {
     if (arguments.length < 2) {
       throw new TypeError(
@@ -191,6 +190,14 @@ class File extends Blob {
   }
   get lastModified() {
     return this.#lastModified;
+  }
+  [vjs_inspect]() {
+    return {
+      size: this.size,
+      type: this.type,
+      name: this.name,
+      lastModified: this.lastModified,
+    };
   }
 }
 globalThis.Blob = Blob;

@@ -16,5 +16,5 @@ import vjs { Context }
 // }
 // ```
 pub fn stream_api(ctx &Context) {
-	ctx.eval_file('${@VMODROOT}/web/js/stream_polyfill.js', vjs.type_module) or { panic(err) }
+	ctx.eval_file('${@VMODROOT}/web/js/stream.js', vjs.type_module) or { panic(err) }
 }

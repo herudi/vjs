@@ -5,9 +5,18 @@ type JSHostPromiseRejectionTracker = fn (&C.JSContext, JSValueConst, JSValueCons
 // `type` Callback JS Promise.
 pub type CallbackPromise = fn (Promise) Value
 
+// `enum` Promise State
+pub enum JSPromiseStateEnum {
+	pending
+	resolved
+	rejected
+}
+
 fn C.JS_NewPromiseCapability(&C.JSContext, &C.JSValue) C.JSValue
 fn C.JS_SetHostPromiseRejectionTracker(&C.JSRuntime, &JSHostPromiseRejectionTracker, voidptr)
 fn C.js_std_promise_rejection_tracker(&C.JSContext, JSValueConst, JSValueConst, bool, voidptr)
+fn C.JS_PromiseState(&C.JSContext, C.JSValue) JSPromiseStateEnum
+fn C.JS_PromiseResult(&C.JSContext, C.JSValue) C.JSValue
 
 // Promise structure.
 pub struct Promise {
@@ -64,4 +73,16 @@ pub fn (p Promise) reject(any AnyValue) Value {
 // Promise rejection tracker (default true)
 pub fn (rt Runtime) promise_rejection_tracker() {
 	C.JS_SetHostPromiseRejectionTracker(rt.ref, &C.js_std_promise_rejection_tracker, C.NULL)
+}
+
+// Get Promise State
+pub fn (ctx &Context) promise_state(val Value) Value {
+	state := C.JS_PromiseState(ctx.ref, val.ref)
+	return ctx.js_string(state.str())
+}
+
+// Get Promise Result
+pub fn (ctx &Context) promise_result(val Value) Value {
+	res := ctx.c_val(C.JS_PromiseResult(ctx.ref, val.ref))
+	return res
 }

@@ -1,7 +1,6 @@
 /* Credit: All VJS Author */
 import { vjs_inspect } from "./util.js";
 // Credit URLSearchParams => https://github.com/jerrybendy/url-search-params-polyfill/blob/master/index.js
-
 const isArray = Array.isArray;
 function decode(str) {
   return str
@@ -121,6 +120,9 @@ class URLSearchParams {
     }
     return query.join("&");
   }
+  [vjs_inspect]() {
+    return this.#query;
+  }
 }
 globalThis.URLSearchParams = URLSearchParams;
 const proto = globalThis.URLSearchParams.prototype;
@@ -215,8 +217,25 @@ class URL {
       input = base ? input.pathname : input.href;
     }
     this.href = base ? base + input : input;
+    if (/^[a-zA-z]+:\/\/.*/.test(this.href) === false) {
+      throw new TypeError(`Invalid URL ${this.href}`);
+    }
     const idx = this.#idx = iof8(this.href, "?");
     this.search = idx !== -1 ? this.href.slice(idx) : "";
+  }
+  static canParse(input, base) {
+    try {
+      new URL(input, base);
+      return true;
+    } catch {
+      return false;
+    }
+  }
+  static createObjectURL() {
+    throw new Error("createObjectURL not implemented yet.");
+  }
+  static revokeObjectURL() {
+    throw new Error("revokeObjectURL not implemented yet.");
   }
   get origin() {
     return this.href.slice(0, iof8(this.href));

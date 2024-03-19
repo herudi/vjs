@@ -8,6 +8,7 @@ export const isBool = (v) => typeof v === "boolean";
 export const isFunc = (v) => typeof v === "function";
 export const isRegExp = (v) => v instanceof RegExp;
 export const isArrayBuffer = (v) => v instanceof ArrayBuffer;
+export const isPromise = (v) => v instanceof Promise;
 export const isTypedArray = (v) =>
   ArrayBuffer.isView(v) && !(v instanceof DataView);
 export const vjs_inspect = Symbol("vjs_inspect");

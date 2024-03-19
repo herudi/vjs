@@ -3,3 +3,4 @@
 *.bat eol=crlf
 
 libs/include/* linguist-vendored
+web/js/polyfill/* linguist-vendored

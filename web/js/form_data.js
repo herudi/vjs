@@ -47,7 +47,6 @@ const escapeStr = (str) =>
 class FormData {
   #data = [];
   constructor(form) {
-    // this.#data = [];
     const self = this;
     form && each(form.elements, (elm) => {
       if (
@@ -87,7 +86,6 @@ class FormData {
     ensureArgs(arguments, 1);
     const result = [];
     name = String(name);
-
     each(this.#data, (entry) => {
       entry[0] !== name && result.push(entry);
     });
