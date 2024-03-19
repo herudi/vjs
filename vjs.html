@@ -313,6 +313,18 @@ web<span class="token punctuation">.</span><span class="token function">inject</
 
 </section>
 
+		<section id="JSPromiseStateEnum" class="doc-node">
+			<div class="title"><h2>enum JSPromiseStateEnum <a href="#JSPromiseStateEnum">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/promise.v#L9"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">enum</span> <span class="token symbol">JSPromiseStateEnum</span> <span class="token punctuation">{</span>
+	pending
+	resolved
+	rejected
+<span class="token punctuation">}</span></code></pre>
+<p><code>enum</code> Promise State</p>
+
+</section>
+
 		<section id="Atom" class="doc-node">
 			<div class="title"><h2>struct Atom <a href="#Atom">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/atom.v#L14"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
 <pre class="signature">
@@ -386,7 +398,7 @@ web<span class="token punctuation">.</span><span class="token function">inject</
 </section>
 
 		<section id="Context.any_to_val" class="doc-node">
-			<div class="title"><h2>fn (Context) any_to_val <a href="#Context.any_to_val">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/type.v#L218"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+			<div class="title"><h2>fn (Context) any_to_val <a href="#Context.any_to_val">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/type.v#L219"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
 <pre class="signature">
 <code><span class="token keyword">fn</span> <span class="token punctuation">(</span>ctx <span class="token operator">&</span>Context<span class="token punctuation">)</span> <span class="token function">any_to_val</span><span class="token punctuation">(</span>val AnyValue<span class="token punctuation">)</span> Value</code></pre>
 <p>Convert any to value.</p>
@@ -492,7 +504,7 @@ ctx<span class="token punctuation">.</span><span class="token function">eval_fil
 </section>
 
 		<section id="Context.js_array" class="doc-node">
-			<div class="title"><h2>fn (Context) js_array <a href="#Context.js_array">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/type.v#L244"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+			<div class="title"><h2>fn (Context) js_array <a href="#Context.js_array">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/type.v#L245"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
 <pre class="signature">
 <code><span class="token keyword">fn</span> <span class="token punctuation">(</span>ctx <span class="token operator">&</span>Context<span class="token punctuation">)</span> <span class="token function">js_array</span><span class="token punctuation">(</span><span class="token punctuation">)</span> Value</code></pre>
 <p>Create JS Array.</p>
@@ -681,7 +693,7 @@ foo <span class="token operator">:=</span> foo_class<span class="token punctuati
 </section>
 
 		<section id="Context.js_new_class" class="doc-node">
-			<div class="title"><h2>fn (Context) js_new_class <a href="#Context.js_new_class">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/type.v#L207"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+			<div class="title"><h2>fn (Context) js_new_class <a href="#Context.js_new_class">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/type.v#L208"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
 <pre class="signature">
 <code><span class="token keyword">fn</span> <span class="token punctuation">(</span>ctx <span class="token operator">&</span>Context<span class="token punctuation">)</span> <span class="token function">js_new_class</span><span class="token punctuation">(</span>val Value<span class="token punctuation">,</span> args <span class="token punctuation">...</span>AnyValue<span class="token punctuation">)</span> <span class="token operator">!</span>Value</code></pre>
 <p>JS call new class.</p>
@@ -721,7 +733,7 @@ foo <span class="token operator">:=</span> foo_class<span class="token punctuati
 </section>
 
 		<section id="Context.js_promise" class="doc-node">
-			<div class="title"><h2>fn (Context) js_promise <a href="#Context.js_promise">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/promise.v#L48"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+			<div class="title"><h2>fn (Context) js_promise <a href="#Context.js_promise">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/promise.v#L57"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
 <pre class="signature">
 <code><span class="token keyword">fn</span> <span class="token punctuation">(</span>ctx <span class="token operator">&</span>Context<span class="token punctuation">)</span> <span class="token function">js_promise</span><span class="token punctuation">(</span><span class="token punctuation">)</span> Promise</code></pre>
 <p>Same as new_promise, but without callback.</p>
@@ -821,7 +833,7 @@ foo <span class="token operator">:=</span> foo_class<span class="token punctuati
 </section>
 
 		<section id="Context.new_promise" class="doc-node">
-			<div class="title"><h2>fn (Context) new_promise <a href="#Context.new_promise">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/promise.v#L43"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+			<div class="title"><h2>fn (Context) new_promise <a href="#Context.new_promise">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/promise.v#L52"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
 <pre class="signature">
 <code><span class="token keyword">fn</span> <span class="token punctuation">(</span>ctx <span class="token operator">&</span>Context<span class="token punctuation">)</span> <span class="token function">new_promise</span><span class="token punctuation">(</span>cb CallbackPromise<span class="token punctuation">)</span> Value</code></pre>
 <p>Create new Promise.</p>
@@ -838,6 +850,22 @@ foo <span class="token operator">:=</span> foo_class<span class="token punctuati
 value <span class="token operator">:=</span> promise<span class="token punctuation">.</span><span class="token function">await</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token function">println</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span></code></pre>
 </section>
+</section>
+
+		<section id="Context.promise_result" class="doc-node">
+			<div class="title"><h2>fn (Context) promise_result <a href="#Context.promise_result">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/promise.v#L85"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>ctx <span class="token operator">&</span>Context<span class="token punctuation">)</span> <span class="token function">promise_result</span><span class="token punctuation">(</span>val Value<span class="token punctuation">)</span> Value</code></pre>
+<p>Get Promise Result</p>
+
+</section>
+
+		<section id="Context.promise_state" class="doc-node">
+			<div class="title"><h2>fn (Context) promise_state <a href="#Context.promise_state">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/promise.v#L79"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+<pre class="signature">
+<code><span class="token keyword">fn</span> <span class="token punctuation">(</span>ctx <span class="token operator">&</span>Context<span class="token punctuation">)</span> <span class="token function">promise_state</span><span class="token punctuation">(</span>val Value<span class="token punctuation">)</span> Value</code></pre>
+<p>Get Promise State</p>
+
 </section>
 
 		<section id="Context.runtime" class="doc-node">
@@ -963,7 +991,7 @@ mod<span class="token punctuation">.</span><span class="token function">create</
 </section>
 
 		<section id="Promise" class="doc-node">
-			<div class="title"><h2>struct Promise <a href="#Promise">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/promise.v#L13"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+			<div class="title"><h2>struct Promise <a href="#Promise">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/promise.v#L22"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
 <pre class="signature">
 <code><span class="token keyword">struct</span> <span class="token symbol">Promise</span> <span class="token punctuation">{</span>
 	ctx Context
@@ -973,7 +1001,7 @@ mod<span class="token punctuation">.</span><span class="token function">create</
 </section>
 
 		<section id="Promise.resolve" class="doc-node">
-			<div class="title"><h2>fn (Promise) resolve <a href="#Promise.resolve">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/promise.v#L55"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+			<div class="title"><h2>fn (Promise) resolve <a href="#Promise.resolve">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/promise.v#L64"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
 <pre class="signature">
 <code><span class="token keyword">fn</span> <span class="token punctuation">(</span>p Promise<span class="token punctuation">)</span> <span class="token function">resolve</span><span class="token punctuation">(</span><span class="token builtin">any</span> AnyValue<span class="token punctuation">)</span> Value</code></pre>
 <p>Promise resolve</p>
@@ -981,7 +1009,7 @@ mod<span class="token punctuation">.</span><span class="token function">create</
 </section>
 
 		<section id="Promise.reject" class="doc-node">
-			<div class="title"><h2>fn (Promise) reject <a href="#Promise.reject">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/promise.v#L60"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+			<div class="title"><h2>fn (Promise) reject <a href="#Promise.reject">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/promise.v#L69"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
 <pre class="signature">
 <code><span class="token keyword">fn</span> <span class="token punctuation">(</span>p Promise<span class="token punctuation">)</span> <span class="token function">reject</span><span class="token punctuation">(</span><span class="token builtin">any</span> AnyValue<span class="token punctuation">)</span> Value</code></pre>
 <p>Promise reject</p>
@@ -1040,7 +1068,7 @@ ctx <span class="token operator">:=</span> rt<span class="token punctuation">.</
 </section>
 
 		<section id="Runtime.promise_rejection_tracker" class="doc-node">
-			<div class="title"><h2>fn (Runtime) promise_rejection_tracker <a href="#Runtime.promise_rejection_tracker">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/promise.v#L65"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
+			<div class="title"><h2>fn (Runtime) promise_rejection_tracker <a href="#Runtime.promise_rejection_tracker">#</a></h2><a class="link" rel="noreferrer" target="_blank" href="https://github.com/herudi/vjs/blob/master/vjs/promise.v#L74"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg></a></div>
 <pre class="signature">
 <code><span class="token keyword">fn</span> <span class="token punctuation">(</span>rt Runtime<span class="token punctuation">)</span> <span class="token function">promise_rejection_tracker</span><span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre>
 <p>Promise rejection tracker (default true)</p>
@@ -1459,7 +1487,7 @@ obj<span class="token punctuation">.</span><span class="token function">set</spa
 </section>
 
 
-						<div class="footer">Powered by vdoc. Generated on: 18 Mar 2024 08:51:25</div>
+						<div class="footer">Powered by vdoc. Generated on: 19 Mar 2024 08:45:37</div>
 					</div>
 					<div class="doc-toc"><ul><li class="open"><a href="#readme_vjs">README</a></li>
 <li class="open"><a href="#Constants">Constants</a></li>
@@ -1491,6 +1519,9 @@ obj<span class="token punctuation">.</span><span class="token function">set</spa
 </ul>
 </li>
 <li class="open"><a href="#PropKey">type PropKey</a>        <ul>
+</ul>
+</li>
+<li class="open"><a href="#JSPromiseStateEnum">enum JSPromiseStateEnum</a>        <ul>
 </ul>
 </li>
 <li class="open"><a href="#Atom">struct Atom</a>        <ul>
@@ -1552,6 +1583,8 @@ obj<span class="token punctuation">.</span><span class="token function">set</spa
 <li><a href="#Context.loop">fn loop</a></li>
 <li><a href="#Context.new_atom">fn new_atom</a></li>
 <li><a href="#Context.new_promise">fn new_promise</a></li>
+<li><a href="#Context.promise_result">fn promise_result</a></li>
+<li><a href="#Context.promise_state">fn promise_state</a></li>
 <li><a href="#Context.runtime">fn runtime</a></li>
 </ul>
 </li>
