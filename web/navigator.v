@@ -1,9 +1,21 @@
 module web
 
-import vjs { Context }
+import vjs { Context, Value }
 import os
 import runtime
 import v.vmod
+
+fn navigator_boot(ctx &Context, boot Value) {
+	boot.set('get_navigator', ctx.js_function(fn [ctx] (args []Value) Value {
+		uname := os.uname()
+		manifest := vmod.from_file('${@VMODROOT}/v.mod') or { panic(err) }
+		obj := ctx.js_object()
+		obj.set('userAgent', '${manifest.name}/${manifest.version}')
+		obj.set('platform', '${uname.sysname} ${uname.machine}')
+		obj.set('hardwareConcurrency', runtime.nr_cpus())
+		return obj
+	}))
+}
 
 // Add Navigator API to globals.
 // Example:
@@ -19,15 +31,8 @@ import v.vmod
 // }
 // ```
 pub fn navigator_api(ctx &Context) {
-	uname := os.uname()
-	manifest := vmod.from_file('${@VMODROOT}/v.mod') or { panic(err) }
-	obj := ctx.js_object()
-	obj.set('userAgent', '${manifest.name}/${manifest.version}')
-	obj.set('platform', '${uname.sysname} ${uname.machine}')
-	obj.set('hardwareConcurrency', runtime.nr_cpus())
-	glob := ctx.js_global()
-	glob.set('__navigator', obj)
+	glob, boot := get_bootstrap(ctx)
+	navigator_boot(ctx, boot)
 	ctx.eval_file('${@VMODROOT}/web/js/navigator.js', vjs.type_module) or { panic(err) }
-	glob.delete('__navigator')
 	glob.free()
 }

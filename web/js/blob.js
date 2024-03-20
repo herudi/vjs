@@ -100,7 +100,7 @@ class Blob {
 
   stream() {
     const it = toIterator(this._parts, true);
-    return new globalThis.ReadableStream({
+    return new ReadableStream({
       type: "bytes",
       async pull(ctrl) {
         const chunk = await it.next();
@@ -154,11 +154,11 @@ class Blob {
     return blob;
   }
 
-  [vjs_inspect]() {
-    return {
+  [vjs_inspect](format) {
+    return "Blob " + format({
       size: this.size,
       type: this.type,
-    };
+    });
   }
 }
 Object.defineProperties(Blob.prototype, {

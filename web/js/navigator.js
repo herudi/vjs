@@ -1,19 +1,23 @@
 import { vjs_inspect } from "./util.js";
 
-const nav = globalThis.__navigator;
+const { get_navigator } = globalThis.__bootstrap;
 
 class Navigator {
+  #nav;
+  #getNav() {
+    return this.#nav ??= get_navigator();
+  }
   get userAgent() {
-    return nav.userAgent;
+    return this.#getNav().userAgent;
   }
   get platform() {
-    return nav.platform;
+    return this.#getNav().platform;
   }
   get hardwareConcurrency() {
-    return nav.hardwareConcurrency;
+    return this.#getNav().hardwareConcurrency;
   }
-  [vjs_inspect]() {
-    return nav;
+  [vjs_inspect](format) {
+    return "Navigator " + format(this.#getNav());
   }
 }
 

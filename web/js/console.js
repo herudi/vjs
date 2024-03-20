@@ -1,19 +1,19 @@
 /* Credit: All VJS Author */
-import {
+import { vjs_inspect } from "./util.js";
+const { print, promise_state, util } = globalThis.__bootstrap;
+const {
+  isObject,
   isArray,
   isArrayBuffer,
   isBool,
   isFunc,
   isNumber,
-  isObject,
   isRegExp,
   isString,
   isTypedArray,
   isTypeObject,
-  vjs_inspect,
-} from "./util.js";
-const { print, promise_state } = globalThis.__console;
-const isDate = (v) => v instanceof Date;
+  isDate,
+} = util;
 const def_count = 25;
 let count = 0;
 const ett = {
@@ -27,23 +27,21 @@ const ett = {
 };
 const esc = (v) => v.replace(/(?:[\b\t\n\f\r\"]|\\)/g, (e) => ett[e]);
 
-Error.prototype[vjs_inspect] = function () {
-  return {
+Error.prototype[vjs_inspect] = function (format) {
+  return "Error " + format({
     message: this.message,
     name: this.name || "Error",
     stack: this.stack || "",
-  };
+  });
 };
 Promise.prototype[vjs_inspect] = function () {
   return `Promise { ${cyan(`<${promise_state(this)}>`)} }`;
 };
-Map.prototype[vjs_inspect] = function () {
-  return `Map(${this.size}) ${
-    formatObject(Object.fromEntries(this.entries()))
-  }`;
+Map.prototype[vjs_inspect] = function (format) {
+  return `Map(${this.size}) ${format(Object.fromEntries(this.entries()))}`;
 };
-Set.prototype[vjs_inspect] = function () {
-  return `Set(${this.size}) ${formatArray(Array.from(this))}`;
+Set.prototype[vjs_inspect] = function (format) {
+  return `Set(${this.size}) ${format(Array.from(this))}`;
 };
 function isCyclic(obj) {
   const seenObjects = [];
@@ -187,18 +185,10 @@ function formatArray(arr, ctx) {
   return out;
 }
 function formatClass(cls, ctx) {
-  let out;
   if (cls[vjs_inspect] !== void 0) {
-    const data = cls[vjs_inspect]();
-    if (isTypeObject(data)) {
-      out = formatObject(data, ctx);
-    } else {
-      return data;
-    }
-  } else {
-    out = formatObject(cls, ctx);
+    return cls[vjs_inspect](formatValue);
   }
-  return `${c_name(cls)} ${out}`;
+  return `${c_name(cls)} ${formatObject(cls, ctx)}`;
 }
 
 function formatObject(obj, ctx) {

@@ -189,8 +189,8 @@ class FormData {
   toString() {
     return "[object FormData]";
   }
-  [vjs_inspect]() {
-    return Object.fromEntries(this.entries());
+  [vjs_inspect](format) {
+    return "FormData " + format(Object.fromEntries(this.entries()));
   }
 }
 

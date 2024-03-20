@@ -120,8 +120,8 @@ class URLSearchParams {
     }
     return query.join("&");
   }
-  [vjs_inspect]() {
-    return this.#query;
+  [vjs_inspect](format) {
+    return "URLSearchParams " + format(this.#query);
   }
 }
 globalThis.URLSearchParams = URLSearchParams;
@@ -326,8 +326,8 @@ class URL {
   toJSON() {
     return this.href;
   }
-  [vjs_inspect]() {
-    return {
+  [vjs_inspect](format) {
+    return "URL " + format({
       href: this.href,
       origin: this.origin,
       protocol: this.protocol,
@@ -340,7 +340,7 @@ class URL {
       search: this.search,
       searchParams: this.searchParams,
       hash: this.hash,
-    };
+    });
   }
 }
 

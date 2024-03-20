@@ -1,6 +1,4 @@
 /* Credit: All VJS Author */
-import { isArrayBuffer, isTypedArray } from "./util.js";
-
 const {
   rand_uuid,
   rand_bytes,
@@ -8,7 +6,12 @@ const {
   digest_sha256,
   digest_sha384,
   digest_sha512,
-} = globalThis.__crypto;
+} = globalThis.__bootstrap.crypto;
+
+const {
+  isArrayBuffer,
+  isTypedArray,
+} = globalThis.__bootstrap.util;
 
 class DumpTypeError extends TypeError {
   constructor(name, input, pos = 0) {

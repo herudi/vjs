@@ -3,8 +3,8 @@ import { vjs_inspect } from "./util.js";
 import { URLPattern as URLPatternPoly } from "./polyfill/url_pattern.js";
 
 class URLPattern extends URLPatternPoly {
-  [vjs_inspect]() {
-    return {
+  [vjs_inspect](format) {
+    return "URLPattern " + format({
       protocol: this.protocol,
       username: this.username,
       password: this.password,
@@ -13,7 +13,7 @@ class URLPattern extends URLPatternPoly {
       pathname: this.pathname,
       search: this.search,
       hash: this.hash,
-    };
+    });
   }
 }
 

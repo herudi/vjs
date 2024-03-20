@@ -1,5 +1,5 @@
 // Credit : https://www.npmjs.com/package/performance-polyfill
-const { v_now } = globalThis.__perf;
+const { perf_now } = globalThis.__bootstrap;
 const perf = {};
 const _entries = [];
 const _marksIndex = {};
@@ -23,7 +23,7 @@ const _clearEntries = function (type, name) {
     }
   }
 };
-perf.now = () => parseFloat(v_now());
+perf.now = () => parseFloat(perf_now() / 1000000);
 perf.mark = (name) => {
   const mark = {
     name,

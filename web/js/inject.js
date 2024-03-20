@@ -1,0 +1,11 @@
+import "./console.js";
+import "./perf.js";
+import "./timer.js";
+import "./stream.js";
+import "./encoding.js";
+import "./url.js";
+import "./url_pattern.js";
+import "./crypto.js";
+import "./navigator.js";
+import "./blob.js";
+import "./form_data.js";

@@ -3,7 +3,14 @@ module web
 import vjs { Context, Value }
 import time
 
-const navigator = time.now().unix_time_nano()
+const offset = time.now().unix_time_nano()
+
+fn performance_boot(ctx &Context, boot Value) {
+	boot.set('perf_now', ctx.js_function(fn [ctx] (args []Value) Value {
+		now := '${time.now().unix_time_nano() - web.offset}'
+		return ctx.js_string('${now}')
+	}))
+}
 
 // Add Performance API to globals.
 // Example:
@@ -19,14 +26,8 @@ const navigator = time.now().unix_time_nano()
 // }
 // ```
 pub fn performance_api(ctx &Context) {
-	obj := ctx.js_object()
-	obj.set('v_now', ctx.js_function(fn [ctx] (args []Value) Value {
-		now := '${time.now().unix_time_nano() - web.navigator}'
-		return ctx.js_string('${now[0..2]}.${now[2..now.len]}')
-	}))
-	glob := ctx.js_global()
-	glob.set('__perf', obj)
+	glob, boot := get_bootstrap(ctx)
+	performance_boot(ctx, boot)
 	ctx.eval_file('${@VMODROOT}/web/js/perf.js', vjs.type_module) or { panic(err) }
-	glob.delete('__perf')
 	glob.free()
 }

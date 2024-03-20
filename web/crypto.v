@@ -6,21 +6,7 @@ import crypto.sha1
 import crypto.sha256
 import crypto.sha512
 
-// Add Crypto API to globals.
-// Example:
-// ```v
-// import herudi.vjs
-// import herudi.vjs.web
-//
-// fn main() {
-//   rt := vjs.new_runtime()
-//   ctx := rt.new_context()
-//
-//   web.crypto_api(ctx)
-// }
-// ```
-@[manualfree]
-pub fn crypto_api(ctx &Context) {
+fn crypto_boot(ctx &Context, boot Value) {
 	obj := ctx.js_object()
 	obj.set('rand_uuid', ctx.js_function(fn [ctx] (args []Value) Value {
 		return ctx.js_string(rand.uuid_v4())
@@ -47,9 +33,26 @@ pub fn crypto_api(ctx &Context) {
 		sum := sha512.sum512(args[0].to_bytes())
 		return ctx.js_array_buffer(sum)
 	}))
-	glob := ctx.js_global()
-	glob.set('__crypto', obj)
+	boot.set('crypto', obj)
+}
+
+// Add Crypto API to globals.
+// Example:
+// ```v
+// import herudi.vjs
+// import herudi.vjs.web
+//
+// fn main() {
+//   rt := vjs.new_runtime()
+//   ctx := rt.new_context()
+//
+//   web.crypto_api(ctx)
+// }
+// ```
+@[manualfree]
+pub fn crypto_api(ctx &Context) {
+	glob, boot := get_bootstrap(ctx)
+	crypto_boot(ctx, boot)
 	ctx.eval_file('${@VMODROOT}/web/js/crypto.js', vjs.type_module) or { panic(err) }
-	glob.delete('__crypto')
 	glob.free()
 }

@@ -1,29 +1,17 @@
 /* Credit: All VJS Author */
 
-import { isArrayBuffer, isTypedArray } from "./util.js";
-
-const { str_to_ab, ab_to_str } = globalThis.__encoding;
+const { text_encode, text_decode, text_encode_into, util } =
+  globalThis.__bootstrap;
 
 class TextEncoder {
   get encoding() {
     return "utf-8";
   }
   encode(input) {
-    if (input === void 0) return new Uint8Array();
-    return new Uint8Array(str_to_ab(input));
+    return text_encode(input);
   }
-  encodeInto(text, array) {
-    const buf = this.encode(text);
-    const ret = {
-      read: text.length,
-      written: buf.length,
-    };
-    if (buf.length > array.length) {
-      ret.read = parseInt(array.length / buf.length * ret.read);
-      ret.written = array.length;
-    }
-    array.set(buf, 0);
-    return ret;
+  encodeInto(input, typed_array) {
+    return text_encode_into(input, typed_array);
   }
 }
 class TextDecoder {
@@ -43,10 +31,7 @@ class TextDecoder {
     return this.#opts.ignoreBOM ?? false;
   }
   decode(input, opts = {}) {
-    if (input === void 0) return "";
-    if (isArrayBuffer(input)) return ab_to_str(input);
-    if (isTypedArray(input)) return ab_to_str(input.buffer);
-    throw new TypeError(`args[0] not TypedArray`);
+    return text_decode(input, opts);
   }
 }
 
