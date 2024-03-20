@@ -147,12 +147,13 @@ var searchIndex = [
 "crypto_api",
 "encoding_api",
 "formdata_api",
-"inject",
 "navigator_api",
 "performance_api",
 "stream_api",
 "timer_api",
 "url_api",
+"delete_bootstrap",
+"inject",
 "window_api",
 ];
 
@@ -305,12 +306,13 @@ var searchData = [
 ["web","Add Crypto API to globals. Example:","web.html#crypto_api","fn "],
 ["web","Add encoding API to globals (`TextEncoder`, `TextDecoder`). Example:","web.html#encoding_api","fn "],
 ["web","Add FormData API to globals. Example:","web.html#formdata_api","fn "],
-["web","Inject All Web-API features. Example:","web.html#inject","fn "],
 ["web","Add Navigator API to globals. Example:","web.html#navigator_api","fn "],
 ["web","Add Performance API to globals. Example:","web.html#performance_api","fn "],
 ["web","Add Stream API to globals (`ReadableStream`, `TransformStream`, `WritableStream`","web.html#stream_api","fn "],
 ["web","Add timer API to globals (`setTimeout`, `setInterval`, `clearTimeout`, `clearInt","web.html#timer_api","fn "],
 ["web","Add URL API to globals (`URL`, `URLSearchParams`). Example:","web.html#url_api","fn "],
+["web","delete core `__bootstrap` from global","web.html#delete_bootstrap","fn "],
+["web","Inject All Web-API features. Example:","web.html#inject","fn "],
 ["web","Add Window API to globals. same as globalThis. Example:","web.html#window_api","fn "],
 ];
 
