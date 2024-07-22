@@ -3,11 +3,11 @@ module web
 import vjs { Context, Value }
 import time
 
-const offset = time.now().unix_time_nano()
+const offset = time.now().unix_nano()
 
 fn performance_boot(ctx &Context, boot Value) {
 	boot.set('perf_now', ctx.js_function(fn [ctx] (args []Value) Value {
-		now := '${time.now().unix_time_nano() - web.offset}'
+		now := '${time.now().unix_nano() - web.offset}'
 		return ctx.js_string('${now}')
 	}))
 }

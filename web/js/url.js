@@ -13,7 +13,7 @@ function hasOwnProperty(obj, prop) {
   return Object.prototype.hasOwnProperty.call(obj, prop);
 }
 function appendTo(dict, name, value) {
-  let val = typeof value === "string" ? value : (
+  const val = typeof value === "string" ? value : (
     value !== null && value !== undefined &&
       typeof value.toString === "function"
       ? value.toString()
@@ -26,11 +26,11 @@ function appendTo(dict, name, value) {
   }
 }
 function parse(search) {
-  let dict = {};
+  const dict = {};
   if (typeof search === "object") {
     if (isArray(search)) {
       for (let i = 0; i < search.length; i++) {
-        let item = search[i];
+        const item = search[i];
         if (isArray(item) && item.length === 2) {
           appendTo(dict, item[0], item[1]);
         } else {
@@ -40,17 +40,16 @@ function parse(search) {
         }
       }
     } else {
-      for (let key in search) {
-        if (search.hasOwnProperty(key)) {
+      for (const key in search) {
+        if (Object.hasOwn(search, key)) {
           appendTo(dict, key, search[key]);
         }
       }
     }
   } else {
-    let pairs = search.split("&");
+    const pairs = search.split("&");
     for (let j = 0; j < pairs.length; j++) {
-      let value = pairs[j],
-        index = value.indexOf("=");
+      const value = pairs[j], index = value.indexOf("=");
       if (-1 < index) {
         appendTo(
           dict,
@@ -67,7 +66,7 @@ function parse(search) {
   return dict;
 }
 function encode(str) {
-  let replace = {
+  const replace = {
     "!": "%21",
     "'": "%27",
     "(": "%28",
@@ -111,7 +110,8 @@ class URLSearchParams {
     delete this.#query[k];
   }
   toString() {
-    let dict = this.#query, query = [], i, key, name, value;
+    const dict = this.#query, query = [];
+    let i, key, name, value;
     for (key in dict) {
       name = encode(key);
       for (i = 0, value = dict[key]; i < value.length; i++) {
@@ -136,7 +136,8 @@ proto.forEach = function (callback, thisArg) {
   }, this);
 };
 proto.sort = function () {
-  let dict = parse(this.toString()), keys = [], k, i, j;
+  const dict = parse(this.toString()), keys = [];
+  let k, i, j;
   for (k in dict) {
     keys.push(k);
   }
@@ -145,28 +146,28 @@ proto.sort = function () {
     this["delete"](keys[i]);
   }
   for (i = 0; i < keys.length; i++) {
-    let key = keys[i], values = dict[key];
+    const key = keys[i], values = dict[key];
     for (j = 0; j < values.length; j++) {
       this.append(key, values[j]);
     }
   }
 };
 proto.keys = function () {
-  let items = [];
+  const items = [];
   this.forEach(function (_, name) {
     items.push(name);
   });
   return makeIterator(items);
 };
 proto.values = function () {
-  let items = [];
+  const items = [];
   this.forEach(function (item) {
     items.push(item);
   });
   return makeIterator(items);
 };
 proto.entries = function () {
-  let items = [];
+  const items = [];
   this.forEach(function (item, name) {
     items.push([name, item]);
   });
@@ -174,7 +175,7 @@ proto.entries = function () {
 };
 Object.defineProperty(proto, "size", {
   get: function () {
-    let dict = parse(this.toString());
+    const dict = parse(this.toString());
     if (proto === this) {
       throw new TypeError("Illegal invocation at URLSearchParams.invokeGetter");
     }
@@ -185,9 +186,9 @@ Object.defineProperty(proto, "size", {
 });
 proto[Symbol.iterator] = proto.entries;
 function makeIterator(arr) {
-  let iterator = {
+  const iterator = {
     next: function () {
-      let value = arr.shift();
+      const value = arr.shift();
       return { done: value === undefined, value: value };
     },
   };

@@ -65,6 +65,11 @@ fn is_date(this Value, args []Value) Value {
 	return this.ctx.js_bool(args[0].instanceof('Date'))
 }
 
+fn is_redirect(this Value, args []Value) Value {
+	code := args[0].to_int()
+	return this.ctx.js_bool(code == 301 || code == 302 || code == 303 || code == 307 || code == 308)
+}
+
 fn wrap_bool(cb FnWrapBool) JSFunctionThis {
 	return fn [cb] (this Value, args []Value) Value {
 		return this.ctx.js_bool(cb(this, args))
@@ -85,6 +90,7 @@ fn util_boot(ctx &Context, boot Value) {
 	obj.set('isPromise', ctx.js_function_this(is_promise))
 	obj.set('isTypedArray', ctx.js_function_this(wrap_bool(is_typed_array)))
 	obj.set('isDate', ctx.js_function_this(is_date))
+	obj.set('isRedirect', ctx.js_function_this(is_redirect))
 	boot.set('util', obj)
 }
 

@@ -166,10 +166,10 @@ fn main() {
 - [x] [File](https://developer.mozilla.org/en-US/docs/Web/API/File)
 - [x] [Performance](https://developer.mozilla.org/en-US/docs/Web/API/Performance)
 - [x] [Navigator](https://developer.mozilla.org/en-US/docs/Web/API/Navigator)
-- [ ] Fetch API
-  - [ ] Headers
-  - [ ] Request
-  - [ ] Response
+- [x] Fetch API
+  - [x] Headers
+  - [x] Request
+  - [x] Response
 - <i>More...</i>
 
 ### It's Fun Project. PRs Wellcome :)

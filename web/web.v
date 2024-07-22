@@ -47,6 +47,7 @@ pub fn inject(ctx &Context) {
 	crypto_boot(ctx, boot)
 	encoding_boot(ctx, boot)
 	performance_boot(ctx, boot)
+	fetch_boot(ctx, boot)
 	ctx.eval_file('${@VMODROOT}/web/js/inject.js', vjs.type_module) or { panic(err) }
 	glob.delete('__bootstrap')
 	glob.free()

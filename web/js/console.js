@@ -52,7 +52,7 @@ function isCyclic(obj) {
       }
       seenObjects.push(obj);
       for (const key in obj) {
-        if (obj.hasOwnProperty(key) && detect(obj[key])) {
+        if (Object.hasOwn(obj, key) && detect(obj[key])) {
           return true;
         }
       }
@@ -138,7 +138,8 @@ function countObject(obj) {
   return count;
 }
 function countArray(arr) {
-  let count = 0, len = arr.length;
+  let count = 0;
+  const len = arr.length;
   for (let i = 0; i < len; i++) {
     const v = arr[i];
     if (v != null) {
@@ -186,7 +187,9 @@ function formatArray(arr, ctx) {
 }
 function formatClass(cls, ctx) {
   if (cls[vjs_inspect] !== void 0) {
-    return cls[vjs_inspect](formatValue);
+    return cls[vjs_inspect]((data) => {
+      return formatValue(data, void 0, ctx);
+    });
   }
   return `${c_name(cls)} ${formatObject(cls, ctx)}`;
 }

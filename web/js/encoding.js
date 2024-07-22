@@ -1,7 +1,6 @@
 /* Credit: All VJS Author */
 
-const { text_encode, text_decode, text_encode_into, util } =
-  globalThis.__bootstrap;
+const { text_encode, text_decode, text_encode_into } = globalThis.__bootstrap;
 
 class TextEncoder {
   get encoding() {

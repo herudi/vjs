@@ -4,7 +4,9 @@ const perf = {};
 const _entries = [];
 const _marksIndex = {};
 const _filterEntries = function (key, value) {
-  let i = 0, n = _entries.length, result = [];
+  let i = 0;
+  const n = _entries.length;
+  const result = [];
   for (; i < n; i++) {
     if (_entries[i][key] == value) {
       result.push(_entries[i]);

@@ -47,7 +47,6 @@ const escapeStr = (str) =>
 class FormData {
   #data = [];
   constructor(form) {
-    const self = this;
     form && each(form.elements, (elm) => {
       if (
         !elm.name ||
@@ -62,19 +61,19 @@ class FormData {
           ? elm.files
           : [new File([], "", { type: "application/octet-stream" })]; // #78
         each(files, (file) => {
-          self.append(elm.name, file);
+          this.append(elm.name, file);
         });
       } else if (elm.type === "select-multiple" || elm.type === "select-one") {
         each(elm.options, (opt) => {
-          !opt.disabled && opt.selected && self.append(elm.name, opt.value);
+          !opt.disabled && opt.selected && this.append(elm.name, opt.value);
         });
       } else if (elm.type === "checkbox" || elm.type === "radio") {
-        if (elm.checked) self.append(elm.name, elm.value);
+        if (elm.checked) this.append(elm.name, elm.value);
       } else {
         const value = elm.type === "textarea"
           ? normalizeLinefeeds(elm.value)
           : elm.value;
-        self.append(elm.name, value);
+        this.append(elm.name, value);
       }
     });
   }
@@ -92,7 +91,7 @@ class FormData {
     this.#data = result;
   }
   *entries() {
-    for (var i = 0; i < this.#data.length; i++) {
+    for (let i = 0; i < this.#data.length; i++) {
       yield this.#data[i];
     }
   }
@@ -159,8 +158,8 @@ class FormData {
       yield value;
     }
   }
-  ["_blob"]() {
-    const boundary = "----formdata-polyfill-" + Math.random(),
+  _blob = (code) => {
+    const boundary = "----formdata-" + (code ?? Math.random()),
       chunks = [],
       p = `--${boundary}\r\nContent-Disposition: form-data; name="`;
     this.forEach((value, name) =>
@@ -182,7 +181,7 @@ class FormData {
     return new Blob(chunks, {
       type: "multipart/form-data; boundary=" + boundary,
     });
-  }
+  };
   [Symbol.iterator]() {
     return this.entries();
   }
