@@ -146,6 +146,7 @@ var searchIndex = [
 "console_api",
 "crypto_api",
 "encoding_api",
+"fetch_api",
 "formdata_api",
 "navigator_api",
 "performance_api",
@@ -158,8 +159,8 @@ var searchIndex = [
 ];
 
 var searchModuleData = [
-["# VJS","index.html"],
-["# VJS","vjs.html"],
+["[V](https://vlang.io/) bindings to [QuickJS](https://bellard.org/quickjs/) javas","index.html"],
+["[V](https://vlang.io/) bindings to [QuickJS](https://bellard.org/quickjs/) javas","vjs.html"],
 ["","web.html"],
 ];
 
@@ -305,6 +306,7 @@ var searchData = [
 ["web","Add console to globals. Example:","web.html#console_api","fn "],
 ["web","Add Crypto API to globals. Example:","web.html#crypto_api","fn "],
 ["web","Add encoding API to globals (`TextEncoder`, `TextDecoder`). Example:","web.html#encoding_api","fn "],
+["web","Add Fetch API to globals. Example:","web.html#fetch_api","fn "],
 ["web","Add FormData API to globals. Example:","web.html#formdata_api","fn "],
 ["web","Add Navigator API to globals. Example:","web.html#navigator_api","fn "],
 ["web","Add Performance API to globals. Example:","web.html#performance_api","fn "],
