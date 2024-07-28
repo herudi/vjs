@@ -28,9 +28,17 @@ pub type AtomValue = int | string
 fn C.JS_AtomToCString(&C.JSContext, C.JSAtom) &char
 fn C.JS_AtomToValue(&C.JSContext, C.JSAtom) C.JSValue
 fn C.JS_NewAtom(&C.JSContext, &char) C.JSAtom
+fn C.JS_GetModuleName(&C.JSContext, &C.JSModuleDef) C.JSAtom
 fn C.JS_FreeAtom(&C.JSContext, C.JSAtom)
 fn C.JS_NewAtomUInt32(&C.JSContext, u32) C.JSAtom
 fn C.JS_GetOwnPropertyNames(&C.JSContext, &&C.JSPropertyEnum, &u32, JSValueConst, int) int
+
+pub fn (ctx &Context) c_atom(atom C.JSAtom) Atom {
+	return Atom{
+		ctx: ctx
+		ref: atom
+	}
+}
 
 // Create new Atom support `int` | `string`.
 // Example:

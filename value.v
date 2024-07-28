@@ -57,7 +57,17 @@ pub fn (v Value) dup_value() Value {
 @[manualfree]
 pub fn (v Value) to_string() string {
 	ptr := C.JS_ToCString(v.ctx.ref, v.ref)
-	ret := v_str(ptr)
+	ret := if isnil(ptr) {
+		if v.is_array() {
+			return '[]'
+		}
+		if v.is_object() {
+			return '{}'
+		}
+		return v.ctx.js_undefined().str()
+	} else {
+		v_str(ptr)
+	}
 	C.JS_FreeCString(v.ctx.ref, ptr)
 	return ret
 }

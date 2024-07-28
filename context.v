@@ -13,12 +13,24 @@ pub struct Context {
 	rt  Runtime
 }
 
+type SetMeta = fn (Context, JSValueConst)
+
 // ContextConfig structure params.
 @[params]
 pub struct ContextConfig {
 	unhandled_rejection bool = true
 	bignum              bool = true
 	module_std          bool
+}
+
+// EvalCoreConfig structure params.
+@[params]
+pub struct EvalCoreConfig {
+	input    &char
+	len      usize
+	fname    &char
+	flag     int
+	set_meta SetMeta @[required]
 }
 
 type EvalArgs = int | string
@@ -85,6 +97,10 @@ fn C.js_load_file(&C.JSContext, &usize, &char) &u8
 fn C.js_module_set_import_meta(&C.JSContext, JSValueConst, bool, bool) int
 fn C.JS_CallConstructor(&C.JSContext, JSValueConst, int, &JSValueConst) C.JSValue
 
+fn def_set_meta(ctx Context, ref JSValueConst) {
+	C.js_module_set_import_meta(ctx.ref, ref, true, true)
+}
+
 fn fn_custom_context(config ContextConfig) FnNewContext {
 	return fn [config] (rt &C.JSRuntime) &C.JSContext {
 		ref := C.JS_NewContext(rt)
@@ -126,14 +142,17 @@ pub fn (rt Runtime) new_context(config ContextConfig) &Context {
 
 // Core evaluate JS
 @[manualfree]
-pub fn (ctx &Context) js_eval_core(input &char, len usize, fname &char, flag int, from_file bool) !Value {
+pub fn (ctx &Context) js_eval_core(op EvalCoreConfig) !Value {
 	mut ref := ctx.js_undefined().ref
+	input := op.input
+	len := op.len
+	fname := op.fname
+	flag := op.flag
+	set_meta := op.set_meta
 	if (flag & vjs.type_mask) == vjs.type_module {
 		ref = C.JS_Eval(ctx.ref, input, len, fname, flag | vjs.type_compile_only)
 		if C.JS_IsException(ref) == 0 {
-			if from_file {
-				C.js_module_set_import_meta(ctx.ref, ref, true, true)
-			}
+			set_meta(ctx, ref)
 			ref = C.JS_EvalFunction(ctx.ref, ref)
 		}
 		ref = C.js_std_await(ctx.ref, ref)
@@ -154,7 +173,13 @@ pub fn (ctx &Context) js_eval_core(input &char, len usize, fname &char, flag int
 // Evaluate JS with complete params
 // Example: ctx.js_eval(code, filename, flag)!
 pub fn (ctx &Context) js_eval(input string, fname string, flag int) !Value {
-	return ctx.js_eval_core(input.str, usize(input.len), fname.str, flag, false)!
+	return ctx.js_eval_core(
+		input: input.str
+		len: usize(input.len)
+		fname: fname.str
+		flag: flag
+		set_meta: fn (ctx Context, ref JSValueConst) {}
+	)!
 }
 
 // Evaluate JS
@@ -180,6 +205,30 @@ pub fn (ctx &Context) eval_module(input string, fname string) !Value {
 	return ctx.js_eval(input, fname, vjs.type_module)
 }
 
+// Evaluate File with metadata
+// Example:
+// ```v
+// ctx.eval_file_custom_meta('./path/to/file.js', vjs.type_module, set_meta_fn)!
+// ```
+@[manualfree]
+pub fn (ctx &Context) eval_file_custom_meta(fname string, flag int, set_meta SetMeta) !Value {
+	c_fname := fname.str
+	mut buf_len := usize(0)
+	buf := C.js_load_file(ctx.ref, &buf_len, c_fname)
+	if isnil(buf) {
+		return error('${fname} file not found')
+	}
+	val := ctx.js_eval_core(
+		input: buf
+		len: buf_len
+		fname: c_fname
+		flag: flag
+		set_meta: set_meta
+	)!
+	C.js_free(ctx.ref, buf)
+	return val
+}
+
 // Evaluate File
 // Example:
 // ```v
@@ -191,16 +240,8 @@ pub fn (ctx &Context) eval_module(input string, fname string) !Value {
 @[manualfree]
 pub fn (ctx &Context) eval_file(args ...EvalArgs) !Value {
 	fname := args[0] as string
-	c_fname := fname.str
 	flag := if args.len == 2 { args[1] as int } else { vjs.type_global }
-	mut buf_len := usize(0)
-	buf := C.js_load_file(ctx.ref, &buf_len, c_fname)
-	if buf == unsafe { nil } {
-		return error('${fname} file not found')
-	}
-	val := ctx.js_eval_core(buf, buf_len, c_fname, flag, true)!
-	C.js_free(ctx.ref, buf)
-	return val
+	return ctx.eval_file_custom_meta(fname, flag, def_set_meta)
 }
 
 // Evaluate Function
