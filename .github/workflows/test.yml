@@ -32,4 +32,4 @@ jobs:
 
       - name: Run Tests Windows
         if: matrix.os == 'windows-latest'
-        run: v -cg -cc gcc test .
+        run: v -cg test .
