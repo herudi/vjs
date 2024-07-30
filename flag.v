@@ -2,7 +2,7 @@ module vjs
 
 #flag -I @VMODROOT/libs/include
 
-$if tinyc {
+$if tinyc && !windows {
 	// misc for tcc
 	#flag @VMODROOT/libs/misc/divti3.c
 	#flag @VMODROOT/libs/misc/udivti3.c
