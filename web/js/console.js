@@ -78,6 +78,8 @@ const green = (val) => formatColour(val, 32, 39);
 const cyan = (val) => formatColour(val, 36, 39);
 const red = (val) => formatColour(val, 31, 39);
 const blue = (val) => formatColour(val, 34, 39);
+const gray = (val) => formatColour(val, 90, 39);
+const bold = (val) => formatColour(val, 1, 22);
 const c_name = (val) => val?.constructor?.name;
 function formatValue(val, is_str, ctx) {
   if (isNumber(val)) return yellow(val);
@@ -85,6 +87,8 @@ function formatValue(val, is_str, ctx) {
   if (isString(val)) return is_str ? val : green(`"${esc(val)}"`);
   if (isArray(val)) return formatArray(val, ctx);
   if (isBool(val)) return yellow(val);
+  if (val === undefined) return gray(val);
+  if (val === null) return bold(val);
   if (isFunc(val)) {
     const name = lookupFunction(val);
     return cyan(`[${name}: ${val.name || "(anonymous)"}]`);
