@@ -1,23 +1,29 @@
-/* Credit: https://www.npmjs.com/package/event-target-polyfill */
 import { vjs_inspect } from "./util.js";
 
 const inspector_event = (obj) => ({
+  type: obj.type,
+  target: obj.target,
+  currentTarget: obj.currentTarget,
+  eventPhase: obj.eventPhase,
+  cancelBubble: obj.cancelBubble,
   bubbles: obj.bubbles,
   cancelable: obj.cancelable,
-  composed: obj.composed,
-  currentTarget: obj.currentTarget,
-  returnValue: obj.returnValue,
   defaultPrevented: obj.defaultPrevented,
-  target: obj.target,
+  composed: obj.composed,
   timeStamp: obj.timeStamp,
-  type: obj.type,
+  srcElement: obj.srcElement,
+  returnValue: obj.returnValue,
+  NONE: obj.NONE,
+  CAPTURING_PHASE: obj.CAPTURING_PHASE,
+  AT_TARGET: obj.AT_TARGET,
+  BUBBLING_PHASE: obj.BUBBLING_PHASE,
+  isTrusted: obj.isTrusted,
 });
 
 class Event {
   #type = void 0;
   #opts = void 0;
   __currentTarget = void 0;
-  __target = void 0;
   constructor(type, opts = {}) {
     this.#type = type;
     this.#opts = opts;
@@ -44,7 +50,7 @@ class Event {
   }
 
   get target() {
-    return this.__target;
+    return this.__currentTarget;
   }
 
   get timeStamp() {
@@ -54,9 +60,43 @@ class Event {
   get returnValue() {
     return true;
   }
-
+  get eventPhase() {
+    return 2;
+  }
+  get srcElement() {
+    return this.target;
+  }
   get defaultPrevented() {
     return false;
+  }
+  get isTrusted() {
+    return false;
+  }
+  get cancelBubble() {
+    return false;
+  }
+  get NONE() {
+    return 0;
+  }
+  get CAPTURING_PHASE() {
+    return 1;
+  }
+  get AT_TARGET() {
+    return 2;
+  }
+  get BUBBLING_PHASE() {
+    return 3;
+  }
+  stopPropagation() {}
+  stopImmediatePropagation() {}
+  preventDefault() {}
+  initEvent(type, bubbles, cancelable) {
+    this.#opts.bubbles = bubbles;
+    this.#opts.cancelable = cancelable;
+    this.#type = type;
+  }
+  composedPath() {
+    return [this.__currentTarget];
   }
 
   [vjs_inspect](format) {
@@ -82,6 +122,8 @@ class CustomEvent extends Event {
   }
 }
 globalThis.CustomEvent = CustomEvent;
+
+/* Credit: https://www.npmjs.com/package/event-target-polyfill */
 class EventTarget {
   __listeners = void 0;
   constructor() {}
@@ -128,7 +170,6 @@ class EventTarget {
       );
     }
     event.__currentTarget = this;
-    event.__target = this;
     const type = event.type;
     const __listeners = this.#listener;
     const listenersForType = __listeners.get(type);
@@ -156,11 +197,7 @@ class EventTarget {
   }
 
   [vjs_inspect](format) {
-    return "EventTarget " + format({
-      addEventListener: this.addEventListener,
-      dispatchEvent: this.dispatchEvent,
-      removeEventListener: this.removeEventListener,
-    });
+    return "EventTarget " + format({});
   }
 }
 
