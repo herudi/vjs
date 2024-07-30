@@ -5,4 +5,4 @@
 *.v linguist-language=V
 
 libs/include/* linguist-vendored
-web/js/polyfill/* linguist-vendored
+web/js/* linguist-vendored

@@ -10,3 +10,4 @@ import "./navigator.js";
 import "./blob.js";
 import "./form_data.js";
 import "./fetch.js";
+import "./event.js";
