@@ -161,6 +161,7 @@ fn main() {
   - [ ] sign
   - [ ] verify
 - [x] [Streams API](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API)
+- [x] [Event](https://developer.mozilla.org/en-US/docs/Web/API/Event/Event)
 - [x] [FormData](https://developer.mozilla.org/en-US/docs/Web/API/FormData)
 - [x] [Blob](https://developer.mozilla.org/en-US/docs/Web/API/Blob)
 - [x] [File](https://developer.mozilla.org/en-US/docs/Web/API/File)
