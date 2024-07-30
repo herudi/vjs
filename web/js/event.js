@@ -1,4 +1,6 @@
 /* Credit: https://www.npmjs.com/package/event-target-polyfill */
+import { vjs_inspect } from "./util.js";
+
 class Event {
   constructor(type, opts = {}) {
     this.bubbles = opts.bubbles ?? false;
@@ -82,6 +84,14 @@ class EventTarget {
       }
     }
     return true;
+  }
+
+  [vjs_inspect](format) {
+    return "EventTarget " + format({
+      addEventListener: this.addEventListener,
+      dispatchEvent: this.dispatchEvent,
+      removeEventListener: this.removeEventListener,
+    });
   }
 }
 
